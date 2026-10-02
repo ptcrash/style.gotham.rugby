@@ -1,0 +1,59 @@
+/* ============================================================
+   Gotham Knights — Typography Tokens
+   Headings: Hanken Grotesk 800 — DEFAULT (strong & modern, h1–h4 + SectionHeading)
+   Athletic: Gotham Black  — heavy geometric sans, ALL-CAPS loud headlines
+   Body/UI:  Hanken Grotesk — modern geometric-humanist sans
+   Wordmark: Harbour       — logo lockup ONLY (the "Gotham Knights" wordmark);
+                             NOT a display/accent font — there is no general accent slot
+   Mono:     Spline Sans Mono — scores, stats, kit numbers
+   ============================================================ */
+
+:root {
+  /* --- Families --- */
+  --font-wordmark: "Harbour", Georgia, serif; /* logo wordmark lockup ONLY — not headings, not quotes */
+  --font-heading: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; /* DEFAULT headings — strong & modern */
+  --font-athletic: "gotham", "Arial Black", system-ui, sans-serif; /* Adobe Fonts; its Black is 800, which --fw-black (900) resolves to */
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Spline Sans Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* --- Weights --- */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extrabold: 800; /* @kind font */
+  --fw-black: 900; /* @kind font */
+
+  /* --- Type scale (fluid-ish, rem-based; 1rem = 16px) --- */
+  --fs-display-2xl: 5.5rem;  /* 88px hero athletic */
+  --fs-display-xl: 4rem;     /* 64px */
+  --fs-display-lg: 3rem;     /* 48px */
+  --fs-display-md: 2.25rem;  /* 36px */
+  --fs-h1: 2rem;             /* 32px */
+  --fs-h2: 1.5rem;           /* 24px */
+  --fs-h3: 1.25rem;          /* 20px */
+  --fs-body-lg: 1.125rem;    /* 18px */
+  --fs-body: 1rem;           /* 16px */
+  --fs-body-sm: 0.875rem;    /* 14px */
+  --fs-caption: 0.75rem;     /* 12px */
+  --fs-overline: 0.6875rem;  /* 11px */
+
+  /* --- Line heights --- */
+  --lh-tight: 0.95; /* @kind font */
+  --lh-snug: 1.1; /* @kind font */
+  --lh-heading: 1.18; /* @kind font */
+  --lh-body: 1.55; /* @kind font */
+  --lh-relaxed: 1.7; /* @kind font */
+
+  /* --- Letter spacing --- */
+  --ls-tighter: -0.02em; /* @kind font */
+  --ls-tight: -0.01em; /* @kind font */
+  --ls-normal: 0; /* @kind font */
+  --ls-wide: 0.04em; /* @kind font */
+  --ls-wider: 0.08em; /* @kind font */
+  --ls-overline: 0.16em;   /* the all-caps eyebrow look @kind font */
+
+  /* Wordmark tracking — tight, tuned to match the official logo letterforms.
+     Use ONLY for "Gotham Knights" set in Harbour (--font-wordmark). */
+  --tracking-wordmark: -0.05em; /* @kind font */
+}

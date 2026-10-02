@@ -1,0 +1,80 @@
+/* ============================================================
+   Gotham Knights — Pattern utilities
+   The brand's textures, as drop-in classes (consumers get these
+   via styles.css). LOUD by nature — use sparingly: borders, bands,
+   accents, single moments. Never wallpaper a whole layout.
+
+   Pairs with base.css utilities: .gk-pride-rule (the Pride accent),
+   .gk-rule (gold underline), .gk-athletic, .gk-overline.
+   ============================================================ */
+
+/* --- Checkerboard --- the loudest move. Borders & frames ONLY.
+   Override tile size with --gk-checker-size. */
+.gk-checker {
+  background:
+    conic-gradient(
+      var(--navy-700) 0 25%, var(--gold-500) 0 50%,
+      var(--navy-700) 0 75%, var(--gold-500) 0
+    ) 0 0 / var(--gk-checker-size, 30px) var(--gk-checker-size, 30px);
+}
+
+/* --- Sideline Stripes --- bold diagonal bars. Accent edges, footers, CTAs. */
+.gk-stripes {
+  background: repeating-linear-gradient(-45deg,
+    var(--navy-700) 0 var(--gk-stripe-size, 26px),
+    var(--gold-500) var(--gk-stripe-size, 26px) calc(var(--gk-stripe-size, 26px) * 2));
+}
+
+/* --- Halftone · Fine Fade --- quiet navy dots on a SOLID warm-paper field;
+   only the dots fade (a paper "curtain" hides them toward the far edge, so the
+   surface and any border stay solid). The Clubhouse default. */
+.gk-halftone-fade {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(105deg, transparent 16%, var(--paper) 92%),
+    radial-gradient(var(--navy-700) 1.6px, transparent 1.8px);
+  background-size: 100% 100%, 11px 11px;
+}
+
+/* --- Halftone · Loud Duotone --- gold dots on a SOLID navy field; only the
+   dots fade. A navy "curtain" gradient covers the dots toward the far edge
+   while the navy stays fully solid throughout. Matchday, socials, hype. */
+.gk-halftone-duotone {
+  background-color: var(--navy-700);
+  background-image:
+    linear-gradient(105deg, transparent 10%, var(--navy-700) 86%),
+    radial-gradient(var(--gold-500) 1.7px, transparent 1.9px);
+  background-size: 100% 100%, 12px 12px;
+}
+
+/* --- Halftone · Spotlight --- navy dots on a SOLID paper field, clustered to a
+   focal point and fading out in a ring (a radial paper "curtain" hides the dots
+   outward, so the surface and border stay solid). Behind a portrait or a kit
+   number. Move the focus with --gk-spot-x / --gk-spot-y. */
+.gk-halftone-spotlight {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at var(--gk-spot-x, 50%) var(--gk-spot-y, 50%), transparent 6%, var(--paper) 64%),
+    radial-gradient(var(--navy-700) 1.7px, transparent 1.9px);
+  background-size: 100% 100%, 12px 12px;
+}
+
+/* --- Pinstripe --- the whisper. A fine 10%-navy pinstripe on warm paper for
+   professional documents. Pair with .gk-pride-rule (base.css) as one
+   deliberate Pride moment — a thin spectrum line, never a full gradient. */
+.gk-pinstripe {
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(90deg,
+    rgba(13, 29, 65, 0.10) 0 1px, transparent 1px 8px);
+}
+
+/* --- Crest Watermark --- a single faint shield on a navy panel, bleeding off
+   the right edge. Behind covers, titles & quotes — never over body copy.
+   Override placement with background-position / background-size. */
+.gk-crest-watermark {
+  background-color: var(--navy-700);
+  background-image: url("../assets/logos/crest-watermark.svg");
+  background-repeat: no-repeat;
+  background-position: 132% center;
+  background-size: auto 132%;
+}

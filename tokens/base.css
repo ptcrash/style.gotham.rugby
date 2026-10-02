@@ -1,0 +1,90 @@
+/* ============================================================
+   Gotham Knights — Base layer
+   Element defaults + a few brand utility classes.
+   Consumers get this automatically via styles.css.
+   ============================================================ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headlines default to a strong, modern sans. Harbour (--font-wordmark) is
+   reserved for the logo wordmark lockup only — not for headings or quotes. */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-strong);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  font-weight: var(--fw-extrabold);
+  margin: 0;
+}
+
+a { color: var(--text-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: var(--gold-500); color: var(--navy-700); }
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ---- Brand utilities ---- */
+
+/* Athletic all-caps headline, the "loud" voice */
+.gk-athletic {
+  font-family: var(--font-athletic);
+  font-weight: var(--fw-black);
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+/* Eyebrow / overline label */
+.gk-overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-overline);
+  font-size: var(--fs-overline);
+  color: var(--text-muted);
+}
+
+/* The signature gold underline accent */
+.gk-rule {
+  height: var(--bw-bold);
+  width: 56px;
+  background: var(--gold-500);
+  border: 0;
+  border-radius: var(--radius-pill);
+  margin: var(--space-3) 0;
+}
+
+/* Thin Pride spectrum rule — used sparingly */
+.gk-pride-rule {
+  height: 4px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--pride-red) 0 16.66%,
+    var(--pride-orange) 16.66% 33.33%,
+    var(--pride-yellow) 33.33% 50%,
+    var(--pride-green) 50% 66.66%,
+    var(--pride-blue) 66.66% 83.33%,
+    var(--pride-violet) 83.33% 100%
+  );
+}

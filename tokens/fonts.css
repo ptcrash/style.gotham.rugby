@@ -1,0 +1,10 @@
+/* ============================================================
+   Gotham Knights — Webfonts
+   Gotham Black (heavy geometric sans) — the athletic "loud" voice,
+   served from the club's Adobe Fonts web project (family "gotham", 800).
+   Hanken Grotesk + Spline Sans Mono load via Google Fonts in styles.css.
+   Harbour (the wordmark face) is not served as a webfont — use the
+   wordmark SVGs in assets/logos/ instead of live text.
+   ============================================================ */
+
+@import url("https://use.typekit.net/tql2lty.css");
