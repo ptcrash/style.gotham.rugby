@@ -1,0 +1,212 @@
+/* ============================================================
+   Gotham Knights DRAG SHOW — the third register
+   ------------------------------------------------------------
+   The club ships two registers: Loud/Matchday and Professional/
+   Clubhouse. This is the third: THE HOUSE LIGHTS GOING DOWN.
+
+   Loud/Matchday is a navy FIELD with gold shouting across it.
+   Drag is a navy HOUSE with a spectrum lit up on the stage.
+
+   What carries over (non-negotiable — this is still the club):
+     · the crest and the wordmark, untouched
+     · navy as the anchor
+     · GOLD as the thread back to the club — it stays the link and
+       highlight color, so the show never reads as a foreign brand
+     · the 4px spacing spine, the athletic voice, 2px strokes
+
+   What changes:
+     · the Pride spectrum stops being a thin accent rule and becomes
+       STRUCTURAL — frames, marquees, the lead accent. This is the one
+       place the club's "Pride, not rainbow-everything" rule is
+       deliberately relaxed, because the occasion IS the rainbow.
+     · the house goes darker than the pitch (--house-black)
+     · Harbour Decor arrives as the marquee voice (see note below)
+
+   Apply with [data-theme="drag"] on <html> or any container.
+   ============================================================ */
+
+/* ---- The marquee voice: Harbour Bold ----------------------
+   Show titles are set in HARBOUR BOLD — the wordmark face.
+
+   The parent system reserves Harbour for the logo wordmark and warns
+   that letting it loose turns the brand "ye olde". That rule still
+   holds, and this is not a loophole: a show title IS a wordmark. It's
+   the event's lockup, set once per composition, at poster scale, with
+   the club's own wordmark tracking. It is never a heading font, never
+   body copy, never a pull quote. One title, one lockup, same rule.
+
+   REJECTED: Harbour Decor (the blackletter cut). Tested on the poster
+   and failed on legibility — the title could not be read at all until
+   it was set in something else for comparison. It also walks straight
+   into the "ye olde" failure mode the parent readme warns about. Not
+   shipped, and deliberately not bundled in assets/fonts/ so nobody
+   reaches for it later. */
+
+/* ============================================================
+   PRIMITIVES — declared at :root, exactly like the parent declares
+   its --pride-* spectrum at :root even though Pride is accent-only.
+
+   These MUST NOT live inside [data-theme="drag"]. Declaring a palette
+   value changes nothing on its own, but scoping it to the theme means
+   the .gkd-* pattern classes silently render as nothing in any context
+   where the attribute isn't present — including the Design System
+   pane, which drops it. Primitives here, re-pointing below.
+   ============================================================ */
+:root {
+  /* --- Variant-local ramps (the parent has no violet/pink scale) --- */
+  --violet-700: #5f2d8c;
+  --violet-600: #7439ab;
+  --violet-500: #8b46c9; /* == --pride-violet, the show's lead accent */
+  --violet-400: #a86fdb;
+  --violet-300: #c49bea;
+  --violet-200: #ddc4f4;
+
+  --pink-600: #e8879b;
+  --pink-500: #f5a9b8; /* == --pride-trans-pink */
+  --pink-400: #f9c2cd;
+
+  /* Deeper than the club's darkest navy — the pitch at night vs. a
+     theater with the house lights down. */
+  --house-black: #04091a;
+
+  /* The spectrum, as a reusable structural gradient */
+  --spectrum: linear-gradient(
+    90deg,
+    var(--pride-red) 0 16.66%,
+    var(--pride-orange) 16.66% 33.33%,
+    var(--pride-yellow) 33.33% 50%,
+    var(--pride-green) 50% 66.66%,
+    var(--pride-blue) 66.66% 83.33%,
+    var(--pride-violet) 83.33% 100%
+  );
+
+  /* --- Marquee type slot (new in this register) ---
+     Aliases the wordmark face. Show titles only — see note above. */
+  --font-marquee: var(--font-wordmark);
+
+  /* Violet stage glow, used by the show's primary CTA */
+  --shadow-glow: 0 8px 32px rgba(139, 70, 201, 0.45);
+}
+
+[data-theme="drag"] {
+  /* ============================================================
+     SEMANTIC ALIASES — re-pointed for the show
+     Same names the components already consume, so Button, Card,
+     Badge, Tag, Stat, Input and FixtureRow all retheme for free.
+     ============================================================ */
+  --surface-page: var(--house-black);
+  --surface-raised: var(--navy-800);
+  --surface-card: var(--navy-800);
+  --surface-sunken: #020510;
+  --surface-inverse: var(--paper);
+  --surface-brand: var(--navy-900);
+
+  --text-strong: var(--white);
+  --text-body: var(--navy-100);
+  --text-muted: var(--navy-300);
+  --text-on-brand: var(--white);
+
+  /* Gold survives as the link color — the thread back to the club.
+     Violet leads the accents but is too dark on --house-black to
+     carry small text, so it takes borders, fills and large type. */
+  --text-link: var(--gold-500);
+
+  --accent: var(--violet-500);
+  --accent-hover: var(--violet-400);
+  --accent-press: var(--violet-600);
+  --on-accent: var(--white);
+  --text-on-accent: var(--white);
+
+  --accent-2: var(--pink-500);
+  --accent-3: var(--gold-500);
+
+  --border: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  --border-brand: var(--violet-500);
+  --focus-ring: var(--gold-400);
+
+  --field-bg: var(--navy-900);
+  --field-border: rgba(255, 255, 255, 0.24);
+  --field-text: var(--white);
+  --field-placeholder: var(--navy-300);
+}
+
+/* ============================================================
+   DRAG PATTERNS — theater textures.
+   Same discipline as the club's patterns: these are LOUD. Use them
+   as frames, bands and single moments. Never wallpaper a layout.
+   ============================================================ */
+
+/* --- Bad crop --- the parody-collage treatment from the mood board:
+   a photo pasted "obviously" — white sticker border, hard offset
+   shadow, a slight tilt. Deliberate badness is the joke; use on
+   cutout heads and prior-art frames, never on real photography that
+   needs to look good. */
+.gkd-badcrop {
+  border: 4px solid var(--white);
+  box-shadow: 8px 9px 0 rgba(0, 0, 0, 0.55);
+  transform: rotate(-3deg);
+  overflow: hidden;
+}
+
+/* --- Marquee bulbs --- a row of warm lamps, like a stage door sign.
+   Use as a top/bottom rule on posters and ticket CTAs. */
+.gkd-marquee-rule {
+  height: var(--gkd-bulb-h, 14px);
+  border: 0;
+  margin: 0;
+  background-image: radial-gradient(circle,
+    var(--gold-400) 0 var(--gkd-bulb-r, 3px),
+    transparent calc(var(--gkd-bulb-r, 3px) + 0.6px));
+  background-size: var(--gkd-bulb-gap, 22px) var(--gkd-bulb-h, 14px);
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* --- Spectrum rule --- the club's thin .gk-pride-rule, promoted to a
+   structural band. This is the show's signature stroke. */
+.gkd-spectrum-rule {
+  height: 8px;
+  border: 0;
+  margin: 0;
+  background: var(--spectrum);
+}
+
+/* --- Spectrum frame --- a full border in the spectrum. The loudest
+   move in the register; one per composition, maximum. */
+.gkd-spectrum-frame {
+  border: 0;
+  padding: var(--bw-bold);
+  background: var(--spectrum);
+}
+
+/* --- Stage spotlight --- a warm wash thrown from above. Sits behind a
+   performer or a title, over the dark house. */
+.gkd-spotlight {
+  background-image:
+    radial-gradient(ellipse 62% 48% at 50% 0%, rgba(255, 212, 92, 0.26), transparent 72%),
+    radial-gradient(ellipse 48% 38% at 50% 4%, rgba(168, 111, 219, 0.3), transparent 70%);
+}
+
+/* --- Sequin --- a fine violet/pink glitter grain. The quiet one:
+   a whisper of shimmer on a dark panel. */
+.gkd-sequin {
+  background-image:
+    radial-gradient(var(--violet-400) var(--gkd-sequin-r, 1px), transparent calc(var(--gkd-sequin-r, 1px) + 0.3px)),
+    radial-gradient(var(--pink-500) var(--gkd-sequin-r, 1px), transparent calc(var(--gkd-sequin-r, 1px) + 0.3px));
+  background-size: var(--gkd-sequin-gap, 15px) var(--gkd-sequin-gap, 15px),
+                   var(--gkd-sequin-gap, 15px) var(--gkd-sequin-gap, 15px);
+  background-position: 0 0,
+                       calc(var(--gkd-sequin-gap, 15px) / 2) calc(var(--gkd-sequin-gap, 15px) / 2);
+}
+
+/* --- Marquee type --- the show-title voice. Harbour Bold, all-caps,
+   at the club's wordmark tracking. ONE per composition — this is a
+   lockup, not a heading style. Pairs with .gkd-spectrum-rule under it. */
+.gkd-marquee {
+  font-family: var(--font-marquee);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-wordmark);
+}

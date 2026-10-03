@@ -14,6 +14,7 @@ No build step: `index.html` is the whole guide.
 | `assets/logos/` | Every logo file the guide links to, plus `assets/gotham-knights-logos.zip`. |
 | `assets/img/` | The photo-treatment example. |
 | `CNAME` | Custom domain for GitHub Pages. |
+| `drag/` | The Drag Show design guide (`/drag/`), a separate page in the show's register. `drag/drag.css` re-skins the shared shell; `tokens/drag.css` is the show's token file from `gotham-drag`. Not linked from the club guide. |
 
 ## Preview locally
 

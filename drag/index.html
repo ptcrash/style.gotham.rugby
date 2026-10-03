@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="drag">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gotham Drag Show — Design Guide</title>
+<meta name="description" content="The Drag / Showtime register of the Gotham Knights RFC design system — colors, type, patterns, motion and this year's show treatment.">
+<meta property="og:title" content="Gotham Drag Show — Design Guide">
+<meta property="og:description" content="The Drag / Showtime register of the Gotham Knights RFC design system.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://style.gotham.rugby/drag/img/stage-1.jpg">
+<meta name="theme-color" content="#04091a">
+<link rel="icon" type="image/svg+xml" href="../assets/logos/shield-2c.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../tokens/drag.css">
+<link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="drag.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="sidebar" id="sidebar">
+  <hr class="gkd-marquee-rule" aria-hidden="true">
+  <a class="brand" href="#top" aria-label="Gotham Drag Show design guide — top">
+    <img class="crest" src="../assets/logos/shield-2c.svg" alt="">
+    <img class="word" src="../assets/logos/wordmark-inv.svg" alt="Gotham Knights Rugby Football Club">
+  </a>
+  <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Sections">
+    <span class="nav-label">The show</span>
+    <ul>
+      <li><a href="#register">The register</a></li>
+    </ul>
+    <span class="nav-label">Foundations</span>
+    <ul>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type &amp; the marquee rule</a></li>
+      <li><a href="#patterns">Patterns</a></li>
+      <li><a href="#photography">Photography</a></li>
+    </ul>
+    <span class="nav-label">Production</span>
+    <ul>
+      <li><a href="#motion">Motion &amp; formats</a></li>
+      <li><a href="#season">Season 25 · The Next Generation</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-foot">
+    <a class="back-link" href="../">← Club brand guidelines</a>
+    <p class="edition">Drag / Showtime · 2026</p>
+  </div>
+</header>
+
+<main class="main" id="main">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero gkd-spotlight" id="top">
+    <hr class="gkd-marquee-rule" aria-hidden="true">
+    <div class="wrap">
+      <p class="hero-kicker">Gotham Knights Rugby presents · Design guide</p>
+      <h1 class="marquee"><img src="img/marquee-gotham-drag-show.png" alt="Gotham Drag Show"></h1>
+      <hr class="gkd-spectrum-rule">
+      <p class="hero-sub">The Next Generation · Season 25</p>
+      <p class="hero-lead">The Drag / Showtime register: the house lights going down. A variant of the club's design system, used only to promote the drag show fundraiser.</p>
+      <p class="facts">WED NOV 18 2026 · THE CUTTING ROOM · NYC · GO.GOTHAM.RUGBY/DRAG</p>
+      <div class="hero-actions">
+        <a class="btn show lg" href="#color">Get the colors</a>
+        <a class="btn outline-inv lg" href="#season">This year's show</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ THE REGISTER ============ -->
+  <section class="sec" id="register">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">The register</p>
+        <h2>A navy house with the spectrum lit on stage.</h2>
+        <hr class="gk-rule">
+        <p class="lead">The club ships two registers — Loud / Matchday (navy field, gold shouting) and Professional / Clubhouse (warm paper, navy ink). The drag show adds a third: the house lights going down. It is not a separate brand — the same club, in a third register. Loud / Matchday is a navy <b>field</b> with gold shouting across it. Drag is a navy <b>house</b> with a spectrum lit up on the stage.</p>
+      </header>
+
+      <div class="grid2 mt-6">
+        <div>
+          <h3 class="sub is-do">What carries over — non-negotiable</h3>
+          <ul class="dolist do">
+            <li><b>The crest and the wordmark.</b> Untouched, unrecolored, no spectrum fills.</li>
+            <li><b>Navy as the anchor.</b> The show is darker, not different.</li>
+            <li><b>Gold as the thread back to the club.</b> The link and highlight color even though violet leads — the strongest signal this is the rugby club putting on a show.</li>
+            <li><b>The 4px spacing spine, 2px strokes, low athletic radii.</b> Nothing gets bubbly.</li>
+            <li><b>The voice</b> — bold, warm, a little cheeky; inclusive structurally, not decoratively.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub" style="color:var(--pink-500);">What changes</h3>
+          <ul class="dolist">
+            <li><b>The spectrum becomes structural.</b> Frames, marquee rules, the lead accent — the one place the club's "Pride, not rainbow-everything" rule is deliberately relaxed. Still never wallpaper.</li>
+            <li><b>The house goes darker.</b> <code>--house-black</code> (#04091A) sits below the club's darkest navy — a theater with the lights down, not a pitch at night.</li>
+            <li><b>Violet and pink ramps arrive.</b> Defined locally; the club has no violet scale.</li>
+            <li><b>The show title gets a marquee lockup.</b> Harbour Bold, wordmark tracking — see Type.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-box voice-card mt-6">
+        <div class="are"><div class="lab">We are</div><p>Camp, deliberate, body-positive, cheeky — a rugby club in heels. Bad crops are craft: the parody-collage joke is deliberate and codified.</p></div>
+        <div class="not"><div class="lab">We are not</div><p>Sleazy, mean, or rainbow-wallpaper. Never punching down, never leaning on tired gay-bar clichés.</p></div>
+      </div>
+
+      <p class="note mt-5"><b>For builders:</b> link the club's <code>styles.css</code> plus <code>tokens/drag.css</code> and set <code>data-theme="drag"</code> on <code>&lt;html&gt;</code> or any container — a single dark show panel can sit inside an otherwise Clubhouse-register page. Every club component rethemes without a fork. The club's canonical system is never written to from here.</p>
+    </div>
+  </section>
+
+  <!-- ============ COLOR ============ -->
+  <section class="sec" id="color">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">Color</p>
+        <h2>Dark house, three accents.</h2>
+        <hr class="gk-rule">
+        <p class="lead">Violet leads, pink winks, gold stays the thread back to the club. The room itself is <code>--house-black</code>. Violet is too dark on the house black to carry small text — it takes borders, fills and large type; gold carries links and small emphasis.</p>
+      </header>
+
+      <div class="grid3 mt-6">
+        <button class="hero-sw" type="button" data-copy="#04091A" style="background:var(--house-black);color:#fff;">
+          <span class="nm">House black</span>
+          <span class="role">The room itself — every surface sits on it.</span>
+          <span class="vals">--house-black<br>#04091A</span>
+        </button>
+        <button class="hero-sw" type="button" data-copy="#8B46C9" style="background:var(--violet-500);color:#fff;">
+          <span class="nm">Violet</span>
+          <span class="role">The lead accent — fills, borders, large type, the primary CTA.</span>
+          <span class="vals">--violet-500 · --accent<br>#8B46C9</span>
+        </button>
+        <button class="hero-sw" type="button" data-copy="#F5A9B8" style="background:var(--pink-500);color:var(--navy-900);">
+          <span class="nm">Pink</span>
+          <span class="role">The wink — a second accent for tags and single moments.</span>
+          <span class="vals">--pink-500 · --accent-2<br>#F5A9B8</span>
+        </button>
+      </div>
+
+      <h3 class="sub">Violet ramp — defined for the show</h3>
+      <p class="copy-hint">Click any swatch to copy its hex. 500 is the lead and equals the club's <code>--pride-violet</code>.</p>
+      <div class="scale">
+        <button class="sw" type="button" data-copy="#5F2D8C" style="--c:#5f2d8c"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-700</span><span class="sw-hex">#5F2D8C</span></span></button>
+        <button class="sw" type="button" data-copy="#7439AB" style="--c:#7439ab"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-600</span><span class="sw-hex">#7439AB</span></span></button>
+        <button class="sw" type="button" data-copy="#8B46C9" style="--c:#8b46c9"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-500</span><span class="sw-hex">#8B46C9</span></span></button>
+        <button class="sw" type="button" data-copy="#A86FDB" style="--c:#a86fdb"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-400</span><span class="sw-hex">#A86FDB</span></span></button>
+        <button class="sw" type="button" data-copy="#C49BEA" style="--c:#c49bea"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-300</span><span class="sw-hex">#C49BEA</span></span></button>
+        <button class="sw" type="button" data-copy="#DDC4F4" style="--c:#ddc4f4"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">violet-200</span><span class="sw-hex">#DDC4F4</span></span></button>
+      </div>
+
+      <h3 class="sub">Pink, house, and the club thread</h3>
+      <div class="scale">
+        <button class="sw" type="button" data-copy="#E8879B" style="--c:#e8879b"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">pink-600</span><span class="sw-hex">#E8879B</span></span></button>
+        <button class="sw" type="button" data-copy="#F5A9B8" style="--c:#f5a9b8"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">pink-500</span><span class="sw-hex">#F5A9B8</span></span></button>
+        <button class="sw" type="button" data-copy="#F9C2CD" style="--c:#f9c2cd"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">pink-400</span><span class="sw-hex">#F9C2CD</span></span></button>
+        <button class="sw" type="button" data-copy="#04091A" style="--c:#04091a"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">house-black</span><span class="sw-hex">#04091A</span></span></button>
+        <button class="sw" type="button" data-copy="#0D1D41" style="--c:#0d1d41"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">navy-700</span><span class="sw-hex">#0D1D41</span></span></button>
+        <button class="sw" type="button" data-copy="#FEC526" style="--c:#fec526"><span class="sw-chip"></span><span class="sw-meta"><span class="sw-name">gold-500</span><span class="sw-hex">#FEC526</span></span></button>
+      </div>
+
+      <h3 class="sub">The spectrum — a rule, not a wallpaper</h3>
+      <div class="gkd-spectrum-rule spectrum-demo" role="img" aria-label="The six-band pride spectrum"></div>
+      <p class="note mt-3"><code>--spectrum</code> — six hard bands, the show's signature stroke. It carries rules, frames and marquee bands; it never fills a surface.</p>
+
+      <h3 class="sub">Semantic re-pointing under <code>data-theme="drag"</code></h3>
+      <div class="table-scroll">
+        <table class="files">
+          <thead><tr><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Role</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>--surface-page</code></th><td><code>--house-black</code></td><td>the room itself</td></tr>
+            <tr><th scope="row"><code>--accent</code></th><td><code>--violet-500</code></td><td>lead accent — fills, borders, large type</td></tr>
+            <tr><th scope="row"><code>--accent-2</code> / <code>--accent-3</code></th><td><code>--pink-500</code> / <code>--gold-500</code></td><td>the wink / the club thread</td></tr>
+            <tr><th scope="row"><code>--text-link</code></th><td><code>--gold-500</code></td><td>gold survives as the link color</td></tr>
+            <tr><th scope="row"><code>--border-brand</code></th><td><code>--violet-500</code></td><td>components retheme for free</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note mt-3"><b>Primitives vs. re-pointing — a real bug class.</b> Palette primitives (the ramps, <code>--house-black</code>, <code>--spectrum</code>) live at <code>:root</code>; only semantic aliases live in the theme block. A primitive scoped to the theme silently renders as nothing wherever the attribute is absent.</p>
+    </div>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section class="sec" id="type">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">Type</p>
+        <h2>The marquee rule.</h2>
+        <hr class="gk-rule">
+        <p class="lead">Show titles are set in <b>Harbour Bold</b>, the wordmark face, at wordmark tracking. The club reserves Harbour for the logo wordmark — let loose, the brand reads "ye olde". The marquee is not an exception: a show title <i>is</i> a wordmark. It is the event's lockup.</p>
+      </header>
+
+      <div class="card-box marquee-spec mt-6">
+        <div class="lab">The marquee — one per composition</div>
+        <img src="img/marquee-gotham-drag-show.png" alt="Gotham Drag Show, set in Harbour Bold">
+        <hr class="gkd-spectrum-rule">
+        <div class="sub">The Next Generation · Season 25</div>
+      </div>
+
+      <div class="grid2 mt-6">
+        <div>
+          <h3 class="sub is-do">Do</h3>
+          <ul class="dolist do">
+            <li>Set the show title once, at poster scale, in Harbour Bold at wordmark tracking (<code>--font-marquee</code> / <code>.gkd-marquee</code>)</li>
+            <li>Pair it with the spectrum rule beneath</li>
+            <li>Keep it ALL CAPS, tight, as drawn</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub is-dont">Don't</h3>
+          <ul class="dolist dont">
+            <li>Use Harbour for headings, body, pull quotes, or a second element on the same surface</li>
+            <li>Use Harbour Decor — the blackletter cut failed legibility testing and is deliberately not bundled</li>
+            <li>Rebuild the title in another face or loosen the tracking</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub">Everything else keeps the club's roles</h3>
+      <div class="fam">
+        <div class="big" style="font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,4.6vw,40px);letter-spacing:-0.02em;">Showtime at the Cutting Room</div>
+        <div class="meta"><span class="role">Headings, body and UI — the same voice as the club, in the dark.</span><span class="nm">Hanken Grotesk · --font-body</span></div>
+      </div>
+      <div class="fam">
+        <div class="big gk-athletic" style="font-size:clamp(24px,4.2vw,36px);letter-spacing:0.01em;line-height:1;">Scarlet Ruck ◆ Velveteen</div>
+        <div class="meta"><span class="role">Lineups, hype, ticket CTAs. Performer names shown here are stand-ins.</span><span class="nm">Gotham Black · --font-athletic</span></div>
+      </div>
+      <div class="fam">
+        <div class="big" style="font-family:var(--font-mono);font-weight:600;font-size:clamp(22px,4vw,34px);letter-spacing:-0.01em;">WED · NOV 18 · DOORS 7PM · $35</div>
+        <div class="meta"><span class="role">Dates, times, door prices, anything scoreboard-shaped.</span><span class="nm">Spline Sans Mono · --font-mono</span></div>
+      </div>
+      <p class="note mt-5">Harbour is not served as a webfont on this site; the marquee specimens above are rendered images. Set show titles from the font files in the design system when producing artwork.</p>
+    </div>
+  </section>
+
+  <!-- ============ PATTERNS ============ -->
+  <section class="sec" id="patterns">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">Patterns</p>
+        <h2>Theater textures — single moments only.</h2>
+        <hr class="gk-rule">
+        <p class="lead">Same discipline as the club's patterns: loud by nature, used as frames, bands and single moments — never wallpaper. The club's <code>.gk-</code> patterns all still work under this theme.</p>
+      </header>
+
+      <div class="grid3 pats mt-6">
+        <div>
+          <div class="patswatch bulbs"><hr class="gkd-marquee-rule"><span class="word">Doors 7pm</span><hr class="gkd-marquee-rule"></div>
+          <div class="patmeta"><div class="cls">.gkd-marquee-rule</div><div class="use">Warm stage-door bulbs; top/bottom rules on posters and ticket bands.</div></div>
+        </div>
+        <div>
+          <div class="patswatch frame gkd-spectrum-frame"><div><span class="word">Framed</span></div></div>
+          <div class="patmeta"><div class="cls">.gkd-spectrum-frame</div><div class="use">The loudest move; ONE per composition, maximum.</div></div>
+        </div>
+        <div>
+          <div class="patswatch gkd-spotlight"><span class="word">Spotlight</span></div>
+          <div class="patmeta"><div class="cls">.gkd-spotlight</div><div class="use">A warm wash from above, behind a performer or a title.</div></div>
+        </div>
+        <div>
+          <div class="patswatch gkd-sequin"><span class="word">Sequin</span></div>
+          <div class="patmeta"><div class="cls">.gkd-sequin</div><div class="use">Fine violet/pink glitter grain; the quiet one.</div></div>
+        </div>
+        <div>
+          <div class="patswatch badcrop-stage"><div class="badcrop-demo gkd-badcrop">head, pasted obviously</div></div>
+          <div class="patmeta"><div class="cls">.gkd-badcrop</div><div class="use">The parody-collage joke, codified: sticker border, offset shadow, tilt.</div></div>
+        </div>
+        <div>
+          <div class="patswatch" style="flex-direction:column;justify-content:flex-end;padding:0;"><hr class="gkd-spectrum-rule" style="width:100%;"></div>
+          <div class="patmeta"><div class="cls">.gkd-spectrum-rule</div><div class="use">The club's thin pride rule, promoted to the 8px signature stroke.</div></div>
+        </div>
+      </div>
+
+      <div class="card-box row mt-6">
+        <img src="../assets/logos/shield-2c.svg" alt="" style="width:34px;height:34px;">
+        <p class="note"><b>Discipline.</b> Dark house, three accents, spectrum as a rule. Use <code>.gkd-badcrop</code> on cutout heads and prior-art frames only — never on real photography that needs to look good.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PHOTOGRAPHY ============ -->
+  <section class="sec" id="photography">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">Photography</p>
+        <h2>Lights down, bulbs warm.</h2>
+        <hr class="gk-rule">
+        <p class="lead">The stage at The Cutting Room already looks like the register: a dark house, the marquee sign, colored stage wash over a starlit curtain. Shoot and pick for that — performers lit by the room, not by flash — and let the photo carry the color. Real photography stays clean; the bad-crop treatment is for cutouts only.</p>
+      </header>
+
+      <div class="photo-grid mt-6">
+        <figure><img src="img/stage-1.jpg" alt="A performer in a sequined gown on stage under green and magenta light, beneath the Cutting Room marquee sign" loading="lazy"><figcaption><b>The marquee.</b> Neon sign, star curtain, stage wash — the room supplies the spectrum.</figcaption></figure>
+        <figure><img src="img/stage-2.jpg" alt="A performer in a black gown on stage in front of a starlit curtain lit purple" loading="lazy"><figcaption><b>Violet house.</b> Purple wash on the curtain; the spotlight does the rest.</figcaption></figure>
+        <figure><img src="img/stage-3.jpg" alt="A performer in a sequined bodysuit and gold boots on stage with a red velvet curtain" loading="lazy"><figcaption><b>Sequin and gold.</b> Where the sequin grain and gold thread come from.</figcaption></figure>
+        <figure><img src="img/stage-4.jpg" alt="A group of performers on stage carrying a seated person in a shirt and tie, red curtain behind" loading="lazy"><figcaption><b>The club in heels.</b> Body-positive, cheeky, a team doing a bit together.</figcaption></figure>
+      </div>
+
+      <div class="grid2 mt-6">
+        <div>
+          <h3 class="sub is-do">Do</h3>
+          <ul class="dolist do">
+            <li>Keep the house dark around the subject — crop to the stage</li>
+            <li>Let the venue's colored light stand; don't neutralize it</li>
+            <li>Use the navy scrim from the club system when type must sit on a photo</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub is-dont">Don't</h3>
+          <ul class="dolist dont">
+            <li>Flash-light a performer into a flat snapshot</li>
+            <li>Put the spectrum rule on top of a photo that already has the stage wash</li>
+            <li>Apply the bad crop to a photo that needs to look good</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOTION & FORMATS ============ -->
+  <section class="sec" id="motion">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">Motion &amp; output formats</p>
+        <h2>Event and hold.</h2>
+        <hr class="gk-rule">
+        <p class="lead">Three output classes: print/graphics, venue screen (projector or LED wall, 16:9) and social video (9:16). Motion is <b>punctuation against stillness</b>: the sheen crosses the crest in 16% of the loop, then sits still; the spark travels the rule once and waits. Continuous motion reads as a screensaver; event-and-hold reads as a stage.</p>
+      </header>
+
+      <div class="card-box loop-demo mt-6">
+        <div class="gkd-spectrum-rule"><div class="spark" aria-hidden="true"></div></div>
+        <div class="readout"><span>--mo-event · 16% of the loop</span><span>then hold · 84%</span><span>--mo-loop-short · 12s</span></div>
+      </div>
+
+      <div class="grid2 mt-6">
+        <div>
+          <h3 class="sub">The principle</h3>
+          <ul class="dolist">
+            <li><code>--mo-event: 16%</code> is the ceiling for a punctuating gesture — past ~20% it stops reading as an event.</li>
+            <li>One sanctioned exception: <code>gkd-house-swell</code> — a slow warm swell reads as a room, not a widget.</li>
+            <li>Social video inverts it: a Reel has under a second to stop a thumb, so vertical hooks by <code>--mo-hook</code> (400ms) and may run continuous motion.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">The hard constraints</h3>
+          <ul class="dolist">
+            <li>If it moves, it is a CSS <code>@keyframes</code> rule. The renderer drives every animation frame-by-frame; rAF loops, canvas, GIFs and video render as a frozen first frame.</li>
+            <li>Every duration must divide evenly into the loop period (<code>--mo-loop</code> 24s / <code>--mo-loop-short</code> 12s), or the loop visibly jumps.</li>
+            <li>Size in <code>cqh</code>/<code>cqw</code>, never px, inside <code>.stage__canvas</code>. Minimum legible sizes are tokens: <code>--type-min-venue</code> (4cqh), <code>--type-min-venue-support</code> (2.2cqh).</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub">Broadcast timing — a separate scale from UI</h3>
+      <div class="table-scroll">
+        <table class="files">
+          <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>--mo-reveal</code> / <code>--mo-exit</code></th><td>700ms / 500ms</td><td>entrances and exits — exits are always faster</td></tr>
+            <tr><th scope="row"><code>--mo-hold-short</code> / <code>--mo-hold</code> / <code>--mo-hold-long</code></th><td>3s / 5s / 8s</td><td>the stillness between events</td></tr>
+            <tr><th scope="row"><code>--mo-loop</code> / <code>--mo-loop-short</code></th><td>24s / 12s</td><td>loop periods; all durations divide into these</td></tr>
+            <tr><th scope="row"><code>--mo-hook</code> / <code>--mo-loop-social</code></th><td>400ms / 8s</td><td>vertical video: everything essential on screen by the hook</td></tr>
+            <tr><th scope="row"><code>--dur-fast</code> / <code>--dur-base</code> / <code>--dur-slow</code></th><td>120–320ms</td><td>stay for interfaces only</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">Canvases &amp; safe areas</h3>
+      <div class="formats">
+        <div class="fmt" style="aspect-ratio:16/9;"><span><b>Venue · 16:9</b>projector, LED wall</span></div>
+        <div class="fmt" style="aspect-ratio:1/1;"><span><b>Square · 1:1</b>feed</span></div>
+        <div class="fmt" style="aspect-ratio:4/5;"><span><b>Portrait · 4:5</b>feed, taller</span></div>
+        <div class="fmt" style="aspect-ratio:3/4;"><span><b>Poster · 3:4</b>print, show poster</span></div>
+        <div class="fmt" style="aspect-ratio:9/16;"><span><b>Vertical · 9:16</b>reels, stories</span></div>
+      </div>
+      <p class="note mt-5">Nothing that must be read goes outside title-safe (5% in from every edge; action-safe is 3.5%). Venue screens lose far more at the bottom than the top — keep 12% clear. Reels draw an action rail up the right edge (19%) and a caption block along the bottom (22%); Stories take 13% top and 16% bottom. Re-check on a real device before a big push.</p>
+    </div>
+  </section>
+
+  <!-- ============ SEASON 25 ============ -->
+  <section class="sec" id="season">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow">This year's show · Season 25</p>
+        <h2>The Next Generation.</h2>
+        <hr class="gk-rule">
+        <p class="lead">Camp teen-drama DVD-cover key art on the club navy field: badly pasted cast cutouts with tape, a season banner, review pull-quotes, a ticket band. The scrapbook look belongs to <b>this season only</b> — the register rules above are permanent; this treatment is the 2026 costume.</p>
+      </header>
+
+      <div class="grid2 mt-6" style="align-items:start;">
+        <div class="cover-mock" role="img" aria-label="Mock of the Season 25 cover: taped cast frames, the Gotham Drag Show marquee, a violet The Next Generation banner, a gold Gotham Rugby Presents tag, a pink Bonus Feature tag, and a ticket band">
+          <hr class="gkd-marquee-rule">
+          <div class="inner">
+            <div class="presents">Gotham Rugby presents</div>
+            <div class="title"><img src="img/marquee-drag-show.png" alt=""></div>
+            <div class="season">The Next Generation · Season 25</div>
+            <div class="cast">
+              <div class="frame gkd-badcrop gkd-sequin"><span class="tape"></span>Cast reveal<br>TBA</div>
+              <div class="frame gkd-badcrop gkd-sequin"><span class="tape"></span>Cast reveal<br>TBA</div>
+              <div class="frame gkd-badcrop gkd-sequin"><span class="tape"></span>Cast reveal<br>TBA</div>
+            </div>
+            <div class="names"><span>Scarlet Ruck</span> as MC · <span>Velveteen</span> as Reigning Queen<br>Miss Conduct · Dame Shirley Knot · Lady Lineout</div>
+            <div class="bonus">Bonus feature: Gotham Boy Band</div>
+            <div class="ticket">WED · NOV 18 · DOORS 7PM · SHOW 8PM · $35<br>THE CUTTING ROOM · 44 E 32ND ST · GO.GOTHAM.RUGBY/DRAG</div>
+          </div>
+          <hr class="gkd-spectrum-rule">
+        </div>
+        <div>
+          <h3 class="sub">Anatomy, top to bottom</h3>
+          <ol class="anatomy">
+            <li><b>Marquee rule</b> — warm bulbs open the sheet; the spectrum rule closes it.</li>
+            <li><b>Sender tag</b> — "Gotham Rugby presents", gold, athletic caps, a little crooked.</li>
+            <li><b>Marquee lockup</b> — the one Harbour element on the surface, pasted at a tilt with a hard navy drop.</li>
+            <li><b>Season banner</b> — violet block, "The Next Generation · Season 25".</li>
+            <li><b>Cast frames</b> — bad crops with tape. Open slots are written as cast reveals so the layout works before confirmation.</li>
+            <li><b>Lineup</b> — Gotham Black; names in gold are the headliners.</li>
+            <li><b>Bonus tag</b> — the pink wink. One per sheet.</li>
+            <li><b>Ticket band</b> — Spline Sans Mono facts: date, doors, price, URL.</li>
+          </ol>
+          <div class="wip mt-5">
+            <div class="lab">Stand-ins</div>
+            <p class="note" style="margin-top:4px;">Performer names on this page are placeholders. Keep stand-ins in all templates until the cast is confirmed and cleared for print.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub">Rules in force</h3>
+      <div class="grid2">
+        <ul class="dolist do">
+          <li>One Harbour lockup — the title — and nothing else in Harbour</li>
+          <li>Spectrum as a rule: the band that closes the sheet</li>
+          <li>Gold carries the facts; violet carries the season banner</li>
+          <li>Bad crops are encouraged on cast frames — the paste job is the joke</li>
+        </ul>
+        <ul class="dolist dont">
+          <li>Gold keyline <i>and</i> sequin grain on the same frame — pick one</li>
+          <li>Bad-crop a real photo that has to look good</li>
+          <li>A second pink or violet block competing with the banner</li>
+          <li>Carry the scrapbook look into club material — it's the show's, this year</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">Confirmed facts</h3>
+      <div class="grid3">
+        <div class="card-box"><div class="patmeta"><div class="cls">When</div><div class="use">Wednesday 18 November 2026 · doors 7pm · show 8pm</div></div></div>
+        <div class="card-box"><div class="patmeta"><div class="cls">Where</div><div class="use">The Cutting Room · 44 E 32nd St, New York</div></div></div>
+        <div class="card-box"><div class="patmeta"><div class="cls">Tickets</div><div class="use">$35 · go.gotham.rugby/drag · a fundraiser for Gotham Knights RFC, a registered 501(c)(3) non-profit</div></div></div>
+      </div>
+
+      <h3 class="sub">Template formats</h3>
+      <p class="note">The Next Generation cover ships as a reusable template in the design system (<code>templates/next-generation-cover/</code>) in two cuts: <b>square 1080×1080</b> for the feed and <b>story 1080×1920</b>, which re-flows the cast grid to two columns. Six cast frames accept dropped photos. Frame options: gold keyline or sequin grain — one frame, never both. The show poster (<code>posters/show-poster.html</code>, 1080×1350) keeps an open center for performer photography.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="back">
+    <div class="wrap inner">
+      <img class="shield" src="../assets/logos/shield-inv.svg" alt="">
+      <div class="bc1 gk-athletic">A rugby club in heels.</div>
+      <div class="bc2 gk-athletic">Lights down. Spectrum up.</div>
+      <div class="gline"></div>
+      <p class="closing">Still the club: the crest, the navy, the gold thread, the voice. The house just got darker and the stage got lit. When in doubt, check the register, then the club guide.</p>
+      <div class="gline"></div>
+      <div class="meta2"><a href="../" style="color:inherit;">Gotham Knights RFC · Brand guidelines</a> · Drag Show 2026</div>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../site.js"></script>
+</body>
+</html>
