@@ -230,7 +230,7 @@ h3.sub.is-do { color: var(--pride-green); }
 .poster-mock .title img { display: block; width: 100%; height: auto; }
 .poster-mock .inner .gkd-spectrum-rule { width: 50%; height: 5px; margin-top: 4%; }
 .poster-mock .sub { margin-top: 3%; font-weight: var(--fw-bold); text-transform: uppercase; letter-spacing: 0.14em; font-size: clamp(7px, 2.2cqw, 11px); color: var(--pink-500); }
-.poster-mock .stage { flex: 1; width: 100%; margin: 6% 0; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border-strong); font-family: var(--font-mono); font-size: clamp(7px, 2.2cqw, 11px); color: var(--text-muted); }
+.poster-mock .open-stage { flex: 1; width: 100%; margin: 6% 0; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border-strong); font-family: var(--font-mono); font-size: clamp(7px, 2.2cqw, 11px); color: var(--text-muted); }
 .poster-mock .lineup { font-family: var(--font-athletic); font-weight: var(--fw-black); text-transform: uppercase; color: var(--white); font-size: clamp(8px, 2.6cqw, 13px); line-height: 1.35; }
 .poster-mock .ticket { margin-top: 4%; font-family: var(--font-mono); font-size: clamp(6px, 1.9cqw, 10px); color: var(--gold-400); letter-spacing: 0.06em; line-height: 1.6; }
 .poster-mock .ask { margin-top: 3%; font-size: clamp(6px, 1.8cqw, 9px); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
