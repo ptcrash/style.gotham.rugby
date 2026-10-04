@@ -1,0 +1,307 @@
+<!-- @dsCard group="Motion" viewport="960x540" name="Drag Idle Loop" subtitle="24s seamless — house lights, crest, spectrum sweep" -->
+<!doctype html>
+<!-- ============================================================
+     Gotham Knights Drag Show — idle loop, 24s seamless, 16:9.
+
+     The drag-register counterpart to the club's matchday idle loop.
+     Rebuilt against the token spine rather than standalone: everything
+     here comes from styles.css, so the loop inherits the palette, the
+     marquee lockup and the motion vocabulary instead of restating them.
+
+     LOOP MATH — every animation-duration must divide evenly into 24s
+     or the loop will visibly jump. Durations used: 24s, 12s, 8s, 6s,
+     3s, 1.5s. Verify with:
+       node render/rec.js --in motion/idle-loop.html --secs 24 --verify
+
+     Render:
+       node render/rec.js --in motion/idle-loop.html \
+         --size 1920x1080 --fps 30 --secs 24 --verify \
+         --out dist/idle-loop.mp4
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Drag Idle Loop</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    /* Everything inside the canvas is sized in cqh so a 1080 and a 4K
+       render are identical after scaling. No px inside .stage__canvas. */
+
+    .house {
+      position: absolute;
+      inset: 0;
+      /* The stage vignette. Kept deep — the club's matchday loop can sit
+         on an open navy field, but this is a room with the lights down,
+         so the brightest point is still darker than --navy-700. */
+      background: radial-gradient(ellipse 74% 74% at 50% 40%,
+        #0e1233 0%, #090d26 45%, #05081a 76%, var(--house-black) 100%);
+    }
+
+    /* Warm swell from the houselights. The one continuous gesture. */
+    .swell {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 46% at 50% 8%,
+        rgba(255, 212, 92, 0.20), transparent 70%);
+      transform-origin: 50% 0;
+      animation: gkd-house-swell 12s var(--mo-ease) infinite;
+    }
+
+    /* Depth bands top and bottom. */
+    .bands {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(4, 9, 26, 0.6) 0%, transparent 20%,
+        transparent 80%, rgba(4, 9, 26, 0.65) 100%);
+    }
+
+    /* Sequins are "the quiet one" and the system forbids wallpapering.
+       Masked to the outer edges so they read as glitter catching light in
+       the dark corners of the room, never as a texture over the whole
+       frame — and never behind the type. */
+    /* Ambient only — this plays behind a live performer, so it is dimmer,
+       slower and shallower than the rest of the loop. 12s divides evenly
+       into the 24s period (2 cycles), keeping the loop seamless. */
+    .sequins {
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+      -webkit-mask-image: radial-gradient(ellipse 64% 60% at 50% 42%, transparent 34%, #000 100%);
+      mask-image: radial-gradient(ellipse 64% 60% at 50% 42%, transparent 34%, #000 100%);
+      animation: gkd-shimmer 12s var(--mo-ease-ambient) infinite;
+    }
+
+    /* ---- Marquee bulb rails, top and bottom ---- */
+    .rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      --gkd-bulb-gap: 3.2cqh;
+      --gkd-bulb-h: 2cqh;
+      --gkd-bulb-r: 0.42cqh;
+      animation: gkd-marquee-chase 1.5s var(--mo-linear) infinite;
+    }
+    .rail--top { top: 2.4cqh; }
+    .rail--bottom { bottom: 2.4cqh; }
+
+    /* Vertical rhythm is a centred flex column, not absolute offsets —
+       absolute positioning let the footer collide with the rule. */
+    .stack {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---- Crest, centred, with heraldic rings ---- */
+    .crest-stack {
+      position: relative;
+      width: 40cqh;
+      height: 40cqh;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 0.28cqh solid var(--violet-500);
+      opacity: 0.34;
+      animation: gk-spin 24s var(--mo-linear) infinite,
+                 gk-rim 6s var(--mo-ease) infinite;
+      border-left-color: transparent;
+      border-right-color: transparent;
+    }
+
+    .ring--inner {
+      inset: 14%;
+      border-color: var(--gold-500);
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      animation: gk-spin-rev 24s var(--mo-linear) infinite,
+                 gk-rim 6s var(--mo-ease) infinite reverse;
+    }
+
+    .crest-glow {
+      position: absolute;
+      inset: -18%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 70, 201, 0.55), transparent 66%);
+      animation: gk-glow 6s var(--mo-ease) infinite;
+    }
+
+    .crest {
+      position: relative;
+      width: 24cqh;
+      height: 24cqh;
+      object-fit: contain;
+    }
+
+    /* Metallic sheen crossing the crest — the event-and-hold gesture.
+       Clipped to the crest box so it reads as light on metal. */
+    /* Masked to the crest's alpha via .gk-sheen-clip, so the gleam reads
+       as light on the shield rather than revealing its bounding box.
+       Same asset and same sizing as the <img>, so they stay registered. */
+    .sheen-clip {
+      position: absolute;
+      width: 24cqh;
+      height: 24cqh;
+      pointer-events: none;
+      --sheen-mask: url("../../assets/logos/shield-2c.png");
+    }
+
+    /* Full width of .sheen-clip per the gk-sheen contract — the gleam is
+       gradient stops inside it, and the diagonal is the gradient angle
+       (a base rotate() would be clobbered by the animated transform). */
+    .sheen {
+      position: absolute;
+      top: -30%;
+      bottom: -30%;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(105deg,
+        transparent 42%,
+        rgba(255, 255, 255, 0.55) 50%,
+        transparent 58%);
+      animation: gk-sheen 12s var(--mo-ease) infinite;
+    }
+
+    /* ---- Title lockup ---- one Harbour element, per the marquee rule ---- */
+    .lockup {
+      text-align: center;
+      margin-top: 1cqh;
+      flex: none;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-overline);
+      font-size: var(--type-min-venue-support);
+      color: var(--gold-500);
+    }
+
+    .title {
+      font-family: var(--font-marquee);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wordmark);
+      font-size: 11cqh;
+      line-height: 0.92;
+      color: var(--text-strong);
+      margin: 1.4cqh 0 0;
+    }
+
+    .subtitle {
+      font-family: var(--font-body);
+      font-weight: var(--fw-extrabold);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 2.6cqh;
+      color: var(--gold-500);
+      margin-top: 1.2cqh;
+    }
+
+    /* ---- Spectrum rule with a travelling spark ---- */
+    .rule-wrap {
+      position: relative;
+      width: 38cqh;
+      margin: 3cqh auto 0;
+      height: 0.9cqh;
+      overflow: hidden;
+    }
+
+    .rule {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+    }
+
+    /* Full width per the gk-spark contract; the spark itself is the
+       radial stop. Previously an 8%-wide child, which only travelled
+       45% of the rule before fading. */
+    .spark {
+      position: absolute;
+      top: -220%;
+      bottom: -220%;
+      left: 0;
+      width: 100%;
+      background: radial-gradient(ellipse 5% 100% at 50% 50%,
+        rgba(255, 255, 255, 0.95), transparent 70%);
+      animation: gk-spark 24s var(--mo-ease) infinite;
+    }
+
+    /* ---- Footer line ---- */
+    .footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--type-min-venue-support);
+      letter-spacing: var(--ls-wide);
+      color: var(--navy-200);
+      text-transform: uppercase;
+    }
+
+    /* ---- Grain. Oversized so the jitter never exposes an edge. ---- */
+    .grain {
+      position: absolute;
+      inset: -35%;
+      opacity: 0.05;
+      background-image: radial-gradient(var(--white) 0.5px, transparent 0.6px);
+      background-size: 3px 3px;
+      animation: gk-grain 3s steps(10, end) infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__canvas fmt-venue" data-theme="drag">
+
+      <div class="house"></div>
+      <div class="swell gkd-anim"></div>
+      <div class="sequins gkd-sequin gkd-anim"></div>
+      <div class="bands"></div>
+
+      <hr class="gkd-marquee-rule rail rail--top gkd-anim">
+      <hr class="gkd-marquee-rule rail rail--bottom gkd-anim">
+
+      <!-- Content sits inside title-safe so nothing is lost to masking -->
+      <div class="safe safe--venue">
+        <div class="stack">
+          <div class="crest-stack">
+            <div class="crest-glow gk-anim"></div>
+            <div class="ring gk-anim"></div>
+            <div class="ring ring--inner gk-anim"></div>
+            <img class="crest" src="../../assets/logos/shield-2c.png" alt="Gotham Knights crest">
+            <div class="sheen-clip gk-sheen-clip"><div class="sheen gk-anim"></div></div>
+          </div>
+
+          <div class="lockup">
+            <div class="eyebrow">Gotham Knights RFC presents</div>
+            <h1 class="title">Gotham Drag Show</h1>
+            <div class="subtitle">The Next Generation · Season 25</div>
+            <div class="rule-wrap">
+              <hr class="gkd-spectrum-rule rule">
+              <div class="spark gk-anim"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Wed Nov 18 · Doors 7pm · The Cutting Room</div>
+      </div>
+
+      <div class="grain gk-anim"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-body);padding:var(--space-6);}
+  .top{display:flex;gap:var(--space-7);align-items:center;}
+
+  /* spacing diagram: icon | gap band | wordmark */
+  .diagram{flex:0 0 auto;display:flex;flex-direction:column;gap:var(--space-3);align-items:flex-start;}
+  .lockup{display:flex;align-items:center;height:120px;}
+  .lockup .icon{height:120px;display:block;}          /* crest height = X */
+  .gapband{position:relative;align-self:stretch;width:20px;/* = X/6 */ background:var(--gold-500);opacity:0.85;}
+  .gapband::after{content:"X⁄6";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);
+    font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--navy-700);white-space:nowrap;}
+  .lockup .word{height:92px;display:block;margin-left:20px;}
+  .cap{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);}
+
+  .rail{flex:1;display:flex;flex-direction:column;gap:var(--space-3);justify-content:center;}
+  .rail .block h4{font-family:var(--font-heading);font-weight:var(--fw-bold);color:var(--text-strong);font-size:var(--fs-body-sm);margin:0 0 4px;}
+  .rule{display:flex;gap:var(--space-3);align-items:baseline;font-size:var(--fs-body-sm);}
+  .rule b{font-family:var(--font-mono);color:var(--navy-700);white-space:nowrap;}
+  .rule span{color:var(--text-muted);line-height:var(--lh-body);}
+
+  .rails{display:flex;gap:var(--space-6);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--border);}
+  .col{flex:1;}
+  .col h4{font-family:var(--font-heading);font-weight:var(--fw-bold);color:var(--text-strong);font-size:var(--fs-body-sm);margin:0 0 var(--space-2);}
+  .col.ok h4::before{content:"✓ ";color:var(--success);}
+  .col.no h4::before{content:"✕ ";color:var(--danger);}
+  .col ul{margin:0;padding-left:1.1em;font-size:var(--fs-caption);line-height:var(--lh-body);color:var(--text-muted);}
+
+  /* ---- print ---- */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: 800px 360px; margin: 0; }
+  @media print {
+    *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
+    body { padding: 28px 32px; }
+  }
+</style></head><body>
+
+  <div class="top">
+    <div class="diagram">
+      <div class="lockup">
+        <img class="icon" src="../assets/logos/shield-2c.svg" alt="crest icon">
+        <div class="gapband"></div>
+        <img class="word" src="../assets/logos/wordmark-1c.svg" alt="Gotham Knights wordmark">
+      </div>
+      <div class="cap">X = crest height · gap = X ⁄ 6 (≈ ⅕ of the crest's width)</div>
+    </div>
+
+    <div class="rail">
+      <div class="block">
+        <h4>The gap</h4>
+        <div class="rule"><b>= X ⁄ 6</b><span>Set the space between crest and wordmark to one-sixth of the crest's height — the ratio drawn into the supplied lockup. Measure to the nearest ink, not the file's bounding box.</span></div>
+      </div>
+      <div class="block">
+        <h4>Vertical alignment</h4>
+        <div class="rule"><b>Optical center</b><span>Center the wordmark block on the crest's height; the “Rugby Football Club” line sits inside, not below.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rails">
+    <div class="col ok">
+      <h4>Do</h4>
+      <ul>
+        <li>Prefer the supplied lockup files — only rebuild when you truly must</li>
+        <li>Keep the X⁄6 gap and the crest-to-wordmark size ratio</li>
+        <li>Match colors exactly: navy crest + navy wordmark, or all-white</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h4>Don't</h4>
+      <ul>
+        <li>Let the crest and wordmark touch, or float them far apart</li>
+        <li>Mismatch heights — wordmark taller than, or dwarfed by, the crest</li>
+        <li>Set the name in any font but Harbour, or change its tracking</li>
+      </ul>
+    </div>
+  </div>
+
+<script>
+addEventListener('load', () => {
+  (async () => {
+    try { await document.fonts.ready; } catch (e) {}
+    const imgs = Array.from(document.images).filter((i) => !i.complete);
+    await Promise.race([
+      Promise.allSettled(imgs.map((i) => i.decode())),
+      new Promise((r) => setTimeout(r, 8000)),
+    ]);
+    setTimeout(() => window.print(), 500);
+  })();
+});
+</script>
+</body></html>

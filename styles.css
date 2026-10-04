@@ -12,3 +12,10 @@
 @import "tokens/spacing.css";
 @import "tokens/base.css";
 @import "tokens/patterns.css";
+
+/* Output canvases, safe areas and the motion vocabulary (venue screens, social video) */
+@import "tokens/formats.css";
+@import "tokens/motion.css";
+
+/* Drag Show register — must come last so [data-theme="drag"] wins */
+@import "tokens/drag.css";

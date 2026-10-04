@@ -1,0 +1,17 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Status" subtitle="Functional feedback colors + tints" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);}
+  .row{display:flex;padding:var(--space-5);gap:var(--space-4);}
+  .item{flex:1;}
+  .bar{height:40px;border-radius:var(--radius-sm) var(--radius-sm) 0 0;}
+  .tint{height:28px;border-radius:0 0 var(--radius-sm) var(--radius-sm);display:flex;align-items:center;padding:0 var(--space-3);}
+  .n{font-weight:var(--fw-bold);font-size:var(--fs-body-sm);}
+</style></head><body>
+  <div class="row">
+    <div class="item"><div class="bar" style="background:var(--success)"></div><div class="tint" style="background:var(--success-bg)"><span class="n" style="color:var(--success)">Success</span></div></div>
+    <div class="item"><div class="bar" style="background:var(--warning)"></div><div class="tint" style="background:var(--warning-bg)"><span class="n" style="color:var(--warning)">Warning</span></div></div>
+    <div class="item"><div class="bar" style="background:var(--danger)"></div><div class="tint" style="background:var(--danger-bg)"><span class="n" style="color:var(--danger)">Danger</span></div></div>
+    <div class="item"><div class="bar" style="background:var(--info)"></div><div class="tint" style="background:var(--info-bg)"><span class="n" style="color:var(--info)">Info</span></div></div>
+  </div>
+</body></html>

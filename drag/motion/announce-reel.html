@@ -1,0 +1,280 @@
+<!-- @dsCard group="Motion" viewport="405x720" name="Announce Reel" subtitle="9:16 · 8s seamless · hook inside 400ms" -->
+<!doctype html>
+<!-- ============================================================
+     Gotham Knights Drag Show — announce reel. 1080x1920, 8s seamless.
+
+     THE MOTION PRINCIPLE INVERTS HERE. The venue idle loop is
+     event-and-hold, because it must lose the fight for attention
+     against a live performer. A Reel has the opposite job: under a
+     second to stop a thumb. So everything essential is on screen by
+     --mo-hook (400ms), the loop is short, and continuous motion is
+     allowed rather than treated as screensaver behaviour.
+
+     SEAMLESS-WITH-A-REVEAL. Each cycle returns to the pre-reveal state
+     at 100%, so the reveal replays on every loop — that IS the hook,
+     repeated — while frame 0 and frame N stay identical. No
+     animation-delay anywhere: a delay means the animation is mid-cycle
+     at t=8s and the loop stops closing. Stagger lives in the keyframe
+     percentages instead.
+
+     Sized in cqw, not cqh — portrait is width-constrained. See the
+     unit note in tokens/formats.css.
+
+     Render:
+       node render/rec.js --in motion/announce-reel.html \
+         --size 1080x1920 --fps 30 --secs 8 --verify \
+         --out dist/announce-reel.mp4
+
+     STAKEHOLDER NOTE (Sep 2026): keep the crest, but the reel should
+         not feel heavily Gotham-branded — it's a fundraiser for the
+         team. Crest runs small, no glow/sheen hero moment; the club
+         appears as a fundraiser credit line instead of the sender.
+
+     ⚠️  Grounded on guidelines/mood-board.html — marquee title, mono
+         facts, y2k "Season 25" gag (25th anniversary), three accents on --house-black.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Announce Reel</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .house {
+      position: absolute;
+      inset: 0;
+      /* Shallower and lifted vs. the venue loop: .fmt-vertical raises
+         --house-black, and a tighter gradient gives the encoder less
+         smooth area to band across. */
+      background: radial-gradient(ellipse 92% 58% at 50% 34%,
+        #1a1f4d 0%, #12163a 42%, #0d1129 72%, var(--house-black) 100%);
+    }
+
+    .swell {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 30% at 50% 6%,
+        rgba(255, 212, 92, 0.22), transparent 70%);
+      animation: gkd-house-swell 8s var(--mo-ease-ambient) infinite;
+    }
+
+    .sequins {
+      position: absolute;
+      inset: 0;
+      opacity: 0.34;
+      -webkit-mask-image: radial-gradient(ellipse 70% 52% at 50% 34%, transparent 30%, #000 100%);
+      mask-image: radial-gradient(ellipse 70% 52% at 50% 34%, transparent 30%, #000 100%);
+      animation: gkd-shimmer 8s var(--mo-ease-ambient) infinite;
+    }
+
+    .bands {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(4, 9, 26, 0.5) 0%, transparent 14%,
+        transparent 84%, rgba(4, 9, 26, 0.6) 100%);
+    }
+
+    /* Bulb rails hug the very top and bottom edges — outside the safe
+       area on purpose, since they are texture rather than information. */
+    .rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      --gkd-bulb-gap: 3.4cqw;
+      --gkd-bulb-h: 2.2cqw;
+      --gkd-bulb-r: 0.46cqw;
+      animation: gkd-marquee-chase 1s var(--mo-linear) infinite;
+    }
+    .rail--top { top: 3cqw; }
+    .rail--bottom { bottom: 3cqw; }
+
+    /* ---- Reveal keyframes ----
+       Two staggered variants so the crest lands before the type. Both
+       return to their start state at 100% so the loop closes. */
+    /* Percentages are of the 8s period, so 1% = 80ms. The whole stagger
+       must land inside --mo-hook (400ms = 5%) — a Reel that finishes
+       assembling at 800ms has already lost half its viewers. */
+    @keyframes reel-in-a {          /* 0 -> 200ms */
+      0%   { opacity: 0; transform: translateY(1.4cqw) scale(0.97); }
+      2.5% { opacity: 1; transform: translateY(0) scale(1); }
+      94%  { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(1.4cqw) scale(0.97); }
+    }
+
+    @keyframes reel-in-b {          /* 64 -> 320ms */
+      0%, 0.8% { opacity: 0; transform: translateY(1.8cqw); }
+      4%       { opacity: 1; transform: translateY(0); }
+      94%      { opacity: 1; transform: translateY(0); }
+      100%     { opacity: 0; transform: translateY(1.8cqw); }
+    }
+
+    @keyframes reel-in-c {          /* 144 -> 400ms, on the deadline */
+      0%, 1.8% { opacity: 0; transform: translateY(1.8cqw); }
+      5%       { opacity: 1; transform: translateY(0); }
+      94%      { opacity: 1; transform: translateY(0); }
+      100%     { opacity: 0; transform: translateY(1.8cqw); }
+    }
+
+    /* The spectrum rule draws itself out from the centre — the single
+       clearest "something is happening" cue in the first half second. */
+    @keyframes reel-rule {
+      0%   { transform: scaleX(0); opacity: 0; }
+      5%   { transform: scaleX(1); opacity: 1; }
+      94%  { transform: scaleX(1); opacity: 1; }
+      100% { transform: scaleX(0); opacity: 0; }
+    }
+
+    /* ---- Composition ----
+       Everything sits in the UPPER band. The Reels action rail covers
+       the lower right, and the caption sits bottom-left, so the lower
+       third of the frame is deliberately left empty. */
+    .stack {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-overline);
+      font-size: var(--type-min-social-support);
+      color: var(--gold-500);
+      animation: reel-in-a 8s var(--mo-ease) infinite;
+    }
+
+    .crest-wrap {
+      position: relative;
+      width: 12cqw;
+      height: 12cqw;
+      margin: 2cqw 0 2.6cqw;
+      display: grid;
+      place-items: center;
+      animation: reel-in-a 8s var(--mo-ease) infinite;
+    }
+
+    .crest {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .title {
+      font-family: var(--font-marquee);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wordmark);
+      font-size: 13cqw;
+      line-height: 0.9;
+      color: var(--text-strong);
+      margin: 0;
+      animation: reel-in-b 8s var(--mo-ease) infinite;
+    }
+
+    .subtitle {
+      font-family: var(--font-body);
+      font-weight: var(--fw-extrabold);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 3.2cqw;
+      color: var(--gold-500);
+      margin-top: 1.6cqw;
+      animation: reel-in-b 8s var(--mo-ease) infinite;
+    }
+
+    .rule {
+      width: 54cqw;
+      height: 1.1cqw;
+      margin: 3.4cqw 0;
+      border-radius: 999px;
+      animation: reel-rule 8s var(--mo-ease) infinite;
+    }
+
+    .when {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: var(--type-min-social);
+      letter-spacing: var(--ls-wide);
+      color: var(--text-strong);
+      text-transform: uppercase;
+      animation: reel-in-c 8s var(--mo-ease) infinite;
+    }
+
+    .where {
+      font-family: var(--font-body);
+      font-size: var(--type-min-social-support);
+      color: var(--navy-200);
+      margin-top: 1.4cqw;
+      animation: reel-in-c 8s var(--mo-ease) infinite;
+    }
+
+    .tickets {
+      margin-top: 4.4cqw;
+      font-family: var(--font-athletic);
+      font-weight: var(--fw-black);
+      text-transform: uppercase;
+      font-size: 4.6cqw;
+      letter-spacing: var(--ls-tight);
+      background: var(--accent);
+      color: var(--on-accent);
+      padding: 2.4cqw 5.4cqw;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-glow);
+      animation: reel-in-c 8s var(--mo-ease) infinite;
+    }
+
+    /* Grain runs heavier than the venue loop: it dithers the gradients
+       and measurably reduces banding once the platform re-encodes. */
+    .grain {
+      position: absolute;
+      inset: -35%;
+      opacity: 0.09;
+      background-image: radial-gradient(var(--white) 0.5px, transparent 0.6px);
+      background-size: 3px 3px;
+      animation: gk-grain 2s steps(10, end) infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__canvas fmt-vertical" data-theme="drag">
+
+      <div class="house"></div>
+      <div class="swell gkd-anim"></div>
+      <div class="sequins gkd-sequin gkd-anim"></div>
+      <div class="bands"></div>
+
+      <hr class="gkd-marquee-rule rail rail--top gkd-anim">
+      <hr class="gkd-marquee-rule rail rail--bottom gkd-anim">
+
+      <div class="safe safe--reel">
+        <div class="stack">
+          <div class="eyebrow gkd-anim">One Night Only · New York City</div>
+
+          <div class="crest-wrap gkd-anim">
+            <img class="crest" src="../../assets/logos/shield-2c.png" alt="Gotham Knights crest">
+          </div>
+
+          <h1 class="title gkd-anim">Gotham Drag Show</h1>
+          <div class="subtitle gkd-anim">The Next Generation · Season 25</div>
+
+          <hr class="gkd-spectrum-rule rule gkd-anim">
+
+          <div class="when gkd-anim">Wed · Nov 18 · Doors 7pm · Show 8pm</div>
+          <div class="where gkd-anim">The Cutting Room · 44 E 32nd St, NY, NY</div>
+          <div class="where gkd-anim" style="margin-top:0.8cqw;opacity:0.8;">Every dollar supports Gotham Knights Rugby</div>
+
+          <div class="tickets gkd-anim">Tickets $35<span style="display:block;font-family:var(--font-mono);font-weight:600;font-size:2.6cqw;letter-spacing:0.08em;margin-top:0.8cqw;">go.gotham.rugby/drag</span></div>
+        </div>
+      </div>
+
+      <div class="grain gk-anim"></div>
+    </div>
+  </div>
+</body>
+</html>

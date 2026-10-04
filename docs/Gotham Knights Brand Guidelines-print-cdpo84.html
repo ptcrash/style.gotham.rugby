@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gotham Knights RFC — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @import url("https://use.typekit.net/tql2lty.css");
+
+
+  :root {
+    --navy-900:#07112a; --navy-800:#0a1736; --navy-700:#0d1d41; --navy-600:#142a5c;
+    --navy-500:#1d3a78; --navy-400:#2f5099; --navy-300:#6680b8; --navy-200:#aab9d6; --navy-100:#d9e0ef;
+    --gold-700:#b8810a; --gold-600:#d99e12; --gold-500:#fec526; --gold-400:#ffd45c;
+    --gold-300:#ffe293; --gold-200:#fff0c9; --gold-100:#fff8e8;
+    --paper:#fbf7ee; --paper-2:#f3ecdc; --white:#ffffff;
+    --ink-900:#11151f; --ink-700:#353b49; --ink-500:#5d6473; --ink-400:#868d9c;
+    --ink-300:#b6bcc8; --ink-200:#dde0e7; --ink-100:#eef0f4;
+    --pride-red:#e4453a; --pride-orange:#f08a24; --pride-yellow:#fec526;
+    --pride-green:#2faa6a; --pride-blue:#2f74d0; --pride-violet:#8b46c9;
+    --pride-trans-blue:#5bcefa; --pride-trans-pink:#f5a9b8; --pride-brown:#7a4a23; --pride-black:#1a1a1a;
+    --success:#2faa6a; --warning:#e8920c; --danger:#d83a3a;
+    --f-head:"Hanken Grotesk", system-ui, sans-serif;
+    --f-ath:"gotham","Arial Black", sans-serif;
+    --f-word:"Harbour", Georgia, serif;
+    --f-mono:"Spline Sans Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: #34373c; font-family: var(--f-head); color: var(--ink-700); }
+
+  /* ---------------- page frame ---------------- */
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 26px; padding: 34px 20px 60px; }
+  .page {
+    width: 816px; height: 1056px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+    display: flex; flex-direction: column;
+  }
+  .pad { padding: 76px 76px 70px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
+  /* running header / footer on content pages */
+  .rhead {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-400); font-weight: 700;
+    padding-bottom: 14px; border-bottom: 1.5px solid var(--ink-200);
+  }
+  .rhead .mark { display: flex; align-items: center; gap: 9px; color: var(--navy-700); }
+  .rhead .mark img { width: 24px; height: 24px; display: block; }
+  .rfoot {
+    position: absolute; left: 76px; right: 76px; bottom: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-400); font-weight: 600;
+  }
+  .rfoot .pg { font-family: var(--f-mono); letter-spacing: 0.1em; }
+
+  /* section label / titles */
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 800; color: var(--gold-700);
+  }
+  .ptitle { font-size: 40px; font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; color: var(--navy-700); margin: 12px 0 0; }
+  .goldbar { width: 56px; height: 4px; background: var(--gold-500); margin: 18px 0 0; }
+  .lead { font-size: 15px; line-height: 1.6; color: var(--ink-700); max-width: 60ch; margin: 22px 0 0; }
+  h3.sub { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-700); font-weight: 800; margin: 0 0 14px; }
+  p { text-wrap: pretty; }
+
+  /* ============== COVER ============== */
+  .cover { background: linear-gradient(168deg, #20407e 0%, #142a5c 40%, #0a1736 74%, #07112a 100%); color: var(--white); }
+  .cover::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,0.07), transparent 62%);
+  }
+  .cover .inner { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 90px 70px; text-align: center; }
+  .cover .topline, .cover .botline {
+    position: absolute; left: 76px; right: 76px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--navy-200); font-weight: 700;
+  }
+  .cover .topline { top: 64px; }
+  .cover .botline { bottom: 64px; color: var(--navy-300); }
+  .cover .shield { width: 224px; height: auto; margin-bottom: 38px; filter: drop-shadow(0 14px 30px rgba(0,0,0,0.35)); }
+  .cover .wordmark { font-family: var(--f-word); font-size: 78px; line-height: 0.92; letter-spacing: -0.05em; text-transform: uppercase; color: var(--gold-500); }
+  .cover .wordmark .l2 { color: var(--white); }
+  .cover .rfc { margin-top: 22px; font-size: 14px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--navy-100); font-weight: 700; }
+  .cover .gdivide { width: 64px; height: 4px; background: var(--gold-500); margin: 40px auto 0; }
+  .cover .guide { margin-top: 26px; font-family: var(--f-ath); font-size: 17px; letter-spacing: 0.16em; }
+
+  /* ============== generic helpers ============== */
+  .row { display: flex; gap: 22px; }
+  .col { flex: 1; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .note { font-size: 12px; line-height: 1.55; color: var(--ink-500); }
+  .mono { font-family: var(--f-mono); }
+  .card-box {
+    background: var(--white); border: 1px solid var(--ink-200); border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(7,17,42,0.08); padding: 22px;
+  }
+
+  /* ============== intro / two registers ============== */
+  .regs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; }
+  .reg { border-radius: 12px; padding: 26px; min-height: 232px; display: flex; flex-direction: column; }
+  .reg.loud { background: var(--navy-700); color: var(--white); }
+  .reg.pro { background: var(--white); border: 2px solid var(--navy-700); color: var(--navy-700); }
+  .reg .kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; }
+  .reg.loud .kicker { color: var(--gold-500); }
+  .reg.pro .kicker { color: var(--gold-700); }
+  .reg h4 { font-family: var(--f-ath); font-size: 30px; margin: 14px 0 12px; letter-spacing: 0.01em; line-height: 0.98; }
+  .reg.pro h4 { font-family: var(--f-head); font-weight: 800; letter-spacing: -0.01em; }
+  .reg p { font-size: 12.5px; line-height: 1.55; }
+  .reg.loud p { color: var(--navy-100); }
+  .reg .uses { margin-top: auto; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; opacity: 0.85; }
+
+  .toc { margin-top: 32px; columns: 2; column-gap: 48px; }
+  .toc .item { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px dotted var(--ink-200); break-inside: avoid; }
+  .toc .n { font-family: var(--f-mono); font-size: 11px; color: var(--gold-700); font-weight: 600; width: 22px; }
+  .toc .t { font-size: 13px; color: var(--navy-700); font-weight: 600; }
+
+  .pridebar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; margin-top: 28px; }
+  .pridebar span { flex: 1; }
+
+  /* ============== voice ============== */
+  .voicequote { border-left: 4px solid var(--gold-500); padding: 6px 0 6px 22px; margin: 0; }
+  .voicequote.loud { font-family: var(--f-ath); color: var(--navy-700); font-size: 26px; line-height: 1.05; letter-spacing: 0.01em; }
+  .voicequote.pro { font-size: 16px; line-height: 1.5; color: var(--ink-700); font-style: italic; }
+  .dolist { list-style: none; padding: 0; margin: 0; }
+  .dolist li { font-size: 12.5px; line-height: 1.5; padding: 8px 0 8px 26px; position: relative; border-bottom: 1px solid var(--ink-100); }
+  .dolist li::before { position: absolute; left: 0; top: 8px; font-weight: 800; font-size: 13px; }
+  .dolist.do li::before { content: "✓"; color: var(--success); }
+  .dolist.dont li::before { content: "✕"; color: var(--danger); }
+
+  /* ============== logo pages ============== */
+  .logostage { background: var(--paper-2); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .logostage.navy { background: var(--navy-700); }
+  .logostage img { display: block; }
+  .specrow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .chip-s { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--navy-700); background: var(--gold-100); border: 1px solid var(--gold-300); border-radius: 999px; padding: 5px 11px; }
+
+  .donts { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 8px; }
+  .dont-card { border: 1px solid var(--ink-200); border-radius: 10px; overflow: hidden; background: var(--white); }
+  .dont-card .vis { height: 96px; display: flex; align-items: center; justify-content: center; background: var(--paper-2); position: relative; }
+  .dont-card .cap { padding: 10px 13px; font-size: 11.5px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .dont-card .x { color: var(--danger); font-weight: 800; }
+
+  /* clearspace diagram */
+  .clear-wrap { position: relative; display: inline-block; padding: 38px; }
+  .clear-wrap .gridlines { position: absolute; inset: 0; border: 1.5px dashed var(--navy-300); border-radius: 6px; }
+  .clear-wrap .cs-label { position: absolute; font-family: var(--f-mono); font-size: 10px; color: var(--navy-500); background: var(--paper-2); padding: 1px 5px; }
+
+  /* ============== color pages ============== */
+  .scale { display: grid; grid-template-columns: repeat(9, 1fr); border-radius: 8px; overflow: hidden; border: 1px solid var(--ink-200); }
+  .scale .sw { height: 70px; display: flex; align-items: flex-end; padding: 6px; }
+  .scale .sw small { font-family: var(--f-mono); font-size: 8.5px; font-weight: 600; }
+  .scaleinfo { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10px; font-family: var(--f-mono); color: var(--ink-500); }
+
+  .hero-sw { border-radius: 12px; padding: 20px; height: 168px; display: flex; flex-direction: column; justify-content: space-between; }
+  .hero-sw .nm { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+  .hero-sw .vals { font-family: var(--f-mono); font-size: 11px; line-height: 1.7; }
+  .hero-sw .role { font-size: 11px; line-height: 1.45; opacity: 0.9; }
+
+  .swgrid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-top: 6px; }
+  .swgrid .s { border-radius: 8px; overflow: hidden; border: 1px solid var(--ink-200); }
+  .swgrid .s .c { height: 52px; }
+  .swgrid .s .m { font-family: var(--f-mono); font-size: 9px; padding: 6px 7px 8px; color: var(--ink-600); }
+  .swgrid .s .m b { display: block; color: var(--navy-700); font-size: 10px; font-family: var(--f-head); font-weight: 700; margin-bottom: 1px; }
+
+  .status-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+  .status-pill { display: flex; align-items: center; gap: 12px; border-radius: 10px; padding: 12px 14px; }
+  .status-pill .dot { width: 14px; height: 14px; border-radius: 999px; flex: none; }
+  .status-pill .txt { font-size: 12px; }
+  .status-pill .txt b { display: block; font-size: 13px; color: var(--navy-700); }
+
+  /* ============== type ============== */
+  .fam { border: 1px solid var(--ink-200); border-radius: 12px; padding: 22px 24px; background: var(--white); }
+  .fam .big { line-height: 1; color: var(--navy-700); }
+  .fam .meta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--ink-100); }
+  .fam .meta .role { font-size: 11.5px; color: var(--ink-500); max-width: 62%; line-height: 1.4; }
+  .fam .meta .nm { font-size: 12px; font-weight: 700; color: var(--navy-700); letter-spacing: 0.02em; }
+
+  .scaletable { width: 100%; border-collapse: collapse; }
+  .scaletable td { border-bottom: 1px solid var(--ink-100); padding: 12px 0; vertical-align: middle; }
+  .scaletable .tok { font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-500); width: 140px; padding-right: 34px; white-space: nowrap; }
+  .scaletable .samp { color: var(--navy-700); font-weight: 800; letter-spacing: -0.01em; line-height: 1; }
+  .scaletable .px { font-family: var(--f-mono); font-size: 10.5px; color: var(--gold-700); text-align: right; width: 70px; }
+
+  /* ============== spacing ============== */
+  .spacescale .bar { display: flex; align-items: center; gap: 14px; margin-bottom: 9px; }
+  .spacescale .swatch { background: var(--gold-500); height: 16px; border-radius: 3px; }
+  .spacescale .lbl { font-family: var(--f-mono); font-size: 11px; color: var(--ink-600); width: 150px; }
+  .radius-demo { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .radius-demo .r { background: var(--navy-700); height: 78px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+  .radius-demo .r small { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--gold-400); }
+  .stroke-demo { display: flex; gap: 16px; align-items: center; }
+  .stroke-demo .b { flex: 1; background: var(--white); height: 56px; border-radius: 8px; border-color: var(--navy-700); display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-size: 10px; color: var(--navy-700); }
+
+  .shadow-demo { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; padding: 8px 4px 4px; }
+  .shadow-demo .s { background: var(--white); border-radius: 10px; height: 84px; display: flex; align-items: flex-end; padding: 9px; }
+  .shadow-demo .s small { font-family: var(--f-mono); font-size: 9px; color: var(--ink-500); }
+  .motion-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .motion-chip { font-family: var(--f-mono); font-size: 10.5px; color: var(--navy-700); background: var(--white); border: 1px solid var(--ink-200); border-radius: 6px; padding: 8px 11px; }
+
+  /* ============== components ============== */
+  .cmp { border: 1px solid var(--ink-200); border-radius: 12px; padding: 20px; background: var(--white); }
+  .cmp .lab { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--navy-700); margin-bottom: 4px; }
+  .cmp .dsc { font-size: 11px; color: var(--ink-500); line-height: 1.45; margin-bottom: 16px; }
+  .cmp .demo { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+  .btn { font-family: var(--f-head); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 8px; border: 2px solid transparent; font-size: 13px; padding: 11px 18px; cursor: default; }
+  .btn.primary { background: var(--gold-500); color: var(--navy-700); }
+  .btn.secondary { background: var(--navy-700); color: var(--white); }
+  .btn.outline { background: transparent; border-color: var(--navy-700); color: var(--navy-700); }
+  .btn.ghost { background: rgba(13,29,65,0.06); color: var(--navy-700); }
+  .btn.sm { font-size: 11px; padding: 8px 13px; }
+  .btn.lg { font-size: 15px; padding: 14px 24px; }
+
+  .badge { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 5px; padding: 4px 8px; }
+  .badge.gold { background: var(--gold-500); color: var(--navy-700); }
+  .badge.navy { background: var(--navy-700); color: var(--white); }
+  .badge.success { background: var(--success); color: #fff; }
+  .badge.warning { background: var(--warning); color: #fff; }
+  .badge.danger { background: var(--danger); color: #fff; }
+  .badge.neutral { background: var(--ink-200); color: var(--ink-700); }
+  .badge.subtle.success { background: #e4f5ec; color: #1f7a4d; }
+
+  .tag { font-size: 12px; font-weight: 600; border-radius: 999px; padding: 6px 14px; border: 1.5px solid var(--ink-300); color: var(--navy-700); background: var(--white); }
+  .tag.sel { background: var(--navy-700); color: #fff; border-color: var(--navy-700); }
+
+  .stat .v { font-family: var(--f-mono); font-weight: 600; font-size: 38px; line-height: 1; color: var(--gold-600); letter-spacing: -0.01em; }
+  .stat.navy .v { color: var(--navy-700); }
+  .stat .l { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--ink-500); margin-top: 7px; }
+
+  .field { }
+  .field label { display: block; font-size: 11px; font-weight: 700; color: var(--navy-700); margin-bottom: 6px; letter-spacing: 0.02em; }
+  .field .inp { border: 2px solid var(--ink-300); border-radius: 8px; padding: 10px 12px; font-size: 13px; color: var(--ink-400); background: #fff; }
+  .field.focus .inp { border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(254,197,38,0.4); color: var(--ink-900); }
+  .field.err .inp { border-color: var(--danger); }
+  .field .hint { font-size: 10.5px; margin-top: 5px; color: var(--ink-500); }
+  .field.err .hint { color: var(--danger); }
+
+  .secdemo .ey { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 800; color: var(--gold-700); }
+  .secdemo h5 { font-size: 22px; font-weight: 800; color: var(--navy-700); margin: 7px 0 0; letter-spacing: -0.01em; }
+  .secdemo .rule { width: 44px; height: 3px; background: var(--gold-500); margin: 12px 0 10px; }
+  .secdemo p { font-size: 12px; color: var(--ink-500); margin: 0; }
+
+  .fixture { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--ink-200); border-left: 4px solid var(--gold-500); border-radius: 8px; padding: 12px 16px; }
+  .fixture.away { border-left-color: var(--navy-500); }
+  .fixture .date { text-align: center; font-family: var(--f-mono); }
+  .fixture .date .d { font-size: 20px; font-weight: 600; color: var(--navy-700); line-height: 1; }
+  .fixture .date .m { font-size: 9px; letter-spacing: 0.1em; color: var(--ink-400); }
+  .fixture .opp { flex: 1; }
+  .fixture .opp .n { font-size: 14px; font-weight: 700; color: var(--navy-700); }
+  .fixture .opp .meta { font-size: 10.5px; color: var(--ink-500); }
+  .fixture .score { font-family: var(--f-mono); font-size: 19px; font-weight: 600; color: var(--navy-700); }
+  .fixture .ko { font-family: var(--f-mono); font-size: 13px; color: var(--ink-500); }
+
+  /* crest as content divider */
+  .crest-mini { width: 18px; height: 18px; vertical-align: middle; }
+
+  /* ============== patterns ============== */
+  .patrow { display: grid; gap: 16px; }
+  .patswatch { border-radius: 8px; border: 2px solid var(--navy-700); overflow: hidden; position: relative; }
+  .patmeta { margin-top: 9px; }
+  .patmeta .cls { font-family: var(--f-mono); font-size: 11px; font-weight: 600; color: var(--navy-700); }
+  .patmeta .use { font-size: 11px; color: var(--ink-500); line-height: 1.4; margin-top: 2px; }
+  .pat-checker { background: conic-gradient(var(--navy-700) 0 25%, var(--gold-500) 0 50%, var(--navy-700) 0 75%, var(--gold-500) 0) 0 0 / 30px 30px; }
+  .pat-stripes { background: repeating-linear-gradient(-45deg, var(--navy-700) 0 18px, var(--gold-500) 18px 36px); }
+  .pat-duotone { background-color: var(--navy-700); background-image: linear-gradient(105deg, transparent 10%, var(--navy-700) 86%), radial-gradient(var(--gold-500) 1.7px, transparent 1.9px); background-size: 100% 100%, 12px 12px; }
+  .pat-fade { background-color: var(--paper); background-image: linear-gradient(105deg, transparent 16%, var(--paper) 92%), radial-gradient(var(--navy-700) 1.6px, transparent 1.8px); background-size: 100% 100%, 11px 11px; }
+  .pat-spot { background-color: var(--paper); background-image: radial-gradient(circle at 40% 50%, transparent 6%, var(--paper) 64%), radial-gradient(var(--navy-700) 1.7px, transparent 1.9px); background-size: 100% 100%, 12px 12px; }
+  .pat-crest { background-color: var(--navy-700); background-image: url("../assets/logos/crest-watermark.svg"); background-repeat: no-repeat; background-position: center; background-size: auto 132%; }
+  .pat-pinstripe { background-color: var(--paper); background-image: repeating-linear-gradient(90deg, rgba(13,29,65,0.10) 0 1px, transparent 1px 8px); }
+  .pridebar-thin { display: flex; height: 5px; }
+  .pridebar-thin span { flex: 1; }
+
+  /* back cover */
+  .back { background: var(--navy-700); color: var(--white); }
+  .back .inner { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px; position: relative; }
+  .back .shield { width: 96px; margin-bottom: 28px; }
+  .back h4 { font-family: var(--f-ath); font-size: 24px; letter-spacing: 0.012em; margin: 0 0 6px; }
+  .back .bcquote { font-family: var(--f-ath); font-style: normal; font-weight: 900; font-size: 24px; letter-spacing: 0.012em; text-transform: uppercase; line-height: 1; margin: 0 0 4px;
+    background: linear-gradient(100deg, var(--gold-600) 0%, var(--gold-500) 46%, var(--gold-600) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.38)); }
+  .back p { color: var(--navy-100); font-size: 13px; line-height: 1.6; max-width: 46ch; }
+  .back .gline { width: 56px; height: 4px; background: var(--gold-500); margin: 26px 0; }
+  .back .meta2 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy-300); font-weight: 700; }
+
+  @media print {
+    html, body { background: #fff; }
+    .deck { display: block; padding: 0; gap: 0; }
+    .page { box-shadow: none; break-after: page; page-break-after: always; }
+    .page:last-child { break-after: auto; page-break-after: auto; }
+  }
+  @page { size: 8.5in 11in; margin: 0; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ============ 1 · COVER ============ -->
+  <section class="page cover" data-screen-label="Cover">
+    <div class="topline"><span>Brand &amp; Design System</span><span>New York City</span></div>
+    <div class="inner">
+      <img class="shield" src="../assets/logos/shield-inv.svg" alt="Gotham Knights shield">
+      <div class="wordmark">Gotham<br><span class="l2">Knights</span></div>
+      <div class="rfc">Rugby Football Club</div>
+      <div class="gdivide"></div>
+      <div class="guide">BRAND GUIDELINES</div>
+    </div>
+    <div class="botline"><span>Edition 2026</span><span>Proud, on purpose.</span></div>
+  </section>
+
+  <!-- ============ 2 · INTRO ============ -->
+  <section class="page" data-screen-label="Introduction">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>Introduction</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Who we are</div>
+      <h1 class="ptitle">A fearless, welcoming home<br>for queer athletes.</h1>
+      <div class="goldbar"></div>
+      <p class="lead">Gotham Knights is New York City's LGBT rugby club. The brand is <b>heraldic and athletic</b> — a dragon crest, deep navy, bold gold — with a tone that is bold, warm, and a little cheeky. It speaks to two rooms at once: the queer NYC community and the players who live for matchday, <i>and</i> the grant officers and sponsors who fund the club. So the system ships in two registers.</p>
+
+      <div class="regs">
+        <div class="reg loud">
+          <div class="kicker">Loud · Matchday</div>
+          <h4>NAVY FIELD,<br>GOLD SHOUTING</h4>
+          <p>GothamHTF all-caps energy. Posters, socials, hype, recruitment — the swagger that fills a pitch.</p>
+          <div class="uses">Posters · Social · Recruitment</div>
+        </div>
+        <div class="reg pro">
+          <div class="kicker">Professional · Clubhouse</div>
+          <h4>Warm paper,<br>navy ink</h4>
+          <p>Modern Hanken headings on cream. Decks, grant applications, sponsor one-pagers, the calmer pages.</p>
+          <div class="uses">Decks · Grants · Sponsors</div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:22px;">Both share one palette and one type-family set — only the emphasis changes. The club is proudly LGBT, but the identity leads with navy + gold confidence. Pride shows up as a <b>deliberate</b> spectrum accent — a thin rule, a single highlighted moment — never a default gradient on everything.</p>
+      <div class="pridebar">
+        <span style="background:var(--pride-red)"></span><span style="background:var(--pride-orange)"></span><span style="background:var(--pride-yellow)"></span><span style="background:var(--pride-green)"></span><span style="background:var(--pride-blue)"></span><span style="background:var(--pride-violet)"></span>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">02</span></div>
+  </section>
+
+  <!-- ============ 3 · CONTENTS ============ -->
+  <section class="page" data-screen-label="Contents">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>Contents</span></div>
+      <div class="eyebrow" style="margin-top:30px;">What's inside</div>
+      <h1 class="ptitle">Contents</h1>
+      <div class="goldbar"></div>
+      <div class="toc">
+        <div class="item"><span class="n">01</span><span class="t">Voice &amp; tone</span></div>
+        <div class="item"><span class="n">02</span><span class="t">The marks — crest &amp; lockups</span></div>
+        <div class="item"><span class="n">03</span><span class="t">Logo usage — clear space &amp; don'ts</span></div>
+        <div class="item"><span class="n">04</span><span class="t">Color — brand heroes</span></div>
+        <div class="item"><span class="n">05</span><span class="t">Color — neutrals, pride &amp; status</span></div>
+        <div class="item"><span class="n">06</span><span class="t">Typography — the voices</span></div>
+        <div class="item"><span class="n">07</span><span class="t">Type scale</span></div>
+        <div class="item"><span class="n">08</span><span class="t">Spacing, radius &amp; borders</span></div>
+        <div class="item"><span class="n">09</span><span class="t">Shadows, motion &amp; focus</span></div>
+        <div class="item"><span class="n">10</span><span class="t">Components — actions &amp; labels</span></div>
+        <div class="item"><span class="n">11</span><span class="t">Components — surfaces &amp; data</span></div>
+        <div class="item"><span class="n">12</span><span class="t">Patterns &amp; textures</span></div>
+        <div class="item"><span class="n">13</span><span class="t">Iconography</span></div>
+        <div class="item"><span class="n">14</span><span class="t">Pantone apparel reference</span></div>
+      </div>
+
+      <div class="card-box" style="margin-top:38px;display:flex;gap:20px;align-items:center;">
+        <img src="../assets/logos/shield-2c.svg" alt="" style="width:60px;height:60px;flex:none;">
+        <div>
+          <h3 class="sub" style="margin-bottom:7px;">How to use this book</h3>
+          <p class="note" style="margin:0;">Foundations first (voice, logo, color, type), then the tokens that make them buildable (spacing, motion), then the components that assemble into product. The final page is a manufacturer-ready Pantone sheet for apparel.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">03</span></div>
+  </section>
+
+  <!-- ============ 4 · VOICE ============ -->
+  <section class="page" data-screen-label="Voice and Tone">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>01 · Voice &amp; Tone</span></div>
+      <div class="eyebrow" style="margin-top:30px;">How we write</div>
+      <h1 class="ptitle">Confident without being<br>macho. Welcoming without<br>being soft.</h1>
+      <div class="goldbar"></div>
+      <p class="lead">The club has swagger <i>and</i> a door held open. We speak as <b>"we"</b> (the squad) and address you as <b>"you."</b> A wink is welcome — it never punches down, and inclusivity is structural, not decorative.</p>
+
+      <div class="grid2" style="margin-top:30px;">
+        <div>
+          <h3 class="sub">Loud register</h3>
+          <blockquote class="voicequote loud">COME PLAY.<br>TUESDAY NIGHTS, WALL STREET.<br>NO EXPERIENCE — BRING YOURSELF.</blockquote>
+        </div>
+        <div>
+          <h3 class="sub">Professional register</h3>
+          <blockquote class="voicequote pro">"One of New York's longest-running inclusive rugby clubs. We field competitive sides while keeping our doors open to players of every background and skill level."</blockquote>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:34px;">
+        <div>
+          <h3 class="sub" style="color:var(--success)">Do</h3>
+          <ul class="dolist do">
+            <li>Say <i>queer</i> and <i>LGBT</i> plainly and proudly</li>
+            <li>Use ALL CAPS athletic type for hype headlines</li>
+            <li>Frame welcome explicitly — "all bodies, all levels"</li>
+            <li>Set scores, fixtures &amp; kit numbers in the mono face</li>
+            <li>Keep hype lines short and punchy; stack them</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub" style="color:var(--danger)">Don't</h3>
+          <ul class="dolist dont">
+            <li>Lean on tired gay-bar clichés</li>
+            <li>Punch down, ever — cheek is generous, not mean</li>
+            <li>Use emoji in formal or professional contexts</li>
+            <li>Go corporate-stiff in grant &amp; sponsor copy</li>
+            <li>Default to rainbow gradients to signal pride</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">04</span></div>
+  </section>
+
+  <!-- ============ 5 · THE MARKS ============ -->
+  <section class="page" data-screen-label="The Marks">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>02 · The Marks</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Logo system</div>
+      <h1 class="ptitle">The crest &amp; lockups</h1>
+      <div class="goldbar"></div>
+      <p class="lead" style="margin-top:16px;">The dragon shield is the brand's strongest icon — a badge, watermark, and bullet mark all at once. The horizontal and stacked lockups pair it with the Harbour wordmark. Never redraw the crest by hand; always place the supplied vector.</p>
+
+      <div class="grid2" style="margin-top:20px;">
+        <div>
+          <div class="logostage" style="height:158px;"><img src="../assets/logos/shield-2c.svg" style="height:120px;" alt="Shield 2-color"></div>
+          <div class="specrow"><span class="chip-s">Shield · 2C</span><span class="chip-s">Primary icon</span></div>
+        </div>
+        <div>
+          <div class="logostage navy" style="height:158px;"><img src="../assets/logos/shield-inv.svg" style="height:120px;" alt="Shield knockout"></div>
+          <div class="specrow"><span class="chip-s">Shield · Knockout</span><span class="chip-s">On navy / photo</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div class="logostage" style="height:116px;"><img src="../assets/logos/logo-horizontal-2c.svg" style="height:62px;" alt="Horizontal lockup"></div>
+        <div class="specrow"><span class="chip-s">Horizontal lockup · 2C</span><span class="chip-s">Default · headers &amp; wide spaces</span></div>
+      </div>
+
+      <div class="grid2" style="margin-top:16px;">
+        <div>
+          <div class="logostage" style="height:150px;"><img src="../assets/logos/logo-stack-2c.svg" style="height:116px;" alt="Stacked lockup"></div>
+          <div class="specrow"><span class="chip-s">Stacked lockup · 2C</span></div>
+        </div>
+        <div>
+          <div class="logostage navy" style="height:150px;"><img src="../assets/logos/logo-stack-1c.svg" style="height:116px;filter:brightness(0) invert(1);" alt="Stacked knockout"></div>
+          <div class="specrow"><span class="chip-s">Stacked · Knockout</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">05</span></div>
+  </section>
+
+  <!-- ============ 6 · LOGO USAGE ============ -->
+  <section class="page" data-screen-label="Logo Usage">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>03 · Logo Usage</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Protecting the mark</div>
+      <h1 class="ptitle">Clear space &amp; don'ts</h1>
+      <div class="goldbar"></div>
+
+      <div class="row" style="margin-top:26px;align-items:center;">
+        <div class="col">
+          <h3 class="sub">Clear space</h3>
+          <p class="note">Clear space (<b>X</b>) equals <b>30% of the crest's height</b> — scale it up or down with the logo. Keep X clear on every side; nothing — type, photo edges, other logos — enters this zone.</p>
+          <h3 class="sub" style="margin-top:18px;">Minimum size</h3>
+          <p class="note">Crest never below <b>24px / 0.25in</b>. Horizontal lockup never below <b>120px / 1.25in</b> wide, so "Rugby Football Club" stays legible.</p>
+        </div>
+        <div class="col" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <div class="clear-wrap" style="padding:36px;">
+            <div class="gridlines"></div>
+            <span class="cs-label" style="top:-7px;left:50%;transform:translateX(-50%);">clear-space boundary</span>
+            <span class="cs-label" style="top:13px;left:50%;transform:translateX(-50%);">X</span>
+            <span class="cs-label" style="left:13px;top:50%;transform:translateY(-50%);">X</span>
+            <div style="border:1px dashed var(--navy-200);display:inline-block;line-height:0;">
+              <img src="../assets/logos/shield-2c.svg" style="height:120px;display:block;" alt="">
+            </div>
+          </div>
+          <div class="mono" style="font-size:11px;color:var(--ink-500);">X = 30% of the crest's height</div>
+        </div>
+      </div>
+
+      <h3 class="sub" style="margin-top:30px;">Never do this</h3>
+      <div class="donts">
+        <div class="dont-card">
+          <div class="vis"><img src="../assets/logos/logo-horizontal-2c.svg" style="height:32px;transform:scaleX(1.5);" alt=""></div>
+          <div class="cap"><span class="x">✕</span><span>Don't stretch, squash, or distort the proportions.</span></div>
+        </div>
+        <div class="dont-card">
+          <div class="vis" style="background:linear-gradient(90deg,#ff0000,#ff8a00,#ffe600,#00d219,#00b3ff,#4d00ff,#c800ff);"><img src="../assets/logos/shield-inv.svg" style="height:62px;" alt=""></div>
+          <div class="cap"><span class="x">✕</span><span>Don't place on a rainbow or busy gradient — navy/gold leads.</span></div>
+        </div>
+        <div class="dont-card">
+          <div class="vis"><img src="../assets/logos/shield-2c.svg" style="height:62px;filter:hue-rotate(120deg) saturate(1.4);" alt=""></div>
+          <div class="cap"><span class="x">✕</span><span>Don't recolor. The crest is navy + gold, full stop.</span></div>
+        </div>
+        <div class="dont-card">
+          <div class="vis"><img src="../assets/logos/shield-2c.svg" style="height:62px;filter:drop-shadow(3px 4px 0 rgba(0,0,0,0.4));" alt=""></div>
+          <div class="cap"><span class="x">✕</span><span>Don't add shadows, bevels, outlines, or other effects.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">06</span></div>
+  </section>
+
+  <!-- ============ 7 · COLOR HEROES ============ -->
+  <section class="page" data-screen-label="Color Heroes">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>04 · Color</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Two heroes, sampled from the crest</div>
+      <h1 class="ptitle">Navy anchors. Gold accents.</h1>
+      <div class="goldbar"></div>
+
+      <div class="grid2" style="margin-top:26px;">
+        <div class="hero-sw" style="background:var(--navy-700);color:#fff;">
+          <div class="nm">Knights Navy</div>
+          <div class="role">The anchor — backgrounds in loud mode, ink in professional mode.</div>
+          <div class="vals">--navy-700<br>#0D1D41 · PANTONE 282 C</div>
+        </div>
+        <div class="hero-sw" style="background:var(--gold-500);color:var(--navy-700);">
+          <div class="nm">Knights Gold</div>
+          <div class="role">The accent — CTAs, highlights, the signature underline rule.</div>
+          <div class="vals">--gold-500<br>#FEC526 · PANTONE 123 C</div>
+        </div>
+      </div>
+
+      <h3 class="sub" style="margin-top:30px;">Navy scale</h3>
+      <div class="scale">
+        <div class="sw" style="background:#07112a"><small style="color:#fff">900</small></div>
+        <div class="sw" style="background:#0a1736"><small style="color:#fff">800</small></div>
+        <div class="sw" style="background:#0d1d41"><small style="color:#fff">700</small></div>
+        <div class="sw" style="background:#142a5c"><small style="color:#fff">600</small></div>
+        <div class="sw" style="background:#1d3a78"><small style="color:#fff">500</small></div>
+        <div class="sw" style="background:#2f5099"><small style="color:#fff">400</small></div>
+        <div class="sw" style="background:#6680b8"><small style="color:#fff">300</small></div>
+        <div class="sw" style="background:#aab9d6"><small style="color:#1a2440">200</small></div>
+        <div class="sw" style="background:#d9e0ef"><small style="color:#1a2440">100</small></div>
+      </div>
+      <div class="scaleinfo"><span>#07112A</span><span>700 = primary</span><span>#D9E0EF</span></div>
+
+      <h3 class="sub" style="margin-top:24px;">Gold scale</h3>
+      <div class="scale">
+        <div class="sw" style="background:#b8810a"><small style="color:#fff">700</small></div>
+        <div class="sw" style="background:#d99e12"><small style="color:#fff">600</small></div>
+        <div class="sw" style="background:#fec526"><small style="color:#5a3d00">500</small></div>
+        <div class="sw" style="background:#ffd45c"><small style="color:#5a3d00">400</small></div>
+        <div class="sw" style="background:#ffe293"><small style="color:#5a3d00">300</small></div>
+        <div class="sw" style="background:#fff0c9"><small style="color:#5a3d00">200</small></div>
+        <div class="sw" style="background:#fff8e8"><small style="color:#5a3d00">100</small></div>
+        <div class="sw" style="background:#fbf7ee"><small style="color:#7a6a3a">paper</small></div>
+        <div class="sw" style="background:#f3ecdc"><small style="color:#7a6a3a">paper-2</small></div>
+      </div>
+      <div class="scaleinfo"><span>#B8810A</span><span>500 = primary · darker tints for text on light</span><span>#F3ECDC</span></div>
+
+      <p class="note" style="margin-top:22px;">Neutrals are intentionally <b>warm</b> — a cream <span class="mono">#FBF7EE</span> paper rather than cold white — which keeps the professional mode from feeling clinical. For gold text on light backgrounds, step down to gold-700 for contrast.</p>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">07</span></div>
+  </section>
+
+  <!-- ============ 8 · COLOR NEUTRALS / PRIDE / STATUS ============ -->
+  <section class="page" data-screen-label="Color Support">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>05 · Color</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Support palettes</div>
+      <h1 class="ptitle">Neutrals, pride &amp; status</h1>
+      <div class="goldbar"></div>
+
+      <h3 class="sub" style="margin-top:26px;">Warm neutrals — paper &amp; ink</h3>
+      <div class="scale">
+        <div class="sw" style="background:#11151f"><small style="color:#fff">900</small></div>
+        <div class="sw" style="background:#353b49"><small style="color:#fff">700</small></div>
+        <div class="sw" style="background:#5d6473"><small style="color:#fff">500</small></div>
+        <div class="sw" style="background:#868d9c"><small style="color:#fff">400</small></div>
+        <div class="sw" style="background:#b6bcc8"><small style="color:#222">300</small></div>
+        <div class="sw" style="background:#dde0e7"><small style="color:#222">200</small></div>
+        <div class="sw" style="background:#eef0f4"><small style="color:#222">100</small></div>
+        <div class="sw" style="background:#fbf7ee"><small style="color:#222">paper</small></div>
+        <div class="sw" style="background:#ffffff;border-left:1px solid #eee"><small style="color:#222">white</small></div>
+      </div>
+
+      <h3 class="sub" style="margin-top:26px;">Pride spectrum — accent only</h3>
+      <p class="note" style="margin:-6px 0 12px;">Warm, slightly muted to sit beside navy + gold. Used as a thin rule or a single highlighted moment — a deliberate spectrum, including the Progress flag additions. Never a default gradient.</p>
+      <div class="grid2">
+        <div>
+          <div class="scale" style="grid-template-columns:repeat(6,1fr);">
+            <div class="sw" style="background:#e4453a"></div>
+            <div class="sw" style="background:#f08a24"></div>
+            <div class="sw" style="background:#fec526"></div>
+            <div class="sw" style="background:#2faa6a"></div>
+            <div class="sw" style="background:#2f74d0"></div>
+            <div class="sw" style="background:#8b46c9"></div>
+          </div>
+          <div class="scaleinfo"><span>Core six</span><span>red → violet</span></div>
+        </div>
+        <div>
+          <div class="scale" style="grid-template-columns:repeat(4,1fr);">
+            <div class="sw" style="background:#5bcefa"></div>
+            <div class="sw" style="background:#f5a9b8"></div>
+            <div class="sw" style="background:#7a4a23"></div>
+            <div class="sw" style="background:#1a1a1a"></div>
+          </div>
+          <div class="scaleinfo"><span>Progress additions</span><span>trans · brown · black</span></div>
+        </div>
+      </div>
+
+      <h3 class="sub" style="margin-top:26px;">Status colors</h3>
+      <div class="status-row">
+        <div class="status-pill" style="background:#e4f5ec;"><span class="dot" style="background:var(--success)"></span><span class="txt"><b>Success #2FAA6A</b>Wins, confirmations</span></div>
+        <div class="status-pill" style="background:#fdf0d6;"><span class="dot" style="background:var(--warning)"></span><span class="txt"><b>Warning #E8920C</b>Caution, pending</span></div>
+        <div class="status-pill" style="background:#fae3e3;"><span class="dot" style="background:var(--danger)"></span><span class="txt"><b>Danger #D83A3A</b>Errors, losses</span></div>
+        <div class="status-pill" style="background:#e7edf8;"><span class="dot" style="background:var(--navy-500)"></span><span class="txt"><b>Info #1D3A78</b>Neutral notices</span></div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">08</span></div>
+  </section>
+
+  <!-- ============ 9 · TYPE FAMILIES ============ -->
+  <section class="page" data-screen-label="Typography">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>06 · Typography</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Four voices</div>
+      <h1 class="ptitle">The type system</h1>
+      <div class="goldbar"></div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+        <div class="fam">
+          <div class="big" style="font-family:var(--f-head);font-weight:800;font-size:46px;letter-spacing:-0.02em;">Come find your pack</div>
+          <div class="meta"><span class="role">Default headline voice <b>and</b> body / UI. Strong, modern, takes itself seriously — h1–h4 and SectionHeading.</span><span class="nm">Hanken Grotesk · 800 / 400</span></div>
+        </div>
+        <div class="fam">
+          <div class="big" style="font-family:var(--f-ath);font-size:44px;letter-spacing:0.01em;">COME PLAY. NO EXPERIENCE.</div>
+          <div class="meta"><span class="role">The athletic loud voice. ALL-CAPS hype headlines, posters, numbers-on-jerseys energy. Tight leading, stacked lines.</span><span class="nm">GothamHTF Black · 900</span></div>
+        </div>
+        <div class="fam">
+          <div class="big" style="font-family:var(--f-word);font-size:44px;letter-spacing:-0.05em;text-transform:uppercase;color:var(--navy-700);">Gotham Knights</div>
+          <div class="meta"><span class="role">The logo wordmark <b>only</b>, always set <b>ALL CAPS</b> to match the lockup. Sturdy, a touch gothic — never a display or accent font, never headings or quotes.</span><span class="nm">Harbour · Wedge serif</span></div>
+        </div>
+        <div class="fam">
+          <div class="big" style="font-family:var(--f-mono);font-weight:600;font-size:40px;letter-spacing:-0.01em;">27 — 12  ·  1998</div>
+          <div class="meta"><span class="role">Scores, fixtures, kit numbers, data. The scoreboard feel.</span><span class="nm">Spline Sans Mono · 400–600</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">09</span></div>
+  </section>
+
+  <!-- ============ 10 · TYPE SCALE ============ -->
+  <section class="page" data-screen-label="Type Scale">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>07 · Type Scale</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Rem-based, 1rem = 16px</div>
+      <h1 class="ptitle">Type scale</h1>
+      <div class="goldbar"></div>
+
+      <table class="scaletable" style="margin-top:20px;">
+        <tr><td class="tok">display-2xl · athletic</td><td><span class="samp" style="font-family:var(--f-ath);font-size:52px;">HERO</span></td><td class="px">88px</td></tr>
+        <tr><td class="tok">display-lg</td><td><span class="samp" style="font-size:44px;">Matchday</span></td><td class="px">48px</td></tr>
+        <tr><td class="tok">display-md</td><td><span class="samp" style="font-size:34px;">Come play</span></td><td class="px">36px</td></tr>
+        <tr><td class="tok">h1</td><td><span class="samp" style="font-size:30px;">Find your pack</span></td><td class="px">32px</td></tr>
+        <tr><td class="tok">h2</td><td><span class="samp" style="font-size:23px;">Section heading</span></td><td class="px">24px</td></tr>
+        <tr><td class="tok">h3</td><td><span class="samp" style="font-size:19px;">Subsection title</span></td><td class="px">20px</td></tr>
+        <tr><td class="tok">body-lg</td><td><span style="font-size:18px;color:var(--ink-700);">All bodies, all levels — welcome here.</span></td><td class="px">18px</td></tr>
+        <tr><td class="tok">body</td><td><span style="font-size:16px;color:var(--ink-700);">Tuesday nights on Wall Street. Bring yourself.</span></td><td class="px">16px</td></tr>
+        <tr><td class="tok">body-sm</td><td><span style="font-size:14px;color:var(--ink-500);">Supporting copy and captions.</span></td><td class="px">14px</td></tr>
+        <tr><td class="tok">overline</td><td><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:800;color:var(--gold-700);">Join us · eyebrow label</span></td><td class="px">11px</td></tr>
+      </table>
+
+      <div class="card-box" style="margin-top:24px;">
+        <h3 class="sub" style="margin-bottom:10px;">Leading &amp; tracking</h3>
+        <p class="note" style="margin:0;">Headlines run tight — <span class="mono">--lh-tight 0.95</span> to <span class="mono">--lh-heading 1.18</span> with negative tracking (<span class="mono">-0.02em</span>). Body breathes at <span class="mono">--lh-body 1.55</span>. Eyebrows are the only all-caps in the modern voice, at <span class="mono">+0.16em</span>. The Harbour wordmark tightens to <span class="mono">-0.05em</span> to match the official lockup.</p>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">10</span></div>
+  </section>
+
+  <!-- ============ 11 · SPACING / RADIUS / BORDERS ============ -->
+  <section class="page" data-screen-label="Spacing">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>08 · Spacing</span></div>
+      <div class="eyebrow" style="margin-top:30px;">4px base scale</div>
+      <h1 class="ptitle">Spacing, radius &amp; borders</h1>
+      <div class="goldbar"></div>
+
+      <div class="grid2" style="margin-top:26px;">
+        <div>
+          <h3 class="sub">Spacing scale</h3>
+          <div class="spacescale">
+            <div class="bar"><span class="lbl">space-1 · 4px</span><span class="swatch" style="width:4px;"></span></div>
+            <div class="bar"><span class="lbl">space-2 · 8px</span><span class="swatch" style="width:8px;"></span></div>
+            <div class="bar"><span class="lbl">space-3 · 12px</span><span class="swatch" style="width:12px;"></span></div>
+            <div class="bar"><span class="lbl">space-4 · 16px</span><span class="swatch" style="width:16px;"></span></div>
+            <div class="bar"><span class="lbl">space-5 · 24px</span><span class="swatch" style="width:24px;"></span></div>
+            <div class="bar"><span class="lbl">space-6 · 32px</span><span class="swatch" style="width:32px;"></span></div>
+            <div class="bar"><span class="lbl">space-7 · 48px</span><span class="swatch" style="width:48px;"></span></div>
+            <div class="bar"><span class="lbl">space-8 · 64px</span><span class="swatch" style="width:64px;"></span></div>
+            <div class="bar"><span class="lbl">space-9 · 96px</span><span class="swatch" style="width:96px;"></span></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="sub">Corner radius — low &amp; athletic</h3>
+          <div class="radius-demo">
+            <div class="r" style="border-radius:3px;"><small>xs · 3</small></div>
+            <div class="r" style="border-radius:6px;"><small>sm · 6</small></div>
+            <div class="r" style="border-radius:10px;"><small>md · 10</small></div>
+            <div class="r" style="border-radius:16px;"><small>lg · 16</small></div>
+            <div class="r" style="border-radius:24px;"><small>xl · 24</small></div>
+            <div class="r" style="border-radius:999px;"><small>pill</small></div>
+          </div>
+          <p class="note" style="margin-top:12px;">6–10px for most UI, 16px for large feature cards. Pills only for chips, tags &amp; avatars. Nothing is bubbly.</p>
+        </div>
+      </div>
+
+      <h3 class="sub" style="margin-top:30px;">Border widths — the confident 2px stroke</h3>
+      <div class="stroke-demo">
+        <div class="b" style="border:1px solid var(--navy-700);">hairline · 1px</div>
+        <div class="b" style="border:2px solid var(--navy-700);">base · 2px</div>
+        <div class="b" style="border:3px solid var(--navy-700);">bold · 3px</div>
+      </div>
+      <p class="note" style="margin-top:12px;">The brand likes a confident 2px stroke — gold or navy outlines on cards, buttons, and the crest itself. Hairlines for quiet dividers only.</p>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">11</span></div>
+  </section>
+
+  <!-- ============ 12 · SHADOWS / MOTION / FOCUS ============ -->
+  <section class="page" data-screen-label="Shadows and Motion">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>09 · Elevation &amp; Motion</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Restrained, navy-tinted</div>
+      <h1 class="ptitle">Shadows, motion &amp; focus</h1>
+      <div class="goldbar"></div>
+
+      <h3 class="sub" style="margin-top:26px;">Elevation — cool, never gray</h3>
+      <div class="shadow-demo">
+        <div class="s" style="box-shadow:0 2px 6px rgba(7,17,42,0.10);"><small>shadow-sm</small></div>
+        <div class="s" style="box-shadow:0 6px 18px rgba(7,17,42,0.12);"><small>shadow-md</small></div>
+        <div class="s" style="box-shadow:0 16px 40px rgba(7,17,42,0.18);"><small>shadow-lg</small></div>
+      </div>
+      <div class="shadow-demo" style="padding-top:18px;">
+        <div class="s" style="box-shadow:0 8px 24px rgba(254,197,38,0.45);border:1px solid var(--gold-200);"><small>shadow-gold</small></div>
+        <div class="s" style="box-shadow:0 1px 2px rgba(7,17,42,0.08);"><small>shadow-xs</small></div>
+        <div class="s" style="box-shadow:inset 0 1px 0 rgba(255,255,255,0.6),0 2px 6px rgba(7,17,42,0.1);"><small>inset top</small></div>
+      </div>
+      <p class="note" style="margin-top:14px;">Cards lift with a soft <span class="mono">--shadow-md</span>; the gold glow is reserved for the primary CTA on dark. Cards use a flat fill + 2px border <b>or</b> a soft navy shadow — rarely both.</p>
+
+      <div class="grid2" style="margin-top:28px;">
+        <div>
+          <h3 class="sub">Motion — quick &amp; decisive</h3>
+          <div class="motion-row">
+            <span class="motion-chip">fast · 120ms</span>
+            <span class="motion-chip">base · 200ms</span>
+            <span class="motion-chip">slow · 320ms</span>
+            <span class="motion-chip">ease (.2,0,0,1)</span>
+          </div>
+          <p class="note" style="margin-top:12px;">Fades and short slides; no spring or bounce on UI. Press nudges 1px down — never a cute bounce. Respect <span class="mono">prefers-reduced-motion</span>.</p>
+        </div>
+        <div>
+          <h3 class="sub">Focus — always visible</h3>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <button class="btn primary" style="outline:3px solid var(--gold-500);outline-offset:2px;">Join</button>
+            <div class="field focus" style="flex:1;"><div class="inp">you@club.nyc</div></div>
+          </div>
+          <p class="note" style="margin-top:12px;">A 3px gold ring at 2px offset, on every interactive element. Transparency &amp; blur used lightly — a navy scrim over photos, a translucent sticky header. Not frosted-glass everywhere.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">12</span></div>
+  </section>
+
+  <!-- ============ 13 · COMPONENTS I ============ -->
+  <section class="page" data-screen-label="Components - Actions">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>10 · Components</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Actions &amp; labels</div>
+      <h1 class="ptitle">Components</h1>
+      <div class="goldbar"></div>
+
+      <div class="cmp" style="margin-top:24px;">
+        <div class="lab">Button</div>
+        <div class="dsc">Confident uppercase action — gold primary, navy secondary, outline &amp; ghost. Labels render UPPERCASE; hover lifts 1px, press nudges down.</div>
+        <div class="demo">
+          <button class="btn primary">Join the squad</button>
+          <button class="btn secondary">Fixtures</button>
+          <button class="btn outline">Learn more</button>
+          <button class="btn ghost">Skip</button>
+          <button class="btn primary sm">Small</button>
+          <button class="btn primary lg">Large</button>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:18px;">
+        <div class="cmp">
+          <div class="lab">Badge</div>
+          <div class="dsc">Tiny uppercase status marker — kit context, match status, "NEW", "HOME/AWAY".</div>
+          <div class="demo">
+            <span class="badge gold">Home</span>
+            <span class="badge navy">Away</span>
+            <span class="badge success">Win</span>
+            <span class="badge warning">Draw</span>
+            <span class="badge danger">Loss</span>
+            <span class="badge neutral">TBD</span>
+            <span class="badge subtle success">Subtle</span>
+          </div>
+        </div>
+        <div class="cmp">
+          <div class="lab">Tag</div>
+          <div class="dsc">Rounded chip for filters, positions, categories. Toggles to navy when selected — softer than Badge.</div>
+          <div class="demo">
+            <span class="tag sel">Forwards</span>
+            <span class="tag">Backs</span>
+            <span class="tag">Beginner</span>
+            <span class="tag">All levels ✕</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp secdemo" style="margin-top:18px;">
+        <div class="lab">SectionHeading</div>
+        <div class="dsc">The workhorse for page sections — eyebrow, title, gold rule, optional description.</div>
+        <div style="margin-top:6px;">
+          <div class="ey">Join us</div>
+          <h5>Come find your pack</h5>
+          <div class="rule"></div>
+          <p>All bodies, all levels — welcome here. No experience? Perfect.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">13</span></div>
+  </section>
+
+  <!-- ============ 14 · COMPONENTS II ============ -->
+  <section class="page" data-screen-label="Components - Surfaces">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>11 · Components</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Surfaces &amp; data</div>
+      <h1 class="ptitle">Components</h1>
+      <div class="goldbar"></div>
+
+      <div class="grid2" style="margin-top:24px;">
+        <div class="cmp">
+          <div class="lab">Card</div>
+          <div class="dsc">Content surface — default, outline, navy, or featured (gold top-rule). One emphasis cue, never both.</div>
+          <div style="border:1px solid var(--ink-200);border-radius:10px;box-shadow:0 2px 6px rgba(7,17,42,0.08);overflow:hidden;">
+            <div style="height:4px;background:var(--gold-500);"></div>
+            <div style="padding:16px;">
+              <div style="font-weight:800;color:var(--navy-700);font-size:15px;">Tuesday Training</div>
+              <div style="font-size:12px;color:var(--ink-500);margin-top:3px;">Wall Street · 8–9pm</div>
+            </div>
+          </div>
+        </div>
+        <div class="cmp">
+          <div class="lab">Stat</div>
+          <div class="dsc">Big mono figure + uppercase label for results, counts, KPIs. Tabular scoreboard feel.</div>
+          <div style="display:flex;gap:28px;">
+            <div class="stat"><div class="v">150+</div><div class="l">Active members</div></div>
+            <div class="stat navy"><div class="v">1998</div><div class="l">Established</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp" style="margin-top:18px;">
+        <div class="lab">Input</div>
+        <div class="dsc">Labeled field with hint &amp; error states — gold focus ring, confident 2px border. Works light &amp; loud.</div>
+        <div class="grid3" style="margin-top:4px;">
+          <div class="field"><label>Email</label><div class="inp">you@club.nyc</div><div class="hint">We'll only email about matches.</div></div>
+          <div class="field focus"><label>Name</label><div class="inp">Alex Rivera</div><div class="hint">Focused — gold ring.</div></div>
+          <div class="field err"><label>Pronouns</label><div class="inp" style="color:var(--ink-400)">Required</div><div class="hint">This field is required.</div></div>
+        </div>
+      </div>
+
+      <div class="cmp" style="margin-top:18px;">
+        <div class="lab">FixtureRow</div>
+        <div class="dsc">The club's signature list component — date, home/away accent (gold / navy left border), opponent, and score-or-kickoff.</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px;">
+          <div class="fixture">
+            <div class="date"><div class="d">12</div><div class="m">OCT</div></div>
+            <div class="opp"><div class="n">Village Lions</div><div class="meta">Home · Met Union</div></div>
+            <div class="ko">1:00 PM</div>
+          </div>
+          <div class="fixture away">
+            <div class="date"><div class="d">28</div><div class="m">SEP</div></div>
+            <div class="opp"><div class="n">Brooklyn RFC</div><div class="meta">Away · Met Union</div></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span class="score">27–12</span><span class="badge success">W</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">14</span></div>
+  </section>
+
+  <!-- ============ 15 · PATTERNS ============ -->
+  <section class="page" data-screen-label="Patterns and Textures">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>12 · Patterns</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Brand textures</div>
+      <h1 class="ptitle">Patterns &amp; textures</h1>
+      <div class="goldbar"></div>
+      <p class="lead" style="margin-top:16px;">Seven reusable surfaces, shipped as <span class="mono">.gk-</span> utility classes that run from loud to a whisper — reach for the quietest one that does the job. <b>Loud by nature: use sparingly</b> — borders, bands, accents, single moments. Never wallpaper a whole layout.</p>
+
+      <h3 class="sub" style="margin-top:28px;">Loud — borders, bands &amp; matchday</h3>
+      <div class="patrow" style="grid-template-columns:repeat(3,1fr);">
+        <div class="patcard">
+          <div class="patswatch pat-checker" style="height:150px;"></div>
+          <div class="patmeta"><div class="cls">.gk-checker</div><div class="use">Loudest move. Borders &amp; frames only.</div></div>
+        </div>
+        <div class="patcard">
+          <div class="patswatch pat-stripes" style="height:150px;"></div>
+          <div class="patmeta"><div class="cls">.gk-stripes</div><div class="use">Accent edges, footers, CTAs.</div></div>
+        </div>
+        <div class="patcard">
+          <div class="patswatch pat-duotone" style="height:150px;"></div>
+          <div class="patmeta"><div class="cls">.gk-halftone-duotone</div><div class="use">Gold dots on solid navy. Matchday, socials.</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub" style="margin-top:24px;">Quiet — texture without the shout</h3>
+      <div class="patrow" style="grid-template-columns:repeat(4,1fr);">
+        <div class="patcard">
+          <div class="patswatch pat-fade" style="height:122px;"></div>
+          <div class="patmeta"><div class="cls">.gk-halftone-fade</div><div class="use">Decks, grants, sponsors.</div></div>
+        </div>
+        <div class="patcard">
+          <div class="patswatch pat-spot" style="height:122px;"></div>
+          <div class="patmeta"><div class="cls">.gk-halftone-spotlight</div><div class="use">Behind a face or kit number.</div></div>
+        </div>
+        <div class="patcard">
+          <div class="patswatch pat-crest" style="height:122px;"></div>
+          <div class="patmeta"><div class="cls">.gk-crest-watermark</div><div class="use">Navy panels &amp; covers.</div></div>
+        </div>
+        <div class="patcard">
+          <div class="patswatch pat-pinstripe" style="height:122px;display:flex;flex-direction:column;justify-content:flex-end;">
+            <div class="pridebar-thin"><span style="background:var(--pride-red)"></span><span style="background:var(--pride-orange)"></span><span style="background:var(--pride-yellow)"></span><span style="background:var(--pride-green)"></span><span style="background:var(--pride-blue)"></span><span style="background:var(--pride-violet)"></span></div>
+          </div>
+          <div class="patmeta"><div class="cls">.gk-pinstripe</div><div class="use">One-pagers · pair with the pride rule.</div></div>
+        </div>
+      </div>
+
+      <div class="card-box" style="margin-top:26px;display:flex;gap:16px;align-items:center;">
+        <img src="../assets/logos/shield-2c.svg" alt="" style="width:34px;height:34px;flex:none;">
+        <p class="note" style="margin:0;"><b>The checkerboard is the loudest thing we own.</b> Reserve it for borders and hard frames — never as a fill behind content. The halftones fade their dots, not the surface, so edges and borders stay solid. The pride rule is one deliberate spectrum line, never a default gradient.</p>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">15</span></div>
+  </section>
+
+  <!-- ============ 16 · ICONOGRAPHY ============ -->
+  <section class="page" data-screen-label="Iconography">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>13 · Iconography</span></div>
+      <div class="eyebrow" style="margin-top:30px;">The crest leads</div>
+      <h1 class="ptitle">Iconography</h1>
+      <div class="goldbar"></div>
+      <p class="lead">The brand has <b>no proprietary icon font</b>. Its signature "icons" are the crest, shield, and dragon — used as badges, watermarks, and bullet marks, not decorative line icons.</p>
+
+      <div class="grid2" style="margin-top:26px;">
+        <div class="card-box">
+          <h3 class="sub">Brand marks as icons</h3>
+          <div style="display:flex;gap:20px;align-items:center;justify-content:center;padding:14px 0;">
+            <img src="../assets/logos/shield-2c.svg" style="width:34px;" alt="">
+            <img src="../assets/logos/shield-2c.svg" style="width:48px;" alt="">
+            <img src="../assets/logos/shield-2c.svg" style="width:66px;" alt="">
+          </div>
+          <p class="note">Use the shield as a favicon, bullet, loading mark, or section divider. Fill style only for the crest — never reoutline it.</p>
+        </div>
+        <div class="card-box">
+          <h3 class="sub">UI icons — Lucide</h3>
+          <div style="display:flex;gap:18px;align-items:center;justify-content:center;padding:14px 0;color:var(--navy-700);">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 7.8 8 9 4.6-1.2 8-4 8-9V5l-8-3z"/></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <p class="note">A documented substitution (no club icon set exists): Lucide, 2px stroke, 24px grid, round caps — matching the brand's confident <span class="mono">--bw-base</span> stroke.</p>
+        </div>
+      </div>
+
+      <div class="card-box" style="margin-top:18px;display:flex;gap:16px;align-items:center;">
+        <span style="font-size:22px;color:var(--danger);font-weight:800;flex:none;">✕</span>
+        <p class="note" style="margin:0;"><b>Emoji and Unicode are not used as UI icons.</b> The brand's energy comes from type and color, not emoji. Stroke weight stays at 2px to echo the brand stroke; the crest is the only fill mark.</p>
+      </div>
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">16</span></div>
+  </section>
+
+  <!-- ============ 17 · PANTONE REFERENCE ============ -->
+  <section class="page" data-screen-label="Pantone Reference">
+    <div class="pad">
+      <div class="rhead"><span class="mark"><img src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC</span><span>14 · Apparel</span></div>
+      <div class="eyebrow" style="margin-top:30px;">Manufacturer reference</div>
+      <h1 class="ptitle">Pantone apparel standards</h1>
+      <div class="goldbar"></div>
+      <p class="lead">For printed graphics, hangtags, and screen-print inks. Match to physical Pantone chips only — never to this on-screen render. For dyed fabric, request the equivalent Pantone TCX / TPG textile standard.</p>
+
+      <div class="grid3" style="margin-top:26px;">
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:#fec526;"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">PANTONE 123 C</div><div class="note" style="margin-top:3px;">Knights Gold · ≈ #FFC72C · primary mark</div></div>
+        </div>
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:#0d1d41;"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">PANTONE 282 C</div><div class="note" style="margin-top:3px;">Knights Navy · ≈ #041E42 · garment base</div></div>
+        </div>
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:#101820;"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">PANTONE Black 6 C</div><div class="note" style="margin-top:3px;">Blue-Black · ≈ #101820 · text &amp; outlines</div></div>
+        </div>
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:#75787b;"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">PANTONE Cool Gray 9 C</div><div class="note" style="margin-top:3px;">Athletic Heather · ≈ #75787B</div></div>
+        </div>
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:linear-gradient(115deg,#6f6042,#d8c88f 40%,#8a7a52 60%,#b6a572);"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">PANTONE 871 C</div><div class="note" style="margin-top:3px;">Metallic Gold · foil &amp; embroidery</div></div>
+        </div>
+        <div class="card-box" style="padding:0;overflow:hidden;">
+          <div style="height:90px;background:#f7f7f2;box-shadow:inset 0 0 0 1px var(--ink-200);"></div>
+          <div style="padding:13px 15px;"><div style="font-weight:800;color:var(--navy-700);font-size:14px;">Bright White</div><div class="note" style="margin-top:3px;">≈ #F7F7F2 · white ink &amp; light blanks</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="rfoot"><span>Gotham Knights Rugby — Brand Guidelines</span><span class="pg">17</span></div>
+  </section>
+
+  <!-- ============ 18 · BACK COVER ============ -->
+  <section class="page back" data-screen-label="Back Cover">
+    <div class="inner">
+      <img class="shield" src="../assets/logos/shield-inv.svg" alt="">
+      <h4>BUILT DIFFERENT.</h4>
+      <div class="bcquote">Build Different.</div>
+      <div class="gline"></div>
+      <p>A home you build with every poster, every kit, every welcome. Lead with navy and gold confidence, hold the door wide open, and keep the crest special. When in doubt, come back here.</p>
+      <div class="gline"></div>
+      <div class="meta2">Gotham Knights RFC · New York City · 2026</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    (async () => {
+      try { await document.fonts.ready; } catch (e) {}
+      const imgs = Array.from(document.images).filter((i) => !i.complete);
+      await Promise.race([
+        Promise.allSettled(imgs.map((i) => i.decode().catch(() => {}))),
+        new Promise((r) => setTimeout(r, 9000)),
+      ]);
+      setTimeout(() => { try { window.print(); } catch (e) {} }, 600);
+    })();
+  });
+</script>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Gotham Knights Brand Guidelines";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  var __m = null;
+  try { __m = (() => {
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  if (paperPage) {
+    return { kind: 'paper-doc', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    if (authoredPx(el, 'width')) break;
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  return { kind: 'single-canvas', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: authoredPx(el, 'width'), height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + f.width + 'px ' + f.height +
+        'px;margin:0}html,body,[data-om-frame-wrap]{padding:0!important;' +
+        'margin:0!important;background:none!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

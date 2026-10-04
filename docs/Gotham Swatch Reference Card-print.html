@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gotham Knights — Apparel Color Standards</title>
+<style>
+  @page { size: 11in 8.5in; margin: 0; }
+
+  :root {
+    --paper: #f6f5f0;
+    --ink: #041e42;        /* navy 282 */
+    --gold: #ffc72c;       /* gold 123 */
+    --hair: #d9d7cc;
+    --muted: #6b6f73;
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #2a2c2f;
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* viewport scaling stage */
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .sheet {
+    width: 1056px;          /* 11in @ 96dpi */
+    height: 816px;          /* 8.5in @ 96dpi */
+    background: var(--paper);
+    color: var(--ink);
+    padding: 52px 56px 40px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    position: relative;
+  }
+
+  /* ---------- header ---------- */
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .goldrule {
+    height: 3px;
+    background: var(--gold);
+    margin-top: 3px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .crest {
+    width: 42px; height: 42px;
+    border: 2.5px solid var(--ink);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .crest span {
+    transform: rotate(-45deg);
+    width: 16px; height: 16px;
+    background: var(--gold);
+  }
+  .brand h1 {
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: 0.32em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .brand .sub {
+    margin: 3px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .meta {
+    text-align: right;
+    font-size: 10px;
+    line-height: 1.7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .meta strong { color: var(--ink); }
+
+  /* ---------- swatch grid ---------- */
+  .grid {
+    flex: 1;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .chip {
+    background: #fff;
+    border: 1px solid var(--hair);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 0 rgba(4,30,66,0.05);
+  }
+  .chip .color {
+    flex: 1;
+    position: relative;
+  }
+  .chip .tag {
+    position: absolute;
+    top: 12px; left: 12px;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.9);
+    color: var(--ink);
+  }
+  .chip .label {
+    padding: 13px 15px 15px;
+    border-top: 1px solid var(--hair);
+  }
+  .chip .pms {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  .chip .name {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 3px 0 9px;
+    font-weight: 600;
+  }
+  .chip .specs {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px dotted var(--hair);
+    padding-top: 8px;
+  }
+  .chip .hex {
+    font-size: 10.5px;
+    font-family: "SFMono-Regular", "Menlo", monospace;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .chip .use {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    max-width: 56%;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  /* metallic sheen for 871 */
+  .metallic {
+    background:
+      linear-gradient(115deg,
+        #6f6042 0%, #9c8b5e 22%, #d8c88f 40%,
+        #8a7a52 55%, #b6a572 72%, #6b5d3f 100%);
+  }
+  /* white chip needs an inner edge so it reads on paper */
+  .whitechip { box-shadow: inset 0 0 0 1px var(--hair); }
+
+  /* ---------- footer ---------- */
+  .foot {
+    margin-top: 26px;
+    padding-top: 14px;
+    border-top: 1px solid var(--hair);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .note {
+    font-size: 9.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 62%;
+  }
+  .note b { color: var(--ink); }
+  .legend {
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.9;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .stage { padding: 0; min-height: auto; display: block; }
+    .sheet { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="sheet" data-screen-label="Swatch Reference Card">
+      <!-- HEADER -->
+      <header class="head">
+        <div class="brand">
+          <div class="crest"><span></span></div>
+          <div>
+            <h1>Gotham Knights</h1>
+            <p class="sub">Apparel Color Standards</p>
+          </div>
+        </div>
+        <div class="meta">
+          <div>Manufacturer Reference</div>
+          <div><strong>Pantone Solid Coated</strong></div>
+          <div>Rev. June 2026 · Sheet 1 / 1</div>
+        </div>
+      </header>
+      <div class="goldrule"></div>
+
+      <!-- SWATCHES -->
+      <main class="grid">
+
+        <!-- 1 GOLD -->
+        <div class="chip">
+          <div class="color" style="background:#ffc72c;">
+            <span class="tag">Primary</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE 123 C</p>
+            <p class="name">Knights Gold</p>
+            <div class="specs">
+              <span class="hex">≈ #FFC72C</span>
+              <span class="use">Primary mark · screen print</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 NAVY -->
+        <div class="chip">
+          <div class="color" style="background:#041e42;">
+            <span class="tag">Primary</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE 282 C</p>
+            <p class="name">Knights Navy</p>
+            <div class="specs">
+              <span class="hex">≈ #041E42</span>
+              <span class="use">Primary mark · garment base</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 BLACK 6 -->
+        <div class="chip">
+          <div class="color" style="background:#101820;">
+            <span class="tag">Neutral</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE Black 6 C</p>
+            <p class="name">Blue-Black</p>
+            <div class="specs">
+              <span class="hex">≈ #101820</span>
+              <span class="use">Text · outlines · dark blanks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 COOL GRAY 9 -->
+        <div class="chip">
+          <div class="color" style="background:#75787b;">
+            <span class="tag">Neutral</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE Cool Gray 9 C</p>
+            <p class="name">Athletic Heather</p>
+            <div class="specs">
+              <span class="hex">≈ #75787B</span>
+              <span class="use">Heather garments · secondary</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 871 METALLIC -->
+        <div class="chip">
+          <div class="color metallic">
+            <span class="tag">Finish</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE 871 C</p>
+            <p class="name">Metallic Gold</p>
+            <div class="specs">
+              <span class="hex">≈ #85754E</span>
+              <span class="use">Foil · embroidery · hangtags</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 WHITE -->
+        <div class="chip">
+          <div class="color whitechip" style="background:#f7f7f2;">
+            <span class="tag">Base</span>
+          </div>
+          <div class="label">
+            <p class="pms">PANTONE 11-0601</p>
+            <p class="name">Bright White</p>
+            <div class="specs">
+              <span class="hex">≈ #F7F7F2</span>
+              <span class="use">White ink · light blanks</span>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="foot">
+        <p class="note">
+          <b>Match to physical Pantone chips only — never to this on-screen render.</b>
+          Hex values are approximate screen conversions for reference. Codes shown are
+          <b>Solid Coated (C)</b> for printed graphics, hangtags and screen-print inks.
+          For dyed fabric, request the equivalent <b>Pantone TCX / TPG</b> textile standard —
+          the same brand color carries a different number in those books.
+        </p>
+        <div class="legend">
+          Primary&nbsp;· Brand core<br>
+          Neutral&nbsp;· Support<br>
+          Finish&nbsp;· Specialty<br>
+          Base&nbsp;· Ground
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script>
+  addEventListener('load', () => {
+    (async () => {
+      try { await document.fonts.ready; } catch (e) {}
+      const imgs = Array.from(document.images).filter((i) => !i.complete);
+      await Promise.race([
+        Promise.allSettled(imgs.map((i) => i.decode())),
+        new Promise((r) => setTimeout(r, 8000)),
+      ]);
+      setTimeout(() => window.print(), 500);
+    })();
+  });
+  </script>
+</body>
+</html>

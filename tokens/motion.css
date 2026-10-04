@@ -1,0 +1,248 @@
+/* ============================================================
+   Gotham Knights Drag Show — Motion
+   ------------------------------------------------------------
+   THE HARD CONSTRAINT: all motion must be CSS @keyframes.
+
+   The render harness (render/rec.js) captures frames by pausing every
+   Web Animation and setting `currentTime` explicitly per frame. That is
+   what makes renders deterministic and loops seamless. A
+   requestAnimationFrame loop, a <canvas> simulation, a GIF or an
+   embedded <video> is NOT frame-addressable and will render as garbage
+   or as a frozen first frame. If it moves, it is a @keyframes rule.
+
+   THE DESIGN PRINCIPLE: event and hold.
+   The club's motion is not continuous. The sheen crosses the crest in
+   16% of the loop and then sits still. The spark travels the rule once
+   and then waits. This is the brand's "quick and decisive, never
+   bouncy" character stretched to loop length — punctuation against
+   stillness, not perpetual drifting. Continuous motion reads as a
+   screensaver; event-and-hold reads as a stage.
+   ============================================================ */
+
+:root {
+  /* ---- Broadcast timing ----
+     Deliberately NOT the parent's --dur-fast/base/slow (120–320ms).
+     Those are UI micro-interactions and stay for interfaces. A lower
+     third that has to be read across a room needs an order of
+     magnitude more time. */
+  --mo-reveal: 700ms; /* @kind other */      /* something arrives */
+  --mo-exit: 500ms; /* @kind other */        /* something leaves — always faster than it arrived */
+  --mo-hold-short: 3s; /* @kind other */     /* a name you already know */
+  --mo-hold: 5s; /* @kind other */           /* a name + handle + pronouns */
+  --mo-hold-long: 8s; /* @kind other */      /* a full lineup */
+
+  /* Loop periods. Keep every looping asset on one of these so multiple
+     screens stay in phase if they're ever started together. */
+  --mo-loop-short: 12s; /* @kind other */
+  --mo-loop: 24s; /* @kind other */
+
+  /* ---- Social / vertical timing ----
+     THE PRINCIPLE INVERTS HERE. Event-and-hold is correct on the venue
+     screen, where the loop must lose the fight for attention against a
+     live performer. A Reel is the opposite problem: under a second to
+     stop a thumb, and stillness reads as "nothing is happening". So
+     vertical hooks immediately, loops tight, and is ALLOWED continuous
+     motion that would be screensaver behaviour at the venue.
+
+     --mo-hook is the deadline for everything essential being on screen.
+     Miss it and the viewer has already scrolled. */
+  --mo-hook: 400ms; /* @kind other */
+  --mo-loop-social: 8s; /* @kind other */
+
+  /* The fraction of a loop a punctuating gesture may occupy.
+     Above ~20% it stops reading as an event and starts reading as
+     continuous motion. */
+  --mo-event: 16%; /* @kind other */
+
+  /* ---- Eases ----
+     Broadcast is slower than UI but the brand rule is unchanged:
+     no spring, no bounce, no cute overshoot. */
+  --mo-ease: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --mo-ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --mo-ease-in: cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+  --mo-linear: linear; /* @kind other */     /* for continuous rotation only */
+
+  /* Ambient easing — for background texture that must NOT pull focus.
+     The eases above are all deliberately decisive: they accelerate hard,
+     which is exactly what makes a gesture read as an event. Background
+     shimmer wants the opposite — symmetric and gentle, so the eye never
+     catches a moment of "something just happened". Use this for anything
+     playing behind a performer. */
+  --mo-ease-ambient: cubic-bezier(0.45, 0, 0.55, 1); /* @kind other */
+}
+
+/* ============================================================
+   THE CLUB'S MOTION VOCABULARY
+   Lifted out of the standalone idle loop, where these were inline and
+   unreusable, and named as system primitives. Unchanged in behaviour —
+   the club's existing loop can be rebuilt on these verbatim.
+   ============================================================ */
+
+/* Continuous rotation — heraldic rings around the crest. */
+@keyframes gk-spin     { to { transform: rotate(360deg); } }
+@keyframes gk-spin-rev { to { transform: rotate(-360deg); } }
+
+/* Slow breathing of a rim or edge light. */
+@keyframes gk-rim {
+  0%, 100% { opacity: 0.34; }
+  50%      { opacity: 0.8; }
+}
+
+/* Slow breathing of a soft glow. */
+@keyframes gk-glow {
+  0%, 100% { opacity: 0.22; }
+  50%      { opacity: 0.5; }
+}
+
+/* ---- CONTRACT for the two travelling gestures below ----------------
+   The animated element MUST be the full width of its clipping parent
+   (`left: 0; width: 100%`), with the highlight drawn as gradient stops
+   INSIDE it. Do not translate a narrow child.
+
+   Why: translateX(%) resolves against the ELEMENT's own width, not the
+   container's. A 26%-wide child moved by 180% travels only 47% of the
+   container — so it never exits, and parks in the middle of frame for
+   the rest of the loop as a static streak. At full width, -100% and
+   100% are exactly "just off the left" and "just off the right",
+   whatever the container's size.
+
+   Also: do NOT put a base `transform: rotate()` on these elements. The
+   keyframes animate `transform`, which overrides it wholesale and the
+   rotation silently vanishes. Bake any diagonal into the gradient
+   ANGLE instead.
+   -------------------------------------------------------------------- */
+
+/* Metallic gleam: a quick diagonal pass, then a long hold off-screen.
+   The canonical event-and-hold gesture. */
+@keyframes gk-sheen {
+  0%   { transform: translateX(-100%); }
+  16%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Clip for a travelling gleam over artwork.
+   `overflow: hidden` alone is NOT enough — it bounds the gleam to a
+   RECTANGLE, so the pass visibly reveals the box the sheen lives in
+   instead of reading as light on the object. The gleam must be masked
+   to the artwork's own alpha.
+
+   Set --sheen-mask to the same asset the artwork uses. `contain` +
+   `center` matches an <img> laid out with object-fit: contain in a
+   centred box, so mask and artwork stay registered at any size. The
+   asset must have real transparency — a logo on an opaque white
+   background masks to its bounding box and looks identical to the bug. */
+.gk-sheen-clip {
+  overflow: hidden;
+  -webkit-mask-image: var(--sheen-mask);
+          mask-image: var(--sheen-mask);
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+}
+
+/* A single travelling spark that crosses a rule once, then waits. */
+@keyframes gk-spark {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  4%   { opacity: 1; }
+  34%  { transform: translateX(100%); opacity: 1; }
+  40%  { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Film grain jitter. Keep the element larger than the canvas so the
+   translate never exposes an edge. */
+@keyframes gk-grain {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-4%, -9%); }
+  20%  { transform: translate(-13%, 4%); }
+  30%  { transform: translate(6%, -22%); }
+  40%  { transform: translate(-4%, 22%); }
+  50%  { transform: translate(-13%, 9%); }
+  60%  { transform: translate(13%, 0); }
+  70%  { transform: translate(0, 13%); }
+  80%  { transform: translate(3%, 30%); }
+  90%  { transform: translate(-9%, 9%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Corner accent pulse. */
+@keyframes gk-corner {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.7; }
+}
+
+/* ============================================================
+   DRAG ADDITIONS
+   The show's own gestures. Same discipline — each is an event, not a
+   continuous state.
+   ============================================================ */
+
+/* The spectrum sweeps across a rule, left to right, once per loop.
+   The show's signature move. Pair with .gkd-spectrum-rule. */
+@keyframes gkd-spectrum-sweep {
+  0%   { background-position: -100% 0; }
+  22%  { background-position: 200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Marquee bulbs chase. Slow enough to read as lamps, not a strobe —
+   never speed this up past ~1.5s per cycle. */
+@keyframes gkd-marquee-chase {
+  0%   { background-position-x: 0; }
+  100% { background-position-x: var(--gkd-bulb-gap, 22px); }
+}
+
+/* Sequin twinkle: a few sequins catch the light, most stay still.
+
+   AMBIENT, NOT AN EVENT — and the one gesture in this system that most
+   needs restraint. The idle loop usually plays on the venue screen while
+   the spotlight is on a performer, so the shimmer is competing with a
+   live human for attention and must lose. The swing is deliberately
+   shallow (~1.25x) and slow. Pair with --mo-ease-ambient; the decisive
+   eases make even a small swing read as a blink.
+
+   If you notice it while looking at something else, it is too strong. */
+@keyframes gkd-shimmer {
+  0%, 100% { opacity: 0.62; }
+  22%      { opacity: 0.78; }
+  44%      { opacity: 0.66; }
+  70%      { opacity: 0.74; }
+}
+
+/* House lights: a slow warm swell over the stage. The one gesture
+   allowed to be continuous, because it reads as a room, not a widget. */
+@keyframes gkd-house-swell {
+  0%, 100% { opacity: 0.72; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.04); }
+}
+
+/* Reveal used by lower thirds and slates: rise + fade, no overshoot. */
+@keyframes gkd-rise-in {
+  from { opacity: 0; transform: translateY(0.9cqh); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gkd-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Wipe a bar out from the left — the spectrum rule drawing itself. */
+@keyframes gkd-wipe-x {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   Applies to anything shown in a browser. It does NOT apply to headless
+   renders — the harness sets prefers-reduced-motion: no-preference so
+   rendered files always contain the full motion.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .gk-anim,
+  .gkd-anim { animation: none !important; }
+}

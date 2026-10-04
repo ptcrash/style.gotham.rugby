@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>Gotham Knights — Pattern Studies</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  :root { color-scheme: light; }
+  body { margin: 0; font-family: var(--font-body); color: var(--text-body); }
+
+  /* ---- frame scaffold ---- */
+  .frame { position: absolute; }
+  .frame-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: #5d6473;
+    margin: 0 0 12px 2px;
+  }
+  .card {
+    background: var(--white);
+    border: var(--bw-base) solid var(--navy-700);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .card-pad { padding: 30px 32px 32px; }
+
+  /* ---- section heading band ---- */
+  .section h2 {
+    font-family: var(--font-heading); font-weight: 800; letter-spacing: -.02em;
+    font-size: 30px; line-height: 1.0; margin: 0 0 8px; color: var(--navy-700);
+  }
+  .section p { margin: 0; max-width: 720px; color: var(--ink-500); font-size: 15px; line-height: 1.55; }
+  .section .num {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--gold-700); margin: 0 0 10px;
+  }
+
+  /* ---- header ---- */
+  .hero { background: var(--navy-700); color: var(--white); border-color: var(--navy-900); }
+  .hero h1 {
+    font-family: var(--font-heading); font-weight: 800;
+    font-size: 40px; line-height: 1.0; letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .hero p { margin: 0; max-width: 780px; color: var(--navy-100); font-size: 16px; line-height: 1.6; }
+  .hero .kicker {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-wider);
+    text-transform: uppercase; color: var(--gold-500); margin: 0 0 18px;
+  }
+
+  /* ---- pattern card internals ---- */
+  .tag {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--navy-700);
+  }
+  .tag .dotrow { display:inline-flex; gap:3px; }
+  .tag .dotrow i { width:7px; height:7px; border-radius:50%; background:var(--gold-500); display:block; }
+  .tag .dotrow i.off { background: var(--ink-200); }
+  .pname {
+    font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.015em;
+    font-size: 27px; line-height: 1.05; margin: 16px 0 8px; color: var(--navy-700);
+  }
+  .pdesc { margin: 0 0 24px; color: var(--ink-500); font-size: 14.5px; line-height: 1.55; max-width: 50ch; }
+
+  .swatch { height: 152px; border-radius: var(--radius-sm); border: 2px solid var(--navy-700); position: relative; overflow: hidden; }
+  .ctx-label {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-400); margin: 28px 0 13px;
+  }
+  .recipe {
+    margin-top: 22px; padding: 13px 15px; border-radius: var(--radius-sm);
+    background: var(--paper-2); border: 1px solid var(--ink-200);
+    font-family: var(--font-mono); font-size: 11.5px; line-height: 1.6; color: var(--navy-600);
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .recipe .c { color: var(--ink-400); }
+
+  /* ============================================================
+     HALFTONE FAMILY — the focus. One dot grid, four masks.
+     ============================================================ */
+  .ht-fade {
+    background-color: var(--paper);
+    background-image: radial-gradient(var(--navy-700) 1.6px, transparent 1.8px);
+    background-size: 11px 11px;
+    -webkit-mask-image: linear-gradient(105deg, #000 16%, transparent 92%);
+            mask-image: linear-gradient(105deg, #000 16%, transparent 92%);
+  }
+  .ht-loud {
+    background-color: var(--navy-700);
+    background-image: radial-gradient(var(--gold-500) 1.7px, transparent 1.9px);
+    background-size: 12px 12px;
+    -webkit-mask-image: linear-gradient(105deg, #000 16%, transparent 92%);
+            mask-image: linear-gradient(105deg, #000 16%, transparent 92%);
+  }
+  .ht-coarse {
+    background-color: var(--paper);
+    background-image: radial-gradient(var(--navy-700) 3px, transparent 3.4px);
+    background-size: 20px 20px;
+    -webkit-mask-image: linear-gradient(180deg, #000 28%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 28%, transparent 100%);
+  }
+  .ht-spot {
+    background-color: var(--paper);
+    background-image: radial-gradient(var(--navy-700) 1.7px, transparent 1.9px);
+    background-size: 12px 12px;
+    -webkit-mask-image: radial-gradient(circle at 32% 50%, #000 6%, transparent 64%);
+            mask-image: radial-gradient(circle at 32% 50%, #000 6%, transparent 64%);
+  }
+  /* pride halftone — muted spectrum through dot-holes, faded in. The ONE deliberate moment. */
+  .ht-pride {
+    background-image:
+      radial-gradient(transparent 1.5px, var(--paper) 1.7px),
+      linear-gradient(90deg,
+        var(--pride-red), var(--pride-orange), var(--pride-yellow),
+        var(--pride-green), var(--pride-blue), var(--pride-violet));
+    background-size: 11px 11px, 100% 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 34%, #000 88%);
+            mask-image: linear-gradient(90deg, transparent 34%, #000 88%);
+  }
+
+  /* ============================================================
+     THE OTHER COMPANIONS
+     ============================================================ */
+  .pat-checker {
+    background:
+      conic-gradient(var(--navy-700) 0 25%, var(--gold-500) 0 50%, var(--navy-700) 0 75%, var(--gold-500) 0)
+      0 0 / 30px 30px;
+  }
+  .pat-stripes {
+    background: repeating-linear-gradient(-45deg,
+      var(--navy-700) 0 26px, var(--gold-500) 26px 52px);
+  }
+  .pat-watermark { background-color: var(--navy-700); position: relative; overflow: hidden; }
+  .wm-shield { position: absolute; opacity: .09; pointer-events: none; }
+  .pat-pinstripe {
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(90deg,
+      rgba(13,29,65,.10) 0 1px, transparent 1px 8px);
+  }
+  .pride-rule {
+    height: 5px; border-radius: 999px;
+    background: linear-gradient(90deg,
+      var(--pride-red) 0 16.66%, var(--pride-orange) 0 33.33%, var(--pride-yellow) 0 50%,
+      var(--pride-green) 0 66.66%, var(--pride-blue) 0 83.33%, var(--pride-violet) 0);
+  }
+
+  /* ---- in-context mocks ---- */
+  .ctx { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--ink-200); position: relative; }
+
+  /* halftone mocks */
+  .m-half { position: relative; padding: 24px 22px; min-height: 78px; }
+  .m-half .tex { position: absolute; inset: 0; }
+  .m-half .in { position: relative; display: inline-block; padding: 13px 16px; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+  .m-half .eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 7px; }
+  .m-half h4 { margin: 0; font-family: var(--font-heading); font-weight: 800; letter-spacing: -.01em; line-height: 1.05; }
+  .m-half .athletic { font-family: var(--font-athletic); letter-spacing: .02em; line-height: .9; }
+  .m-half .kitnum { font-family: var(--font-mono); font-weight: 600; line-height: .9; }
+
+  /* poster snippet (checker) */
+  .mock-poster { background: var(--navy-700); }
+  .mock-poster .band { height: 30px; }
+  .mock-poster .body { padding: 20px 18px 22px; text-align: center; }
+  .mock-poster .athletic { font-family: var(--font-athletic); color: var(--gold-500); font-size: 30px; line-height: .9; letter-spacing: .01em; margin: 0; }
+  .mock-poster small { display:block; font-family:var(--font-mono); color:var(--navy-200); font-size:10.5px; letter-spacing:.12em; margin-top:9px; }
+
+  /* CTA banner (stripes) */
+  .mock-cta { display:flex; align-items:stretch; justify-content:space-between; }
+  .mock-cta .copy { background: var(--navy-700); color:#fff; padding: 20px 22px; flex:1; }
+  .mock-cta .copy h4 { font-family:var(--font-athletic); margin:0 0 4px; font-size:22px; color:var(--gold-500); letter-spacing:.02em; }
+  .mock-cta .copy span { font-family:var(--font-body); font-size:12px; color:var(--navy-100); }
+  .mock-cta .edge { width: 64px; }
+
+  /* crest cover (watermark) */
+  .mock-cover { padding: 28px 24px; min-height: 92px; }
+  .mock-cover .eyebrow { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-500); margin:0 0 9px; position:relative; }
+  .mock-cover h4 { font-family:var(--font-heading); font-weight:800; color:#fff; font-size:22px; margin:0; line-height:1.1; letter-spacing:-.01em; max-width: 70%; position:relative; }
+
+  /* sponsor one-pager (pinstripe) */
+  .mock-sponsor { background: var(--paper); }
+  .mock-sponsor .tex { padding: 24px 24px 22px; }
+  .mock-sponsor .eyebrow { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--navy-500); margin:0 0 9px; }
+  .mock-sponsor h4 { font-family:var(--font-heading); font-weight:800; color:var(--navy-700); font-size:21px; margin:0 0 6px; letter-spacing:-.01em; }
+  .mock-sponsor p { margin:0; color:var(--ink-500); font-size:12.5px; line-height:1.5; max-width: 44ch; }
+</style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <div class="frame" style="left:0; top:0; width:1328px;">
+    <p class="frame-label" data-drags-parent="1">Studio · for review</p>
+    <div class="card hero">
+      <div class="card-pad" style="padding:36px 40px 34px;">
+        <p class="kicker">Reusable patterns · navy + gold</p>
+        <h1>The halftone, explored — plus the companions you liked.</h1>
+        <p>Pitch Ticks is out. Up top: four directions for the <b>halftone</b>, tuned for different rooms — the matchday crowd and the grant officers both. Below: the other companions still on the table, dialed from loud to whisper. The checkerboard stays our loudest move, for borders and frames only.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HALFTONE SECTION ============ -->
+  <div class="frame section" style="left:0; top:380px; width:1328px;">
+    <p class="num" data-drags-parent="1">The focus — halftone, four directions</p>
+    <h2>One dot grid. Four masks. Four moods.</h2>
+    <p>Same printed-dot DNA from the Intro to Rugby flyer — only the fade changes. Fine and quiet for sponsors and decks; loud and gold for socials; coarse and graphic for posters; a spotlight to frame a face or a kit number.</p>
+  </div>
+
+  <!-- HALFTONE 01 · Fine Fade -->
+  <div class="frame" style="left:0; top:560px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">A · Fine Fade</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag">Quiet · decks, grants, sponsors</span>
+        <h3 class="pname">Fine Fade</h3>
+        <p class="pdesc">A tight navy grid on paper, dissolving on the diagonal. The most professional read — texture you feel before you notice. The default for the Clubhouse register.</p>
+        <div class="swatch ht-fade"></div>
+        <p class="ctx-label">In context — sponsor headline</p>
+        <div class="ctx m-half" style="background:var(--paper);">
+          <div class="tex ht-fade"></div>
+          <div class="in" style="background:var(--white);">
+            <p class="eyebrow" style="color:var(--navy-500);">Gotham Knights RFC</p>
+            <h4 style="color:var(--navy-700); font-size:23px;">Inclusive rugby,<br>since day one.</h4>
+          </div>
+        </div>
+        <div class="recipe"><span class="c">/* tight grid, diagonal dissolve */</span>
+background: radial-gradient(var(--navy-700) 1.6px, transparent 1.8px)
+  0 0 / 11px 11px var(--paper);
+mask: linear-gradient(105deg, #000 16%, transparent 92%);</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HALFTONE 02 · Loud Duotone -->
+  <div class="frame" style="left:688px; top:560px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">B · Loud Duotone</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag">Loud · socials, hype, recruitment</span>
+        <h3 class="pname">Loud Duotone</h3>
+        <p class="pdesc">Flip it: gold dots on a navy field. The matchday version — energy and grain behind a hype headline, straight off the poster's palette.</p>
+        <div class="swatch ht-loud"></div>
+        <p class="ctx-label">In context — social hype</p>
+        <div class="ctx m-half" style="background:var(--navy-700);">
+          <div class="tex ht-loud"></div>
+          <div class="in" style="background:transparent; padding:0; box-shadow:none;">
+            <p class="eyebrow" style="color:var(--navy-700); background:var(--gold-500); display:inline-block; padding:3px 8px; margin:0 0 9px; white-space:nowrap;">Tuesday nights</p><br>
+            <h4 class="athletic" style="color:var(--navy-700); font-size:30px; line-height:1.15; background:var(--gold-500); display:inline; padding:4px 10px; -webkit-box-decoration-break:clone; box-decoration-break:clone;">COME PLAY</h4>
+          </div>
+        </div>
+        <div class="recipe"><span class="c">/* gold dots on navy */</span>
+background: radial-gradient(var(--gold-500) 1.7px, transparent 1.9px)
+  0 0 / 12px 12px var(--navy-700);
+mask: linear-gradient(105deg, #000 16%, transparent 92%);</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HALFTONE 03 · Pride Halftone -->
+  <div class="frame" style="left:0; top:1300px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">C · Pride Halftone</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag">Special · the one deliberate pride moment</span>
+        <h3 class="pname">Pride Halftone</h3>
+        <p class="pdesc">Our identity, stated once and on purpose. The same dot grid, tinted through the <b>muted Pride spectrum</b> — and it <b>fades in</b>, so it lands as an accent, not a wash. Reserve it: a Pride-round poster, a welcome banner. Pride, not rainbow-everything.</p>
+        <div class="swatch" style="background:var(--paper);"><div class="ht-pride" style="position:absolute; inset:0;"></div></div>
+        <p class="ctx-label">In context — welcome banner</p>
+        <div class="ctx m-half" style="background:var(--paper); min-height:92px; display:flex; align-items:flex-end;">
+          <div class="tex ht-pride"></div>
+          <div class="in" style="background:var(--white);">
+            <p class="eyebrow" style="color:var(--pride-violet);">Pride round · June</p>
+            <h4 class="athletic" style="color:var(--navy-700); font-size:30px;">COME AS<br>YOU ARE</h4>
+          </div>
+        </div>
+        <div class="recipe"><span class="c">/* spectrum showing through dot-holes, faded in */</span>
+background-image:
+  radial-gradient(transparent 1.5px, var(--paper) 1.7px), <span class="c">/* dot holes */</span>
+  linear-gradient(90deg, pride red→violet);    <span class="c">/* muted spectrum */</span>
+background-size: 11px 11px, 100% 100%;
+mask: linear-gradient(90deg, transparent 34%, #000 88%);</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HALFTONE 04 · Spotlight -->
+  <div class="frame" style="left:688px; top:1300px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">D · Spotlight</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag">Focal · behind faces &amp; numbers</span>
+        <h3 class="pname">Spotlight</h3>
+        <p class="pdesc">The grid clusters around one point and fades out in a ring. Built to sit behind a player portrait or a mono kit number without fighting it.</p>
+        <div class="swatch ht-spot"></div>
+        <p class="ctx-label">In context — kit number</p>
+        <div class="ctx m-half" style="background:var(--paper); min-height:92px;">
+          <div class="tex ht-spot"></div>
+          <div class="in" style="display:inline-flex; align-items:center; gap:16px; background:var(--white);">
+            <span class="kitnum" style="color:var(--navy-700); font-size:54px;">22</span>
+            <div>
+              <p class="eyebrow" style="color:var(--ink-400); margin:0 0 4px;">Lock</p>
+              <h4 style="color:var(--navy-700); font-size:18px;">Jordan R.</h4>
+            </div>
+          </div>
+        </div>
+        <div class="recipe"><span class="c">/* dots fade in a ring from a focal point */</span>
+background: radial-gradient(var(--navy-700) 1.7px, transparent 1.9px)
+  0 0 / 12px 12px var(--paper);
+mask: radial-gradient(circle at 32% 50%, #000 6%, transparent 64%);</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OTHER COMPANIONS SECTION ============ -->
+  <div class="frame section" style="left:0; top:2040px; width:1328px;">
+    <p class="num" data-drags-parent="1">Still on the table — the other companions</p>
+    <h2>From loudest to whisper.</h2>
+    <p>The remaining directions, unchanged. The checker is the anchor at the top of the dial; the pinstripe is the whisper at the bottom, with the optional Pride rule.</p>
+  </div>
+
+  <!-- 00 · CHECKER -->
+  <div class="frame" style="left:0; top:2220px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">00 · The anchor (already in the system)</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag"><span class="dotrow"><i></i><i></i><i></i><i></i><i></i></span> Loudest · borders &amp; frames only</span>
+        <h3 class="pname">Checkerboard</h3>
+        <p class="pdesc">Your existing signature. Maximum volume — reserve it for poster top/bottom bands and hard frames. Everything else is a quieter alternative.</p>
+        <div class="swatch pat-checker"></div>
+        <p class="ctx-label">In context — poster frame</p>
+        <div class="ctx mock-poster">
+          <div class="band pat-checker"></div>
+          <div class="body">
+            <p class="athletic">INTRO TO<br>RUGBY</p>
+            <small>MARCH 14 · MCCARREN PARK</small>
+          </div>
+          <div class="band pat-checker"></div>
+        </div>
+        <div class="recipe"><span class="c">/* 30px checker tile */</span>
+background: conic-gradient(
+  var(--navy-700) 0 25%, var(--gold-500) 0 50%,
+  var(--navy-700) 0 75%, var(--gold-500) 0) 0 0 / 30px 30px;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 · SIDELINE STRIPES -->
+  <div class="frame" style="left:688px; top:2220px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">01 · Sideline Stripes</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag"><span class="dotrow"><i></i><i></i><i></i><i></i><i class="off"></i></span> Loud · accent bands, footers, CTAs</span>
+        <h3 class="pname">Sideline Stripes</h3>
+        <p class="pdesc">Bold diagonal bars — same two colours, different geometry. Reads as motion and team kit without the busy grid of the checker. Best as a thin edge or footer strip.</p>
+        <div class="swatch pat-stripes"></div>
+        <p class="ctx-label">In context — CTA banner edge</p>
+        <div class="ctx mock-cta">
+          <div class="copy">
+            <h4>COME PLAY →</h4>
+            <span>Tuesday nights · all levels welcome</span>
+          </div>
+          <div class="edge pat-stripes"></div>
+        </div>
+        <div class="recipe"><span class="c">/* 45° bars, 26px each */</span>
+background: repeating-linear-gradient(-45deg,
+  var(--navy-700) 0 26px, var(--gold-500) 26px 52px);</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 · CREST WATERMARK -->
+  <div class="frame" style="left:0; top:2960px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">04 · Crest Watermark</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag"><span class="dotrow"><i></i><i></i><i class="off"></i><i class="off"></i><i class="off"></i></span> Quiet · navy panels, covers</span>
+        <h3 class="pname">Crest Watermark</h3>
+        <p class="pdesc">A single oversized shield, dropped to ~9% against navy. Turns any flat panel into a branded surface — bleed it off an edge, never centre it over body copy.</p>
+        <div class="swatch pat-watermark">
+          <img class="wm-shield" src="../assets/logos/shield-inv.svg" alt="" style="right:-26px; top:50%; transform:translateY(-50%); height:226px;">
+        </div>
+        <p class="ctx-label">In context — cover panel</p>
+        <div class="ctx mock-cover pat-watermark">
+          <img class="wm-shield" src="../assets/logos/shield-inv.svg" alt="" style="right:-18px; bottom:-34px; height:168px;">
+          <p class="eyebrow">Sponsor pack · 2026</p>
+          <h4>Back a club that holds the door open.</h4>
+        </div>
+        <div class="recipe"><span class="c">/* one faint shield, bled off-edge */</span>
+&lt;img src="../assets/logos/shield-inv.svg"&gt; over navy;
+position: absolute; opacity: .09;
+right: -26px; height: 226px; <span class="c">/* bleed off-edge */</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 · PINSTRIPE + PRIDE -->
+  <div class="frame" style="left:688px; top:2960px; width:640px;">
+    <p class="frame-label" data-drags-parent="1">05 · Pinstripe — with optional Pride rule</p>
+    <div class="card">
+      <div class="card-pad">
+        <span class="tag"><span class="dotrow"><i></i><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></span> Whisper · decks, grants, one-pagers</span>
+        <h3 class="pname">Pinstripe</h3>
+        <p class="pdesc">The quietest texture — a fine navy pinstripe on warm paper. Pair it with the optional <b>Pride rule</b>: one deliberate spectrum line, never a full gradient.</p>
+        <div class="swatch pat-pinstripe" style="display:flex; align-items:flex-end;">
+          <div class="pride-rule" style="width:100%; border-radius:0;"></div>
+        </div>
+        <p class="ctx-label">In context — sponsor one-pager</p>
+        <div class="ctx mock-sponsor pat-pinstripe">
+          <div class="pride-rule"></div>
+          <div class="tex">
+            <p class="eyebrow">Gotham Knights RFC</p>
+            <h4>Inclusive rugby, since day one.</h4>
+            <p>One of New York's longest-running LGBT clubs — competitive on the pitch, open at the door.</p>
+          </div>
+        </div>
+        <div class="recipe"><span class="c">/* whisper pinstripe + pride rule */</span>
+background-image: repeating-linear-gradient(90deg,
+  rgba(13,29,65,.10) 0 1px, transparent 1px 8px);
+<span class="c">/* rule */</span> linear-gradient(90deg, red→violet, 6 hard stops);</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

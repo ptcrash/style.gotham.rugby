@@ -1,0 +1,17 @@
+<!-- @dsCard group="Patterns" viewport="780x320" name="Loud Patterns" subtitle="Checker · stripes · duotone — borders, bands, matchday" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);padding:var(--space-5);}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);}
+  .sw{height:150px;border-radius:var(--radius-sm);border:var(--bw-base) solid var(--navy-700);overflow:hidden;}
+  .code{font-family:var(--font-mono);font-size:12px;color:var(--text-strong);font-weight:var(--fw-semibold);margin-top:10px;}
+  .lbl{font-family:var(--font-body);font-size:12px;color:var(--text-muted);margin-top:2px;}
+  .hed{font-family:var(--font-heading);font-weight:var(--fw-extrabold);color:var(--text-strong);font-size:15px;letter-spacing:var(--ls-tight);margin:0 0 var(--space-4);}
+</style></head><body>
+  <p class="hed">Loud patterns — use sparingly</p>
+  <div class="grid">
+    <div><div class="sw gk-checker"></div><div class="code">.gk-checker</div><div class="lbl">Loudest. Borders &amp; frames only.</div></div>
+    <div><div class="sw gk-stripes"></div><div class="code">.gk-stripes</div><div class="lbl">Accent edges, footers, CTAs.</div></div>
+    <div><div class="sw gk-halftone-duotone"></div><div class="code">.gk-halftone-duotone</div><div class="lbl">Matchday, socials, hype.</div></div>
+  </div>
+</body></html>

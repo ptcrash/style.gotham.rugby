@@ -1,0 +1,20 @@
+<!-- @dsCard group="Brand" viewport="700x300" name="Photo Treatment" subtitle="Navy scrim + gold athletic type over real matchday photos" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);}
+  .poster{position:relative;height:300px;overflow:hidden;}
+  .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,29,65,.35) 0%,rgba(13,29,65,.78) 100%);}
+  .content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-6);}
+  .eyebrow{font-family:var(--font-body);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--gold-400);}
+  .h{font-family:var(--font-athletic);font-weight:900;text-transform:uppercase;color:var(--gold-500);font-size:58px;line-height:.9;margin:8px 0 0;}
+</style></head><body>
+  <div class="poster">
+    <img src="../assets/img/intro-to-rugby.jpg" alt="matchday">
+    <div class="scrim"></div>
+    <div class="content">
+      <span class="eyebrow">Tuesday Nights · Wall Street</span>
+      <p class="h">Come Play</p>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,55 @@
+<!-- @dsCard group="Brand" viewport="760x300" name="Crest — Clear Space & Min Size" subtitle="Give the shield room to breathe; never crowd or shrink it past legibility" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-body);
+    padding:var(--space-6);display:flex;gap:var(--space-7);align-items:stretch;}
+
+  /* ---- clear-space diagram ---- */
+  .diagram{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:var(--space-3);}
+  .field{position:relative;padding:60px;/* = ½X clear space */}
+  .field::before{content:"";position:absolute;inset:0;border:1.5px dashed var(--navy-300, #97a6c4);}
+  .field img{height:120px;display:block;position:relative;z-index:1;}
+  /* the measuring unit chip = ½X */
+  .unit{position:absolute;top:0;left:0;width:60px;height:60px;background:var(--gold-500);opacity:0.9;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;
+    font-weight:700;color:var(--navy-700);z-index:2;}
+  .cap{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);}
+
+  /* ---- right rail ---- */
+  .rail{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--space-4);}
+  .block h4{font-family:var(--font-heading);font-weight:var(--fw-bold);color:var(--text-strong);
+    font-size:var(--fs-body-sm);margin:0 0 var(--space-2);}
+  .rule{display:flex;gap:var(--space-3);align-items:baseline;font-size:var(--fs-body-sm);}
+  .rule b{font-family:var(--font-mono);color:var(--navy-700);white-space:nowrap;}
+  .rule span{color:var(--text-muted);line-height:var(--lh-body);}
+
+  .min{display:flex;align-items:flex-end;gap:var(--space-4);}
+  .min figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .min img{display:block;}
+  .min figcaption{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);}
+</style></head><body>
+
+  <div class="diagram">
+    <div class="field">
+      <div class="unit">½X</div>
+      <img src="../assets/logos/shield-2c.svg" alt="Gotham Knights crest with clear space">
+    </div>
+    <div class="cap">X = full crest height · keep ½X clear on every side</div>
+  </div>
+
+  <div class="rail">
+    <div class="block">
+      <h4>Clear space</h4>
+      <div class="rule"><b>≥ ½X</b><span>Hold at least half the crest's height of empty space on all four sides — no text, rules, photo edges, or other logos inside it.</span></div>
+    </div>
+    <div class="block">
+      <h4>Minimum size</h4>
+      <div class="min">
+        <figure><img src="../assets/logos/shield-2c.svg" style="height:48px"><figcaption>48px · digital</figcaption></figure>
+        <figure><img src="../assets/logos/shield-2c.svg" style="height:32px"><figcaption>32px · floor</figcaption></figure>
+        <div class="rule" style="align-self:center"><span>Never below <b>32px / 0.375in</b> tall — the dragon detail breaks up.</span></div>
+      </div>
+    </div>
+  </div>
+
+</body></html>

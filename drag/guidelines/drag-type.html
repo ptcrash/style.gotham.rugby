@@ -1,0 +1,48 @@
+<!-- @dsCard group="Type" viewport="700x340" name="Marquee Lockup" subtitle="Harbour Bold — show titles only, one per composition" -->
+<!doctype html><html data-theme="drag"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  /* --house-black is a :root primitive, so it resolves even where the
+     Design System pane drops the data-theme attribute off <html>. */
+  body{margin:0;background:var(--house-black);font-family:var(--font-body);}
+  .pad{padding:var(--space-5);background:var(--house-black);}
+  .marquee{font-size:3.6rem;color:var(--text-strong);margin:0;}
+  .sub{font-family:var(--font-body);font-weight:var(--fw-extrabold);font-size:1rem;
+       letter-spacing:0.2em;color:var(--gold-500);text-transform:uppercase;margin-top:var(--space-3);}
+  .lbl{font-family:var(--font-body);font-weight:var(--fw-bold);text-transform:uppercase;
+       letter-spacing:var(--ls-overline);font-size:var(--fs-overline);color:var(--text-muted);}
+  .rules{display:flex;gap:var(--space-5);margin-top:var(--space-5);}
+  .rule{flex:1;font-size:var(--fs-body-sm);line-height:1.45;}
+  .yes{color:var(--pride-green);font-weight:var(--fw-bold);}
+  .no{color:var(--pride-red);font-weight:var(--fw-bold);}
+  .rule p{margin:var(--space-1) 0 0;color:var(--text-body);}
+  .stack{margin-top:var(--space-5);padding-top:var(--space-4);border-top:var(--bw-hairline) solid var(--border);}
+  .athletic{font-family:var(--font-athletic);font-weight:var(--fw-black);text-transform:uppercase;
+            font-size:1.5rem;color:var(--text-strong);letter-spacing:var(--ls-tight);}
+  .mono{font-family:var(--font-mono);font-weight:600;font-size:1.1rem;color:var(--text-strong);
+        letter-spacing:var(--ls-wide);margin-top:var(--space-2);}
+  .cap{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:var(--space-1);}
+</style></head><body>
+  <div class="pad" data-theme="drag">
+    <div class="lbl">The marquee — one per composition</div>
+    <h1 class="gkd-marquee marquee">Gotham Drag Show</h1>
+    <div class="sub">The Next Generation · Season 25</div>
+
+    <div class="rules">
+      <div class="rule">
+        <span class="yes">✓ DO</span>
+        <p>Set the show title once, at poster scale, in Harbour Bold at wordmark tracking. It is the event's lockup.</p>
+      </div>
+      <div class="rule">
+        <span class="no">✕ DON'T</span>
+        <p>Use Harbour for headings, body, quotes, or a second element on the same surface. Never Harbour Decor.</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="athletic">Brandy Manhattan ◆ Chelsea Cloisters</div>
+      <div class="cap">GothamHTF Black — lineups, hype, ticket CTAs</div>
+      <div class="mono">WED · NOV 18 · DOORS 7PM</div>
+      <div class="cap">Spline Sans Mono — dates, times, prices</div>
+    </div>
+  </div>
+</body></html>

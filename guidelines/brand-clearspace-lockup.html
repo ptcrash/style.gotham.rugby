@@ -1,0 +1,74 @@
+<!-- @dsCard group="Brand" viewport="760x380" name="Lockup — Clear Space & Staying On-Brand" subtitle="Clear space, minimum size, and the do/don't rules for the crest + wordmark lockup" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-body);padding:var(--space-6);}
+  .top{display:flex;gap:var(--space-7);align-items:center;}
+
+  /* clear-space diagram for the lockup */
+  .diagram{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:var(--space-3);}
+  .field{position:relative;padding:40px;/* = X clear space */}
+  .field::before{content:"";position:absolute;inset:0;border:1.5px dashed var(--navy-300, #97a6c4);}
+  .field img{height:72px;display:block;position:relative;z-index:1;}
+  .unit{position:absolute;top:0;left:0;width:40px;height:40px;background:var(--gold-500);opacity:0.9;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;
+    font-weight:700;color:var(--navy-700);z-index:2;}
+  .cap{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);}
+
+  .rail{flex:1;display:flex;flex-direction:column;gap:var(--space-3);justify-content:center;}
+  .rail .block h4{font-family:var(--font-heading);font-weight:var(--fw-bold);color:var(--text-strong);font-size:var(--fs-body-sm);margin:0 0 4px;}
+  .rule{display:flex;gap:var(--space-3);align-items:baseline;font-size:var(--fs-body-sm);}
+  .rule b{font-family:var(--font-mono);color:var(--navy-700);white-space:nowrap;}
+  .rule span{color:var(--text-muted);line-height:var(--lh-body);}
+
+  /* do / don't */
+  .rails{display:flex;gap:var(--space-6);margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--border);}
+  .col{flex:1;}
+  .col h4{font-family:var(--font-heading);font-weight:var(--fw-bold);color:var(--text-strong);font-size:var(--fs-body-sm);margin:0 0 var(--space-2);}
+  .col.ok h4::before{content:"✓ ";color:var(--success);}
+  .col.no h4::before{content:"✕ ";color:var(--danger);}
+  .col ul{margin:0;padding-left:1.1em;font-size:var(--fs-caption);line-height:var(--lh-body);color:var(--text-muted);}
+</style></head><body>
+
+  <div class="top">
+    <div class="diagram">
+      <div class="field">
+        <div class="unit">X</div>
+        <img src="../assets/logos/logo-horizontal-2c.svg" alt="Gotham Knights lockup with clear space">
+      </div>
+      <div class="cap">X = crest height in the lockup · keep X clear on every side</div>
+    </div>
+    <div class="rail">
+      <div class="block">
+        <h4>Clear space</h4>
+        <div class="rule"><b>≥ X</b><span>Hold one crest-height of clear space around the whole lockup — the wordmark and crest stay locked together at their set ratio. Never re-space, re-scale, or separate them.</span></div>
+      </div>
+      <div class="block">
+        <h4>Minimum size</h4>
+        <div class="rule"><b>Horizontal ≥ 160px / 1.25in</b><span>wide</span></div>
+        <div class="rule"><b>Stacked ≥ 96px / 0.75in</b><span>wide · below this, drop the “Rugby Football Club” line or use the crest alone.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rails">
+    <div class="col ok">
+      <h4>Stay on-brand</h4>
+      <ul>
+        <li>Use the supplied lockup files at the fixed crest-to-wordmark ratio</li>
+        <li>2-color on light; all-white or knockout on navy/photo</li>
+        <li>Scale the whole lockup as one locked unit</li>
+        <li>Wordmark in Harbour, UPPERCASE, tight tracking — as drawn</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h4>Never</h4>
+      <ul>
+        <li>Re-space, stretch, or rebuild the wordmark in another font</li>
+        <li>Recolor outside navy / gold / white, or add effects & shadows</li>
+        <li>Crowd the clear space with text, rules, or photo edges</li>
+        <li>Place a busy photo behind the 2-color lockup (use knockout)</li>
+      </ul>
+    </div>
+  </div>
+
+</body></html>

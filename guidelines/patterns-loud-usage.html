@@ -1,0 +1,68 @@
+<!-- @dsCard group="Patterns" viewport="1060x500" name="Loud Patterns — Usage" subtitle="Do: frame, edge, contain · Don't: wallpaper, run text over" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--surface-page);font-family:var(--font-body);padding:var(--space-5);}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);}
+  .row + .head{margin-top:var(--space-6);}
+  .head{display:flex;align-items:center;gap:var(--space-3);margin:0 0 var(--space-4);}
+  .pill{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:var(--radius-pill);}
+  .pill.do{color:var(--success);background:var(--success-bg);}
+  .pill.no{color:var(--danger);background:var(--danger-bg);}
+  .head .why{font-size:13px;color:var(--text-muted);}
+  .mock{height:104px;border-radius:var(--radius-sm);border:var(--bw-base) solid var(--navy-700);overflow:hidden;}
+  .cap{font-family:var(--font-body);font-size:12px;color:var(--text-body);margin-top:9px;}
+  .cap b{color:var(--text-strong);font-weight:var(--fw-bold);}
+</style></head><body>
+
+  <div class="head"><span class="pill do">Do</span><span class="why">Keep it to borders, slim edges, and small contained blocks.</span></div>
+  <div class="row">
+    <div>
+      <div class="mock" style="background:var(--navy-700);display:flex;flex-direction:column;">
+        <div class="gk-checker" style="height:13px;"></div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+          <span class="gk-athletic" style="color:#fff;font-size:19px;">MATCH NIGHT</span>
+        </div>
+        <div class="gk-checker" style="height:13px;"></div>
+      </div>
+      <div class="cap"><b>Checker</b> — frame content with a thin band.</div>
+    </div>
+    <div>
+      <div class="mock" style="background:var(--navy-700);display:flex;">
+        <div style="flex:1;padding:0 14px;display:flex;align-items:center;">
+          <span style="color:#fff;font-weight:700;font-size:13px;">Tuesday socials &rarr;</span>
+        </div>
+        <div class="gk-stripes" style="width:54px;--gk-stripe-size:9px;"></div>
+      </div>
+      <div class="cap"><b>Stripes</b> — a slim accent edge or footer.</div>
+    </div>
+    <div>
+      <div class="mock gk-halftone-duotone" style="display:flex;align-items:center;justify-content:center;">
+        <span class="gk-athletic" style="color:var(--navy-700);font-size:19px;background:var(--gold-500);padding:3px 9px;line-height:1.3;white-space:nowrap;-webkit-box-decoration-break:clone;box-decoration-break:clone;">COME PLAY</span>
+      </div>
+      <div class="cap"><b>Duotone</b> — behind one short, bold headline.</div>
+    </div>
+  </div>
+
+  <div class="head"><span class="pill no">Don't</span><span class="why">Never wallpaper a layout or run body copy over a loud pattern.</span></div>
+  <div class="row">
+    <div>
+      <div class="mock gk-checker" style="padding:12px;">
+        <p style="margin:0;font-size:10px;line-height:1.45;color:var(--navy-900);">Gotham Knights field competitive sides while keeping the door open to players of every background and skill level. No experience needed.</p>
+      </div>
+      <div class="cap">Don't fill the field — copy becomes unreadable.</div>
+    </div>
+    <div>
+      <div class="mock gk-stripes" style="display:flex;align-items:center;justify-content:center;padding:12px;">
+        <span style="color:#fff;font-weight:700;font-size:13px;text-shadow:0 1px 2px rgba(0,0,0,.5);">Whole-panel fill</span>
+      </div>
+      <div class="cap">Don't cover large areas — it fights everything.</div>
+    </div>
+    <div>
+      <div class="mock gk-halftone-duotone" style="padding:12px;">
+        <p style="margin:0;font-size:10px;line-height:1.45;color:var(--navy-100);">One of New York's longest-running inclusive rugby clubs, fielding competitive sides across multiple divisions throughout the season.</p>
+      </div>
+      <div class="cap">Don't run paragraphs over the dots.</div>
+    </div>
+  </div>
+
+</body></html>

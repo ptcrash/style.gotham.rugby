@@ -1,0 +1,7 @@
+{
+  "name": "gotham-drag-render",
+  "private": true,
+  "description": "Deterministic frame renderer for the Drag Show motion pieces (see ../readme.md, Motion & output formats).",
+  "scripts": { "render": "node rec.cjs" },
+  "dependencies": { "puppeteer": "^24" }
+}

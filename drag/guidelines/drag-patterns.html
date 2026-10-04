@@ -1,0 +1,69 @@
+<!-- @dsCard group="Patterns" viewport="700x360" name="Showtime Textures" subtitle="Marquee bulbs, spectrum frame, stage spotlight, sequin — single moments only" -->
+<!doctype html><html data-theme="drag"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  /* --house-black is a :root primitive, so it resolves even where the
+     Design System pane drops the data-theme attribute off <html>. */
+  body{margin:0;background:var(--house-black);font-family:var(--font-body);}
+  .pad{padding:var(--space-5);background:var(--house-black);}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);}
+  .tile{border-radius:var(--radius-md);overflow:hidden;border:var(--bw-hairline) solid var(--border);}
+  .demo{height:104px;display:flex;align-items:center;justify-content:center;}
+  .cap{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);
+       padding:var(--space-2) var(--space-3);background:var(--surface-card);}
+  /* The frame tile must not centre its child, or the "frame" reads as bands */
+  .demo.gkd-spectrum-frame{display:block;}
+  .inner{background:var(--house-black);width:100%;height:100%;display:flex;
+         align-items:center;justify-content:center;}
+  .ttl{font-family:var(--font-athletic);font-weight:var(--fw-black);text-transform:uppercase;
+       font-size:1.1rem;color:var(--text-strong);letter-spacing:var(--ls-tight);}
+  .warn{font-family:var(--font-body);font-size:var(--fs-body-sm);color:var(--text-body);
+        margin-top:var(--space-4);padding-top:var(--space-3);
+        border-top:var(--bw-hairline) solid var(--border);}
+  .warn strong{color:var(--gold-500);}
+</style></head><body>
+  <div class="pad" data-theme="drag">
+    <div class="grid">
+      <div class="tile">
+        <div class="demo" style="background:var(--house-black);flex-direction:column;gap:var(--space-4)">
+          <hr class="gkd-marquee-rule" style="width:100%">
+          <div class="ttl">Doors 7pm</div>
+          <hr class="gkd-marquee-rule" style="width:100%">
+        </div>
+        <div class="cap">.gkd-marquee-rule — stage-door bulbs</div>
+      </div>
+
+      <div class="tile">
+        <div class="demo gkd-spectrum-frame" style="padding:3px">
+          <div class="inner"><div class="ttl">Framed</div></div>
+        </div>
+        <div class="cap">.gkd-spectrum-frame — ONE per composition</div>
+      </div>
+
+      <div class="tile">
+        <div class="demo gkd-spotlight" style="background-color:var(--house-black)">
+          <div class="ttl">Spotlight</div>
+        </div>
+        <div class="cap">.gkd-spotlight — warm wash from above</div>
+      </div>
+
+      <div class="tile">
+        <div class="demo gkd-sequin" style="background-color:var(--house-black)">
+          <div class="ttl">Sequin</div>
+        </div>
+        <div class="cap">.gkd-sequin — the quiet one</div>
+      </div>
+
+      <div class="tile">
+        <div class="demo" style="background:var(--surface-raised)">
+          <div class="gkd-badcrop" style="width:56%;height:64%;display:flex;align-items:center;justify-content:center;background:var(--navy-800);font-family:var(--font-mono);font-size:10px;color:var(--text-muted);">head, pasted obviously</div>
+        </div>
+        <div class="cap">.gkd-badcrop — the joke, codified (see mood board)</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>Loud by nature.</strong> Per the mood board: dark house, three accents, spectrum as a rule — never wallpaper. Frames, bands and single moments — never wallpaper a
+      whole layout. The club's <code>.gk-*</code> patterns all still work under this theme.
+    </div>
+  </div>
+</body></html>

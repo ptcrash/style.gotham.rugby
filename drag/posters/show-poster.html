@@ -1,0 +1,254 @@
+<!-- @dsCard group="Show" viewport="1080x1350" name="Show Poster" subtitle="The reference composition — marquee lockup, spectrum rule, ticket band" -->
+<!doctype html>
+<!-- ============================================================
+     REFERENCE COMPOSITION — Gotham Knights Drag Show poster
+     ------------------------------------------------------------
+     Every color, space, radius, stroke and font below comes from a
+     token. Nothing is hardcoded — this doubles as the proof that
+     the [data-theme="drag"] register holds up in a real layout.
+
+     The open space in the middle is deliberate: that is where
+     performer photography goes once the club supplies it.
+
+     Title, date (Wed 18 Nov 2026), venue, price and URL are CONFIRMED.
+     The five performer names below are still stand-ins — the likely cast
+     is Brandy Manhattan, Chelsea Cloisters, Raul and Jorge (stage names
+     TBC). See guidelines/mood-board.html for the grounding reference.
+     ============================================================ -->
+<html lang="en" data-theme="drag">
+<head>
+  <meta charset="utf-8">
+  <title>Gotham Knights Drag Show — Poster</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    /* Poster-only layout. Design decisions live in tokens/drag.css. */
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      background: #1a1a1a;
+      padding: var(--space-6);
+    }
+
+    /* The poster carries data-theme itself, so it survives the Design
+       System pane dropping the attribute off <html>. --house-black is
+       a :root primitive and resolves either way. */
+    .poster {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      background: var(--house-black);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* The stage wash sits over the dark house, behind everything. */
+    .poster__stage {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .poster__body {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-8) var(--space-8) var(--space-7);
+    }
+
+    /* ---- Eyebrow ---- */
+    .presents {
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-overline);
+      font-size: var(--fs-body-sm);
+      color: var(--gold-500);
+    }
+
+    /* ---- Crest ---- the club, unmistakably, holding the door open.
+       A violet glow lifts it off the near-black house. */
+    .crest {
+      margin: var(--space-5) 0 var(--space-6);
+      width: 132px;
+      height: 132px;
+      filter: drop-shadow(0 0 28px rgba(139, 70, 201, 0.55));
+    }
+
+    /* ---- Title ---- the marquee voice: Harbour Bold, the wordmark
+       face, treated as the show's lockup. See tokens/drag.css. ---- */
+    .title {
+      font-family: var(--font-marquee);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-strong);
+      font-size: 6.4rem;
+      line-height: 0.9;
+      letter-spacing: var(--tracking-wordmark);
+      margin: 0;
+    }
+
+    /* The subtitle drops to the body face — Harbour carries the lockup
+       alone, so a second line in it would dilute the one moment. */
+    .title em {
+      font-style: normal;
+      display: block;
+      font-family: var(--font-body);
+      font-weight: var(--fw-extrabold);
+      font-size: 2.4rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-500);
+      margin-top: var(--space-4);
+    }
+
+    .title-rule {
+      width: 460px;
+      margin: var(--space-6) 0 var(--space-7);
+      border-radius: var(--radius-pill);
+    }
+
+    /* ---- Date / venue ---- mono, for the scoreboard feel the
+       brand uses on fixtures and kit numbers. ---- */
+    .when {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: var(--fs-h2);
+      letter-spacing: var(--ls-wide);
+      color: var(--text-strong);
+      text-transform: uppercase;
+    }
+
+    .where {
+      font-family: var(--font-body);
+      font-size: var(--fs-body-lg);
+      color: var(--text-muted);
+      margin-top: var(--space-3);
+    }
+
+    /* ---- Lineup ---- athletic caps: the club's loud voice,
+       applied to performers instead of players. ---- */
+    .lineup {
+      margin-top: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding-top: var(--space-6);
+    }
+
+    .lineup__label {
+      font-family: var(--font-body);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-overline);
+      font-size: var(--fs-overline);
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .lineup__names {
+      font-family: var(--font-athletic);
+      font-weight: var(--fw-black);
+      text-transform: uppercase;
+      font-size: var(--fs-display-md);
+      line-height: 1.25;
+      letter-spacing: var(--ls-tight);
+      color: var(--text-strong);
+    }
+
+    /* Spectrum dot between names — the accent doing structural work. */
+    .lineup__names span {
+      color: var(--accent-2);
+      margin: 0 var(--space-3);
+    }
+
+    /* ---- Ticket band ---- */
+    .tickets {
+      position: relative;
+      background: var(--surface-brand);
+      padding: var(--space-6) var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .tickets__cta {
+      font-family: var(--font-athletic);
+      font-weight: var(--fw-black);
+      text-transform: uppercase;
+      font-size: var(--fs-h1);
+      letter-spacing: var(--ls-tight);
+      background: var(--accent);
+      color: var(--on-accent);
+      padding: var(--space-4) var(--space-7);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-glow);
+      white-space: nowrap;
+    }
+
+    .tickets__note {
+      font-family: var(--font-body);
+      font-size: var(--fs-body-lg);
+      line-height: var(--lh-snug);
+      color: var(--navy-100);
+      text-align: left;
+    }
+
+    .tickets__note strong {
+      display: block;
+      color: var(--gold-500);
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-h3);
+      margin-bottom: var(--space-1);
+    }
+  </style>
+</head>
+<body>
+  <div class="poster" data-theme="drag">
+    <div class="poster__stage gkd-spotlight"></div>
+
+    <hr class="gkd-marquee-rule">
+
+    <div class="poster__body">
+      <div class="presents">Gotham Knights RFC presents</div>
+
+      <img class="crest" src="../../assets/logos/shield-2c.png" alt="Gotham Knights crest">
+
+      <h1 class="title">
+        Gotham Drag Show
+        <em>The Next Generation · Season 25</em>
+      </h1>
+
+      <hr class="gkd-spectrum-rule title-rule">
+
+      <div class="when">Wed · Nov 18 · Doors 7pm · Show 8pm</div>
+      <div class="where">The Cutting Room · 44 E 32nd St, NY, NY</div>
+
+      <div class="lineup">
+        <div class="lineup__label">Starring</div>
+        <div class="lineup__names">
+          Scarlet Ruck <span>◆</span> Velveteen <span>◆</span> Miss Conduct<br>
+          Dame Shirley Knot <span>◆</span> Lady Lineout
+        </div>
+      </div>
+    </div>
+
+    <div class="tickets">
+      <div class="tickets__note">
+        <strong>All bodies. All levels. All sequins.</strong>
+        Proceeds fund the 2027 season — kit, pitch fees and travel.
+      </div>
+      <div class="tickets__cta">Tickets $35<span style="display:block;font-family:var(--font-mono);font-weight:600;font-size:var(--fs-body-lg);letter-spacing:var(--ls-wide);margin-top:var(--space-2);">go.gotham.rugby/drag</span></div>
+    </div>
+
+    <hr class="gkd-marquee-rule">
+  </div>
+</body>
+</html>

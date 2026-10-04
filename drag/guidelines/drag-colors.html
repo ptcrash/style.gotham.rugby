@@ -1,0 +1,42 @@
+<!-- @dsCard group="Colors" viewport="700x300" name="Drag Palette" subtitle="Violet leads, gold stays the thread back to the club" -->
+<!doctype html><html data-theme="drag"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  /* --house-black is a :root primitive, so it resolves even where the
+     Design System pane drops the data-theme attribute off <html>. */
+  body{margin:0;background:var(--house-black);font-family:var(--font-body);}
+  .pad{padding:var(--space-5);background:var(--house-black);}
+  .row{display:flex;gap:var(--space-2);margin-bottom:var(--space-4);}
+  .sw{flex:1;height:52px;border-radius:var(--radius-sm);display:flex;align-items:flex-end;padding:var(--space-2);}
+  .sw span{font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,.8);}
+  /* Light tints need dark labels to stay legible */
+  .sw.on-light span{color:rgba(4,9,26,.7);}
+  .lbl{font-family:var(--font-body);font-weight:var(--fw-bold);text-transform:uppercase;
+       letter-spacing:var(--ls-overline);font-size:var(--fs-overline);color:var(--text-muted);
+       margin-bottom:var(--space-2);}
+  .cap{font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:var(--space-3);}
+</style></head><body>
+  <div class="pad" data-theme="drag">
+    <div class="lbl">Violet — the lead accent</div>
+    <div class="row">
+      <div class="sw" style="background:var(--violet-700)"><span>700</span></div>
+      <div class="sw" style="background:var(--violet-600)"><span>600</span></div>
+      <div class="sw" style="background:var(--violet-500)"><span>500</span></div>
+      <div class="sw" style="background:var(--violet-400)"><span>400</span></div>
+      <div class="sw on-light" style="background:var(--violet-300)"><span>300</span></div>
+      <div class="sw on-light" style="background:var(--violet-200)"><span>200</span></div>
+    </div>
+
+    <div class="lbl">Pink — secondary accent</div>
+    <div class="row">
+      <div class="sw on-light" style="background:var(--pink-600)"><span>600</span></div>
+      <div class="sw on-light" style="background:var(--pink-500)"><span>500</span></div>
+      <div class="sw on-light" style="background:var(--pink-400)"><span>400</span></div>
+      <div class="sw" style="background:var(--house-black);border:var(--bw-hairline) solid var(--border)"><span>house</span></div>
+      <div class="sw" style="background:var(--navy-700)"><span>navy 700</span></div>
+      <div class="sw" style="background:var(--gold-500)"><span style="color:var(--navy-700)">gold 500</span></div>
+    </div>
+
+    <hr class="gkd-spectrum-rule">
+    <div class="cap">.gkd-spectrum-rule — a rule, not a wallpaper; the house stays dark with three accents (see mood board)</div>
+  </div>
+</body></html>

@@ -1,0 +1,188 @@
+/* ============================================================
+   Gotham Knights Drag Show — Output formats & safe areas
+   ------------------------------------------------------------
+   Everything that ships to a screen has a fixed canvas: a venue
+   projector, a phone, a printed poster. This layer makes that canvas
+   a declared thing rather than a pile of magic pixel values.
+
+   THE RESOLUTION-INDEPENDENCE RULE
+   Size type and spacing inside a canvas in container units (cqh/cqw),
+   never px. A 1920x1080 render and a 3840x2160 render of the same file
+   must be pixel-identical after scaling — that only holds if nothing
+   is measured in absolute units. `.stage__canvas` sets
+   `container-type: size` so cqh/cqw resolve against the canvas.
+
+   WHICH UNIT: size against the CONSTRAINING dimension.
+   Landscape (16:9) is height-constrained — use `cqh`. Portrait (9:16)
+   is width-constrained — use `cqw`. Getting this backwards is why a
+   composition that looks right in 16:9 falls apart in 9:16: at
+   1080x1920 a "12cqh" headline is 230px tall and runs straight off both
+   edges. Pick the unit from the format, not from habit.
+   ============================================================ */
+
+:root {
+  /* --- Canvas aspects --- */
+  --fmt-venue: 16 / 9; /* @kind other */          /* projector / LED wall / OBS */
+  --fmt-vertical: 9 / 16; /* @kind other */       /* reels, stories, TikTok */
+  --fmt-square: 1 / 1; /* @kind other */          /* feed */
+  --fmt-portrait: 4 / 5; /* @kind other */        /* feed, taller crop */
+  --fmt-poster: 3 / 4; /* @kind other */          /* print + the show poster */
+
+  /* --- Safe areas, as inset from every edge ---
+     Broadcast convention: action-safe 3.5%, title-safe 5%. Nothing
+     that must be READ goes outside title-safe. */
+  --safe-action: 3.5%;
+  --safe-title: 5%;
+
+  /* Venue-specific: heads, stage furniture and screen masking eat the
+     bottom of a projected image far more than the top. */
+  --safe-venue-bottom: 12%;
+
+  /* --- Social chrome ---
+     The platform draws its own UI over the frame. These are approximate
+     and worth re-checking on a real device before a big push; treat them
+     as conservative defaults, not gospel.
+
+     Reels: header up top, caption + username bottom-left, and an action
+     rail (like / comment / share / audio) up the RIGHT edge across most
+     of the lower frame. The right rail is the one people forget. */
+  --safe-reel-top: 13%;
+  --safe-reel-bottom: 22%;
+  --safe-reel-right: 19%;
+
+  /* Stories: progress bar + profile row up top, reply bar and link
+     sticker along the bottom. No right rail. */
+  --safe-story-top: 13%;
+  --safe-story-bottom: 16%;
+
+  /* Legacy aliases — the conservative intersection of both surfaces. */
+  --safe-social-top: 14%;
+  --safe-social-bottom: 22%;
+
+  /* --- Minimum type size for legibility at distance ---
+     Expressed against canvas height. A lower-third name read from the
+     back of a room needs ~4% of frame height; supporting text ~2.2%.
+     Below --type-min-venue, don't put it on a venue screen at all. */
+  --type-min-venue: 4cqh;
+  --type-min-venue-support: 2.2cqh;
+  /* Portrait is width-constrained, so the social minimum is in cqw. A
+     phone is held close, so the floor is lower in absolute terms than
+     the venue's — but the frame is narrow, so it is larger as a share
+     of the canvas. */
+  --type-min-social: 3.2cqw;
+  --type-min-social-support: 2.4cqw;
+}
+
+/* ============================================================
+   STAGE — the letterboxed canvas.
+   Wrap every motion/graphic piece in .stage > .stage__canvas. When
+   rendered headless the viewport matches the aspect exactly and the
+   letterboxing is a no-op; in a browser at any window size it keeps
+   the composition honest instead of reflowing it.
+   ============================================================ */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  background: #000;         /* letterbox bars — always true black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage__canvas {
+  position: relative;
+  container-type: size;     /* makes cqh/cqw resolve against the canvas */
+  overflow: hidden;
+  aspect-ratio: var(--canvas, var(--fmt-venue));
+  width: 100vw;
+  max-height: 100vh;
+  background: var(--house-black);
+}
+
+/* --- Format modifiers: set the aspect and the matching safe insets --- */
+.fmt-venue    { --canvas: var(--fmt-venue); }
+.fmt-vertical { --canvas: var(--fmt-vertical); }
+.fmt-square   { --canvas: var(--fmt-square); }
+.fmt-portrait { --canvas: var(--fmt-portrait); }
+.fmt-poster   { --canvas: var(--fmt-poster); }
+
+/* ============================================================
+   SAFE AREA HELPERS
+   Put content inside one of these rather than positioning against the
+   canvas edge. `.safe--venue` and `.safe--social` add the asymmetric
+   platform insets on top of title-safe.
+   ============================================================ */
+
+.safe {
+  position: absolute;
+  inset: var(--safe-title);
+}
+
+.safe--action { inset: var(--safe-action); }
+
+.safe--venue {
+  inset: var(--safe-title);
+  bottom: var(--safe-venue-bottom);
+}
+
+.safe--social {
+  inset: var(--safe-title);
+  top: var(--safe-social-top);
+  bottom: var(--safe-social-bottom);
+}
+
+/* Reels — full width. The action rail only covers the LOWER frame, so
+   content sitting above roughly 55% height may use the whole width.
+   Anything lower must use .safe--reel-rail instead or it gets covered. */
+.safe--reel {
+  inset: var(--safe-title);
+  top: var(--safe-reel-top);
+  bottom: var(--safe-reel-bottom);
+}
+
+.safe--reel-rail {
+  inset: var(--safe-title);
+  top: var(--safe-reel-top);
+  bottom: var(--safe-reel-bottom);
+  right: var(--safe-reel-right);
+}
+
+.safe--story {
+  inset: var(--safe-title);
+  top: var(--safe-story-top);
+  bottom: var(--safe-story-bottom);
+}
+
+/* ============================================================
+   SOCIAL LIFT — survive the platform encoder.
+
+   The drag register is near-black with large, slow gradients (the house
+   vignette, the spectrum) and 1px texture. That is close to the worst
+   case for Instagram's re-encode: dark gradients band and block, and
+   fine dot texture mushes into noise. A projector is forgiving about
+   this; the Reels pipeline is not.
+
+   So vertical output lifts the floor, coarsens the texture and leans
+   HARDER on grain — counterintuitive, but grain dithers a gradient and
+   measurably reduces visible banding. Venue output is untouched.
+
+   This is a delivery accommodation, not a second brand. Only the floor
+   and the texture scale move; hues, type and layout rules do not.
+   ============================================================ */
+.fmt-vertical {
+  --house-black: #0b1024;      /* lifted off #04091a so blacks don't block up */
+  --gkd-sequin-gap: 28px;      /* coarser than 15px — survives compression */
+  --gkd-sequin-r: 1.6px;
+}
+
+/* --- Development overlay: visualise the safe areas.
+   Add .show-safe to .stage__canvas. Never ship with this on;
+   the render harness fails the build if it finds it. --- */
+.show-safe .safe,
+.show-safe .safe--action,
+.show-safe .safe--venue,
+.show-safe .safe--social {
+  outline: 2px dashed rgba(254, 197, 38, 0.55);
+  outline-offset: 0;
+}
