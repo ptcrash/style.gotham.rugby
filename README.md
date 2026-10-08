@@ -171,7 +171,7 @@ This repo is both the design system and the published brand guidelines; one entr
 | `components/` | Nine React primitives, each with `.jsx`, `.d.ts`, `.prompt.md` and a specimen card. Compiled to `_ds_bundle.js`. |
 | `ui_kits/website/` | A click-through marketing-site kit built from the primitives. |
 | `guidelines/` | Specimen cards for colors, type, spacing, brand and patterns. |
-| `docs/` | The print brand book, the Pantone swatch card and the pattern studies. |
+| `docs/` | The print brand book, the Pantone swatch card, the pattern studies and the letterhead (`letterhead.html`, with a print-ready `letterhead.pdf`). |
 | `README.md`, `SKILL.md` | This guide and its agent-skill wrapper. |
 
 ## Fonts

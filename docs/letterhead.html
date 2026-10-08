@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gotham Knights RFC — Letterhead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /* Clubhouse register on white stock: navy ink, one gold stroke, one thin pride moment.
+     US Letter. Print at 100% with margins off; the page carries its own margins. */
+  @page { size: letter; margin: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; background: #34373c; }
+  body { font-family: var(--font-body); color: var(--ink-700); }
+
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 36px 20px 64px; }
+  .page {
+    position: relative; width: 8.5in; height: 11in; background: var(--white);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.4); overflow: hidden;
+    padding: 0.7in 0.9in 0.95in;
+    display: flex; flex-direction: column;
+  }
+
+  /* ---- header ---- */
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 0.5in; padding-bottom: 0.22in; border-bottom: 2px solid var(--navy-700); }
+  .head .lockup { height: 0.78in; width: auto; display: block; }
+  .head .org { text-align: right; font-size: 8.5pt; line-height: 1.6; letter-spacing: 0.12em; text-transform: uppercase; font-weight: var(--fw-bold); color: var(--navy-700); }
+  .head .org span { display: block; color: var(--ink-500); font-weight: var(--fw-semibold); letter-spacing: 0.08em; }
+  .goldbar { width: 56px; height: 4px; background: var(--gold-500); margin-top: 0.14in; }
+
+  /* second sheet: the mark gets out of the way */
+  .page.continuation { padding-top: 0.6in; }
+  .head.slim { align-items: center; padding-bottom: 0.12in; border-bottom-width: 1px; border-bottom-color: var(--ink-200); }
+  .head.slim .shield { height: 0.36in; width: auto; display: block; }
+  .head.slim .org { font-size: 7.5pt; }
+
+  /* ---- letter body ---- */
+  .letter { flex: 1; padding-top: 0.32in; font-size: 11pt; line-height: 1.55; }
+  .letter .date { font-family: var(--font-mono); font-size: 9.5pt; letter-spacing: 0.04em; color: var(--ink-500); }
+  .letter .to { margin-top: 0.28in; line-height: 1.45; }
+  .letter .to b { color: var(--navy-700); }
+  .letter p { margin: 0 0 0.16in; max-width: 6.2in; text-wrap: pretty; }
+  .letter .salute { margin-top: 0.3in; }
+  .letter .signoff { margin-top: 0.34in; }
+  .letter .sig { margin-top: 0.55in; }
+  .letter .sig b { display: block; color: var(--navy-700); font-weight: var(--fw-extrabold); }
+  .letter .sig span { display: block; font-size: 10pt; color: var(--ink-500); }
+  .page.continuation .letter { padding-top: 0.4in; }
+  .foot .pagenum { font-family: var(--font-mono); letter-spacing: 0.1em; color: var(--ink-400); margin-left: 14px; }
+
+  /* ---- footer ---- */
+  .foot { position: absolute; left: 0.9in; right: 0.9in; bottom: 0.52in; display: flex; justify-content: space-between; align-items: center; font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; font-weight: var(--fw-bold); color: var(--ink-500); }
+  .foot .shield { height: 0.22in; width: auto; margin-right: 8px; vertical-align: middle; }
+  .foot .l { display: flex; align-items: center; }
+  .pride { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; }
+
+  /* ---- notes (screen only) ---- */
+  .notes { max-width: 8.5in; color: #d6d9e0; font-size: 13px; line-height: 1.6; }
+  .notes h1 { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-500); margin: 0 0 8px; }
+  .notes code { font-family: var(--font-mono); font-size: 12px; color: #fff; }
+
+  @media print {
+    html, body { background: #fff; }
+    .deck { display: block; padding: 0; gap: 0; }
+    .page { box-shadow: none; break-after: page; page-break-after: always; }
+    .page:last-of-type { break-after: auto; page-break-after: auto; }
+    .notes { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <div class="notes">
+    <h1>Letterhead · Clubhouse register</h1>
+    White stock, navy ink, the horizontal lockup and one gold stroke; the pride rule is the single spectrum moment, along the foot. Body in Hanken Grotesk 11pt, dates and references in Spline Sans Mono. Sheet two drops to a slim header so the mark doesn't repeat at full size. The letter below is sample copy. Print at 100% with browser margins off, or use <code>docs/letterhead.pdf</code>.
+  </div>
+
+  <!-- ============ SHEET 1 ============ -->
+  <section class="page">
+    <header class="head">
+      <img class="lockup" src="../assets/logos/logo-horizontal-2c.svg" alt="Gotham Knights Rugby Football Club">
+      <div class="org">
+        Gotham Knights Rugby Football Club
+        <span>New York, NY</span>
+        <span>gotham.rugby</span>
+      </div>
+    </header>
+    <div class="goldbar"></div>
+
+    <div class="letter">
+      <div class="date">8 OCTOBER 2026</div>
+      <div class="to">
+        <b>Jordan Reyes</b><br>
+        Community Partnerships<br>
+        Hudson &amp; Vine Hospitality<br>
+        New York, NY
+      </div>
+
+      <p class="salute">Dear Jordan,</p>
+      <p>Thank you for hosting the squad on Saturday. Twenty-eight players, a dozen first-timers, and a room that stayed loud until the last of the fixtures came up on the screen — that is exactly the kind of evening that turns people who are curious about the club into people who turn up on a Tuesday.</p>
+      <p>Gotham Knights is New York City's LGBT rugby club. We field competitive sides in the Metropolitan union while keeping our doors open to players of every background and skill level, and we can only do that because businesses like yours give us somewhere to gather. Your support covered our post-match hospitality for the autumn season, and we'd like to recognize it properly: on the club website, in our match-day programs, and at our end-of-season dinner in December.</p>
+      <p>I'll follow up next week with a short summary of the season and a few photos you're welcome to use. In the meantime, if there is anything you need from us — a logo, a quote, a few players in kit for an event — just ask.</p>
+      <p>With thanks from the whole club,</p>
+
+      <div class="sig">
+        <b>Sam Okafor</b>
+        <span>Sponsorship &amp; Partnerships · Gotham Knights RFC</span>
+        <span>sam@gotham.rugby</span>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="l"><img class="shield" src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC · Registered 501(c)(3) non-profit</div>
+      <div>gotham.rugby</div>
+    </footer>
+    <div class="pride gk-pride-rule" style="border-radius:0;"></div>
+  </section>
+
+  <!-- ============ SHEET 2 · continuation ============ -->
+  <section class="page continuation">
+    <header class="head slim">
+      <img class="shield" src="../assets/logos/shield-2c.svg" alt="">
+      <div class="org">Gotham Knights Rugby Football Club <span>New York, NY · gotham.rugby</span></div>
+    </header>
+
+    <div class="letter">
+      <p>Continuation sheets keep the margins, the body size and the footer, and swap the full lockup for the shield alone. Nothing else changes: the same navy ink, the same gold, the same single pride rule along the foot.</p>
+      <p>The page number sits in the footer, in the mono face, beside the web address.</p>
+    </div>
+
+    <footer class="foot">
+      <div class="l"><img class="shield" src="../assets/logos/shield-2c.svg" alt="">Gotham Knights RFC · Registered 501(c)(3) non-profit</div>
+      <div>gotham.rugby<span class="pagenum">2 / 2</span></div>
+    </footer>
+    <div class="pride gk-pride-rule" style="border-radius:0;"></div>
+  </section>
+
+</div>
+</body>
+</html>
